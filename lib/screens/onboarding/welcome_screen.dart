@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:microsoft_teams_clone/constants.dart';
-import 'rounded_button.dart';
+import 'package:microsoft_teams_clone/screens/onboarding/video_screen.dart';
+import '../../widgets/rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -31,21 +32,31 @@ class Body extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 20),
-          Text(
-            "App developed by Karanjot Singh",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
+          // SizedBox(height: size.height * 0.03),
+          // Text(
+          //   "App developed by Karanjot Singh",
+          //   style: TextStyle(fontWeight: FontWeight.bold),
+          // ),
+          SizedBox(height: size.height * 0.03),
           SvgPicture.asset(
             "assets/icons/onboarding_chat.svg",
-            height: size.height * 0.45,
+            height: size.height * 0.40,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: size.height * 0.03),
           RoundedButton(
             buttonColor: appPrimaryColor,
             buttonText: "Next",
-            onPress: () {},
+            onPress: () {
+              // Navigates to the next screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return VideoScreen();
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),
