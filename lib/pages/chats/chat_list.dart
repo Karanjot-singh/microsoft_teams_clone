@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:microsoft_teams_clone/routes/routes.dart';
-import 'package:microsoft_teams_clone/search_text_field.dart';
+import 'package:microsoft_teams_clone/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 

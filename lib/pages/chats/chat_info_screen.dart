@@ -7,7 +7,7 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
 import 'group_chat/group_media_screen.dart';
 import 'group_chat/group_chats_page.dart';
-import '../../pinned_messages_screen.dart';
+import 'pinned_messages_screen.dart';
 import '../../routes/routes.dart';
 
 /// Detail screen for a 1:1 chat correspondence

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../routes/routes.dart';
-import '../../../search_text_field.dart';
+import '../../../widgets/search_text_field.dart';
 
 class NewGroupChatScreen extends StatefulWidget {
   @override

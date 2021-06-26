@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
-import 'package:microsoft_teams_clone/user_mentions_page.dart';
+import 'package:microsoft_teams_clone/pages/mentions/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';

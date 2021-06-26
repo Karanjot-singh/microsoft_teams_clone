@@ -10,7 +10,7 @@ import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.d
 import 'group_media_screen.dart';
 import 'group_chats_page.dart';
 import '../chat_info_screen.dart';
-import '../../../pinned_messages_screen.dart';
+import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
 class GroupInfoScreen extends StatefulWidget {
