@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:example/constants.dart';
+import 'package:example/join_meetings_page.dart';
 import 'package:example/routes/routes.dart';
 import 'package:example/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
@@ -27,14 +29,25 @@ class _ChannelListPageState extends State<ChannelListPage> {
 
   List<BottomNavigationBarItem> get _navBarItems {
     return <BottomNavigationBarItem>[
+      // Icon for Join meetings page
+      BottomNavigationBarItem(
+        icon: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            StreamSvgIcon.userAdd(
+              color: _isSelected(0) ? appAccentColor : Colors.grey,
+            ),
+          ],
+        ),
+        label: 'Meetings',
+      ),
+      // Icon for user chats page
       BottomNavigationBarItem(
         icon: Stack(
           clipBehavior: Clip.none,
           children: [
             StreamSvgIcon.message(
-              color: _isSelected(0)
-                  ? StreamChatTheme.of(context).colorTheme.black
-                  : Colors.grey,
+              color: _isSelected(1) ? appAccentColor : Colors.grey,
             ),
             Positioned(
               top: -3,
@@ -45,14 +58,13 @@ class _ChannelListPageState extends State<ChannelListPage> {
         ),
         label: 'Chats',
       ),
+      // Icon for user mentions page
       BottomNavigationBarItem(
         icon: Stack(
           clipBehavior: Clip.none,
           children: [
             StreamSvgIcon.mentions(
-              color: _isSelected(1)
-                  ? StreamChatTheme.of(context).colorTheme.black
-                  : Colors.grey,
+              color: _isSelected(2) ? appAccentColor : Colors.grey,
             ),
           ],
         ),
@@ -96,8 +108,10 @@ class _ChannelListPageState extends State<ChannelListPage> {
         },
       ),
       body: IndexedStack(
+        // To map the indexes of Pages with Bottom Navigation Bar icons
         index: _currentIndex,
         children: [
+          JoinMeetingsPage(),
           ChannelList(),
           UserMentionsPage(),
         ],
