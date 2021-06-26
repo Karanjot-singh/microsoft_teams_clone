@@ -1,4 +1,4 @@
-package com.example.example
+package com.karanjot.microsoftTeams
 
 import com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsPlugin
 import io.flutter.app.FlutterApplication
