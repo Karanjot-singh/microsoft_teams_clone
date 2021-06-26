@@ -133,7 +133,8 @@ class _MyAppState extends State<MyApp>
                 ];
               },
               initialRoute: _initData!.client.state.user == null
-                  ? Routes.CHOOSE_USER
+                  //Choose the launch screen on basis of the state of user login
+                  ? Routes.CHOOSE_USER //TODO: Add sign in here
                   : Routes.HOME,
             ),
           ),
@@ -143,9 +144,3 @@ class _MyAppState extends State<MyApp>
   }
 }
 
-class InitData {
-  final StreamChatClient client;
-  final StreamingSharedPreferences preferences;
-
-  InitData(this.client, this.preferences);
-}
