@@ -1,8 +1,8 @@
-import 'package:example/routes/routes.dart';
+import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'pages/chats/channels/channel_page.dart';
+import 'pages/chats/group_chat/group_chats_page.dart';
 
 class UserMentionsPage extends StatelessWidget {
   @override

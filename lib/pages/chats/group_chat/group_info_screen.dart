@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'group_file_display_screen.dart';
-import 'channel_media_display_screen.dart';
-import 'channel_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
+import 'group_media_screen.dart';
+import 'group_chats_page.dart';
 import '../chat_info_screen.dart';
 import '../../../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';

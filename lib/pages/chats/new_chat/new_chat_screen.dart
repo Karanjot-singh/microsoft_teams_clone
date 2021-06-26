@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../channels/channel_page.dart';
+import '../group_chat/group_chats_page.dart';
 import 'chips_input_text_field.dart';
 import '../../../routes/routes.dart';
 

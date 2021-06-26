@@ -46,8 +46,8 @@ dev_dependencies:
   test: any
 flutter:
   assets:
-    - assets/icons
-    - assets/images
+    - assets/icons/
+    - assets/images/
     - pubspec.lock
   uses-material-design: true
 

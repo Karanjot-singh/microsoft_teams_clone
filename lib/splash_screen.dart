@@ -1,4 +1,4 @@
-import 'package:example/config/constants.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';

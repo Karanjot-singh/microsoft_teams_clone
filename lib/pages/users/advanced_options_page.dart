@@ -1,7 +1,7 @@
-import 'package:example/api/stream_api.dart';
-import 'package:example/pages/home/home_page.dart';
-import 'package:example/routes/routes.dart';
-import 'package:example/stream_version.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
+import 'package:microsoft_teams_clone/pages/home/home_page.dart';
+import 'package:microsoft_teams_clone/routes/routes.dart';
+import 'package:microsoft_teams_clone/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -284,7 +284,8 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         final client = StreamChatClient(
                           apiKey,
                           logLevel: Level.INFO,
-                        )..chatPersistenceClient = StreamApi.chatPersistentClient;
+                        )..chatPersistenceClient =
+                            StreamApi.chatPersistentClient;
 
                         try {
                           await client.connectUser(

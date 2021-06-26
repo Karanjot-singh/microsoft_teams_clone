@@ -1,13 +1,13 @@
-import 'package:example/pages/chats/chats_list_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../pages/users/advanced_options_page.dart';
-import '../pages/chats/channels/channel_page.dart';
+import '../pages/chats/group_chat/group_chats_page.dart';
 import '../pages/chats/chat_info_screen.dart';
 import '../pages/users/choose_user_page.dart';
-import '../pages/chats/channels/group_chat_details_screen.dart';
-import '../pages/chats/channels/group_info_screen.dart';
+import '../pages/chats/group_chat/group_chat_details_screen.dart';
+import '../pages/chats/group_chat/group_info_screen.dart';
 import '../pages/home/home_page.dart';
 import '../main.dart';
 import '../pages/chats/new_chat/new_chat_screen.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_chats_page.dart';
+
+import 'group_chats_page.dart';
 import '../../../routes/routes.dart';
 
 class GroupChatDetailsScreen extends StatefulWidget {
