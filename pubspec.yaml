@@ -1,4 +1,4 @@
-name: example
+name: microsoft_teams_clone
 description: A new Flutter project.
 publish_to: 'none'
 version: 1.6.0
@@ -46,7 +46,8 @@ dev_dependencies:
   test: any
 flutter:
   assets:
-    - assets/
+    - assets/icons
+    - assets/images
     - pubspec.lock
   uses-material-design: true
 

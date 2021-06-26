@@ -5,9 +5,9 @@ import 'package:example/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'channel_page.dart';
+import 'channels/channel_page.dart';
 import 'chat_info_screen.dart';
-import 'group_info_screen.dart';
+import 'channels/group_info_screen.dart';
 
 class ChannelList extends StatefulWidget {
   @override

@@ -1,12 +1,12 @@
 import 'package:example/api/stream_api.dart';
-import 'package:example/app_config.dart';
-import 'package:example/home_page.dart';
+import 'package:example/services/stream_chat/app_config.dart';
+import 'package:example/pages/home/home_page.dart';
 import 'package:example/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'routes/routes.dart';
+import '../../routes/routes.dart';
 
 const kStreamApiKey = 'STREAM_API_KEY';
 const kStreamUserId = 'STREAM_USER_ID';

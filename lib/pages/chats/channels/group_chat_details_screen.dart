@@ -3,7 +3,7 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import 'channel_page.dart';
-import 'routes/routes.dart';
+import '../../../routes/routes.dart';
 
 class GroupChatDetailsScreen extends StatefulWidget {
   final List<User>? selectedUsers;

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:example/constants.dart';
-import 'package:example/join_meetings_page.dart';
+import 'package:example/config/constants.dart';
+import 'package:example/pages/meetings/join_meetings_page.dart';
 import 'package:example/routes/routes.dart';
 import 'package:example/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-import 'channel_list.dart';
+import 'chat_list.dart';
 
 class ChannelListPage extends StatefulWidget {
   const ChannelListPage({

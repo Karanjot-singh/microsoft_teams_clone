@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:example/api/stream_api.dart';
-import 'package:example/choose_user_page.dart';
-import 'package:example/home_page.dart';
+import 'package:example/pages/users/choose_user_page.dart';
+import 'package:example/pages/home/home_page.dart';
 import 'package:example/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-import 'app_config.dart';
+import 'services/stream_chat/app_config.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 

@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:example/routes/routes.dart';
-import 'package:microsoft_teams_karanjot/thread_page.dart';
+import 'package:example/thread_page.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'chat_info_screen.dart';
+import '../chat_info_screen.dart';
 import 'group_info_screen.dart';
 
 class ChannelPageArgs {
