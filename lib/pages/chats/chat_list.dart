@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,7 @@ class _ChannelList extends State<ChannelList> {
                                           padding: const EdgeInsets.all(24),
                                           child: StreamSvgIcon.search(
                                             size: 96,
-                                            color: Colors.grey,
+                                            color: appAccentColor,
                                           ),
                                         ),
                                         Text(

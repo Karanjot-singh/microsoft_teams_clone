@@ -14,6 +14,7 @@ import '../chat_info_screen.dart';
 import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
+// TODO: Break this file and add theme & search Streamsvg
 class GroupInfoScreen extends StatefulWidget {
   final MessageTheme messageTheme;
 
@@ -350,11 +351,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               padding: const EdgeInsets.all(7.0),
               child: Text(
                 'NAME',
-                style: StreamChatTheme.of(context).textTheme.footnote.copyWith(
-                    color: StreamChatTheme.of(context)
-                        .colorTheme
-                        .black
-                        .withOpacity(0.5)),
+                style: StreamChatTheme.of(context)
+                    .textTheme
+                    .footnote
+                    .copyWith(color: appAccentColor.withOpacity(0.8)),
               ),
             ),
             SizedBox(
@@ -459,10 +459,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: StreamSvgIcon.mute(
                     size: 24.0,
-                    color: StreamChatTheme.of(context)
-                        .colorTheme
-                        .black
-                        .withOpacity(0.5),
+                    color: appAccentColor.withOpacity(0.8),
                   ),
                 ),
                 trailing: snapshot.data == null

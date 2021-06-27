@@ -122,10 +122,7 @@ class _ChannelFileDisplayScreenState extends State<ChannelFileDisplayScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14.0,
-                    color: StreamChatTheme.of(context)
-                        .colorTheme
-                        .black
-                        .withOpacity(0.5),
+                    color: appAccentColor.withOpacity(0.8),
                   ),
                 ),
               ],
