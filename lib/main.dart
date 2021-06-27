@@ -50,6 +50,7 @@ class _MyAppState extends State<MyApp>
         // Sets the current user and connect the websocket using the userID and token generated
         //TODO: this should be done using a backend to generate
         /// a user token using our server SDK
+        //TODO Fix padding in group name and mute
         User(id: userId),
         token,
       );

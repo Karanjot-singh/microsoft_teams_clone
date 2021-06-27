@@ -154,6 +154,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               centerTitle: true,
               actions: [
                 if (!channel.channel.isDistinct && isOwner)
+
                   StreamNeumorphicButton(
                     child: InkWell(
                       onTap: () {
@@ -401,8 +402,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     padding: const EdgeInsets.only(right: 16.0, left: 8.0),
                     child: InkWell(
                       child: StreamSvgIcon.check(
-                        color:
-                            StreamChatTheme.of(context).colorTheme.accentBlue,
+                        color:appAccentIconColor,
                         size: 24.0,
                       ),
                       onTap: () {
@@ -487,7 +487,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: appAccentIconColor,
+            color: StreamChatTheme.of(context).colorTheme.grey,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -601,8 +601,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: StreamSvgIcon.files(
               size: 32.0,
-              color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+              color: appAccentIconColor,
             ),
           ),
           trailing: StreamSvgIcon.right(
@@ -645,7 +644,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                 size: 24.0,
                 color: StreamChatTheme.of(context)
                     .colorTheme
-                    .black
+                    .accentRed
                     .withOpacity(0.5),
               ),
             ),
@@ -661,7 +660,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                 question: 'Are you sure you want to leave this conversation?',
                 cancelText: 'CANCEL',
                 icon: StreamSvgIcon.userRemove(
-                  color: StreamChatTheme.of(context).colorTheme.accentRed,
+                  color: appAccentIconColor,
                 ),
               );
               if (res == true) {
@@ -887,7 +886,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       context,
                       StreamSvgIcon.user(
                         color: StreamChatTheme.of(context).colorTheme.grey,
-                        size: 24.0,
+                        size: 20.0,
                       ),
                       'View info',
                       () async {

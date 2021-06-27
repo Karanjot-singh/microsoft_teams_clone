@@ -227,9 +227,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                           Theme.of(context).brightness == Brightness.light
-                              ? StreamChatTheme.of(context)
-                                  .colorTheme
-                                  .accentBlue
+                              ? appAccentIconColor
                               : Colors.white),
                       elevation: MaterialStateProperty.all<double>(0),
                       padding: MaterialStateProperty.all<EdgeInsets>(
@@ -245,7 +243,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                       style: TextStyle(
                         fontSize: 16,
                         color: Theme.of(context).brightness != Brightness.light
-                            ? StreamChatTheme.of(context).colorTheme.accentBlue
+                            ? appAccentColor
                             : Colors.white,
                       ),
                     ),

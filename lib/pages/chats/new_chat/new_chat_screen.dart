@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../group_chat/group_chats_page.dart';
@@ -210,7 +211,12 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                 ),
                               ),
                             ),
-                            StreamSvgIcon.close(),
+                            StreamSvgIcon.close(
+                              color: StreamChatTheme.of(context)
+                                  .colorTheme
+                                  .accentRed
+                                  .withOpacity(0.5),
+                            ),
                           ],
                         ),
                       );
@@ -235,14 +241,10 @@ class _NewChatScreenState extends State<NewChatScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             children: [
-                              StreamNeumorphicButton(
-                                child: Center(
-                                  child: StreamSvgIcon.contacts(
-                                    color: StreamChatTheme.of(context)
-                                        .colorTheme
-                                        .accentBlue,
-                                    size: 24,
-                                  ),
+                              Center(
+                                child: StreamSvgIcon.contacts(
+                                  color: appAccentIconColor,
+                                  size: 24,
                                 ),
                               ),
                               SizedBox(width: 8),
@@ -337,7 +339,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                                       const EdgeInsets.all(24),
                                                   child: StreamSvgIcon.search(
                                                     size: 96,
-                                                    color: Colors.grey,
+                                                    color: appLightColor,
                                                   ),
                                                 ),
                                                 Text(
@@ -347,11 +349,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                                       .textTheme
                                                       .footnote
                                                       .copyWith(
-                                                          color: StreamChatTheme
-                                                                  .of(context)
-                                                              .colorTheme
-                                                              .black
-                                                              .withOpacity(.5)),
+                                                          color: appLightColor),
                                                 ),
                                               ],
                                             ),
@@ -376,31 +374,28 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                   'No chats here yet...',
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: StreamChatTheme.of(context)
-                                        .colorTheme
-                                        .black
-                                        .withOpacity(.5),
+                                    color: appLightColor,
                                   ),
                                 ),
                               );
                             },
                           ),
                   ),
-                  MessageInput(
-                    focusNode: _messageInputFocusNode,
-                    preMessageSending: (message) async {
-                      await channel!.watch();
-                      return message;
-                    },
-                    onMessageSent: (m) {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        Routes.CHANNEL_PAGE,
-                        ModalRoute.withName(Routes.HOME),
-                        arguments: ChannelPageArgs(channel: channel),
-                      );
-                    },
-                  ),
+                  // MessageInput(
+                  //   focusNode: _messageInputFocusNode,
+                  //   preMessageSending: (message) async {
+                  //     await channel!.watch();
+                  //     return message;
+                  //   },
+                  //   onMessageSent: (m) {
+                  //     Navigator.pushNamedAndRemoveUntil(
+                  //       context,
+                  //       Routes.CHANNEL_PAGE,
+                  //       ModalRoute.withName(Routes.HOME),
+                  //       arguments: ChannelPageArgs(channel: channel),
+                  //     );
+                  //   },
+                  // ),
                 ],
               ),
             ),

@@ -33,7 +33,7 @@ class ChooseUserPage extends StatelessWidget {
                 child: SvgPicture.asset(
                   'assets/logo.svg',
                   height: 40,
-                  color: StreamChatTheme.of(context).colorTheme.accentBlue,
+                  color: appPurpleColor,
                 ),
               ),
             ),
@@ -146,9 +146,7 @@ class ChooseUserPage extends StatelessWidget {
                                 ),
                           ),
                           trailing: StreamSvgIcon.arrowRight(
-                            color: StreamChatTheme.of(context)
-                                .colorTheme
-                                .accentBlue,
+                            color: appAccentColor,
                           ),
                         );
                       }),

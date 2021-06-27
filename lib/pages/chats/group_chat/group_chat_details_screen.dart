@@ -112,42 +112,39 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
             ),
           ),
           actions: [
-            StreamNeumorphicButton(
-              child: IconButton(
-                padding: const EdgeInsets.all(0),
-                icon: StreamSvgIcon.check(
-                  size: 24,
-                  color: _isGroupNameEmpty
-                      ? StreamChatTheme.of(context).colorTheme.grey
-                      : appAccentColor,
-                ),
-                onPressed: _isGroupNameEmpty
-                    ? null
-                    : () async {
-                        try {
-                          final groupName = _groupNameController!.text;
-                          final client = StreamChat.of(context).client;
-                          final channel = client.channel('messaging',
-                              id: Uuid().v4(),
-                              extraData: {
-                                'members': [
-                                  client.state.user!.id,
-                                  ..._selectedUsers.map((e) => e.id),
-                                ],
-                                'name': groupName,
-                              });
-                          await channel.watch();
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            Routes.CHANNEL_PAGE,
-                            ModalRoute.withName(Routes.HOME),
-                            arguments: ChannelPageArgs(channel: channel),
-                          );
-                        } catch (err) {
-                          _showErrorAlert();
-                        }
-                      },
+            IconButton(
+              padding: const EdgeInsets.all(0),
+              icon: StreamSvgIcon.check(
+                size: 24,
+                color: _isGroupNameEmpty
+                    ? StreamChatTheme.of(context).colorTheme.grey
+                    : appAccentColor,
               ),
+              onPressed: _isGroupNameEmpty
+                  ? null
+                  : () async {
+                      try {
+                        final groupName = _groupNameController!.text;
+                        final client = StreamChat.of(context).client;
+                        final channel = client
+                            .channel('messaging', id: Uuid().v4(), extraData: {
+                          'members': [
+                            client.state.user!.id,
+                            ..._selectedUsers.map((e) => e.id),
+                          ],
+                          'name': groupName,
+                        });
+                        await channel.watch();
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          Routes.CHANNEL_PAGE,
+                          ModalRoute.withName(Routes.HOME),
+                          arguments: ChannelPageArgs(channel: channel),
+                        );
+                      } catch (err) {
+                        _showErrorAlert();
+                      }
+                    },
             ),
           ],
         ),
@@ -313,10 +310,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                     style: StreamChatTheme.of(context)
                         .textTheme
                         .bodyBold
-                        .copyWith(
-                            color: StreamChatTheme.of(context)
-                                .colorTheme
-                                .accentBlue),
+                        .copyWith(color: appAccentIconColor),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
