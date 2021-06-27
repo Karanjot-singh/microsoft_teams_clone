@@ -20,22 +20,25 @@ class LeftDrawer extends StatelessWidget {
       child: Container(
         color: StreamChatTheme.of(context).colorTheme.white,
         child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).viewPadding.top + 8,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 20.0,
-                    left: 8,
-                  ),
+          // child: SizedBox(c)
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 10.0,
+                  left: 8,
+                ),
+                child: Container(
+                  color: appPurpleColor,
+                  height: MediaQuery.of(context).viewPadding.top + 40,
                   child: Row(
                     children: [
+                      SizedBox(
+                        width: 5,
+                      ),
                       UserAvatar(
                         user: user,
-                        showOnlineStatus: true,
+                        showOnlineStatus: false,
                         constraints: BoxConstraints.tight(Size.fromRadius(20)),
                       ),
                       Padding(
@@ -51,108 +54,108 @@ class LeftDrawer extends StatelessWidget {
                     ],
                   ),
                 ),
-                ListTile(
-                  leading: StreamSvgIcon.iconGroup(
-                    color: appAccentColor.withOpacity(.8),
-                  ),
-                  onTap: () {
-                    Navigator.popAndPushNamed(
-                      context,
-                      Routes.NEW_CHAT,
-                    );
-                  },
-                  title: Text(
-                    'New Meeting',
-                    style: TextStyle(
-                      fontSize: 14.5,
-                    ),
+              ),
+              ListTile(
+                leading: StreamSvgIcon.iconGroup(
+                  color: appAccentColor.withOpacity(.8),
+                ),
+                onTap: () {
+                  Navigator.popAndPushNamed(
+                    context,
+                    Routes.NEW_CHAT,
+                  );
+                },
+                title: Text(
+                  'New Meeting',
+                  style: TextStyle(
+                    fontSize: 14.5,
                   ),
                 ),
-                ListTile(
-                  leading: StreamSvgIcon.penWrite(
-                    color: appAccentColor.withOpacity(.8),
-                  ),
-                  onTap: () {
-                    Navigator.popAndPushNamed(
-                      context,
-                      Routes.NEW_CHAT,
-                    );
-                  },
-                  title: Text(
-                    'New direct message',
-                    style: TextStyle(
-                      fontSize: 14.5,
-                    ),
+              ),
+              ListTile(
+                leading: StreamSvgIcon.penWrite(
+                  color: appAccentColor.withOpacity(.8),
+                ),
+                onTap: () {
+                  Navigator.popAndPushNamed(
+                    context,
+                    Routes.NEW_CHAT,
+                  );
+                },
+                title: Text(
+                  'New direct message',
+                  style: TextStyle(
+                    fontSize: 14.5,
                   ),
                 ),
-                ListTile(
-                  leading: StreamSvgIcon.userAdd(
-                    color: appAccentColor.withOpacity(.8),
-                  ),
-                  onTap: () {
-                    Navigator.popAndPushNamed(
-                      context,
-                      Routes.NEW_GROUP_CHAT,
-                    );
-                  },
-                  title: Text(
-                    'New group',
-                    style: TextStyle(
-                      fontSize: 14.5,
-                    ),
+              ),
+              ListTile(
+                leading: StreamSvgIcon.userAdd(
+                  color: appAccentColor.withOpacity(.8),
+                ),
+                onTap: () {
+                  Navigator.popAndPushNamed(
+                    context,
+                    Routes.NEW_GROUP_CHAT,
+                  );
+                },
+                title: Text(
+                  'New group',
+                  style: TextStyle(
+                    fontSize: 14.5,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: ListTile(
-                      onTap: () async {
-                        Navigator.pop(context);
+              ),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  child: ListTile(
+                    onTap: () async {
+                      Navigator.pop(context);
 
-                        final secureStorage = FlutterSecureStorage();
-                        await secureStorage.deleteAll();
+                      final secureStorage = FlutterSecureStorage();
+                      await secureStorage.deleteAll();
 
-                        final client = StreamChat.of(context).client;
-                        client.disconnectUser();
-                        await client.dispose();
+                      final client = StreamChat.of(context).client;
+                      client.disconnectUser();
+                      await client.dispose();
 
-                        await Navigator.of(
-                          context,
-                          rootNavigator: true,
-                        ).pushNamedAndRemoveUntil(
-                          Routes.CHOOSE_USER,
-                          ModalRoute.withName(Routes.CHOOSE_USER),
+                      await Navigator.of(
+                        context,
+                        rootNavigator: true,
+                      ).pushNamedAndRemoveUntil(
+                        Routes.CHOOSE_USER,
+                        ModalRoute.withName(Routes.CHOOSE_USER),
+                      );
+                    },
+                    leading: StreamSvgIcon.userRemove(
+                      color: appAccentColor,
+                    ),
+                    title: Text(
+                      'Sign out',
+                      style: TextStyle(
+                        fontSize: 14.5,
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: StreamSvgIcon.iconMoon(
+                        size: 24,
+                      ),
+                      color: StreamChatTheme.of(context).colorTheme.whiteSnow,
+                      onPressed: () async {
+                        final sp = await StreamingSharedPreferences.instance;
+                        sp.setInt(
+                          'theme',
+                          Theme.of(context).brightness == Brightness.dark
+                              ? 1
+                              : -1,
                         );
                       },
-                      leading: StreamSvgIcon.user(
-                        color: appAccentColor,
-                      ),
-                      title: Text(
-                        'Sign out',
-                        style: TextStyle(
-                          fontSize: 14.5,
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: StreamSvgIcon.iconMoon(
-                          size: 24,
-                        ),
-                        color: StreamChatTheme.of(context).colorTheme.whiteSnow,
-                        onPressed: () async {
-                          final sp = await StreamingSharedPreferences.instance;
-                          sp.setInt(
-                            'theme',
-                            Theme.of(context).brightness == Brightness.dark
-                                ? 1
-                                : -1,
-                          );
-                        },
-                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

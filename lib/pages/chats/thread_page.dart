@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ThreadPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ThreadPageState extends State<ThreadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      backgroundColor: appPurpleColor,
       appBar: ThreadHeader(
         parent: widget.parent!,
       ),

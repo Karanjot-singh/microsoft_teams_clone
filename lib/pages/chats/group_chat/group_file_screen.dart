@@ -77,7 +77,7 @@ class _ChannelFileDisplayScreenState extends State<ChannelFileDisplayScreen> {
             ),
           ),
         ),
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
       ),
       body: _buildMediaGrid(),
     );
