@@ -40,14 +40,14 @@ mixin SplashScreenStateMixin<T extends StatefulWidget> on State<T>
       curve: Curves.easeInOut,
     ));
     colorAnimation = ColorTween(
-      begin: appPrimaryColor,
+      begin: appAccentColor,
       end: appAccentColor,
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
     colorAnimation = ColorTween(
-      begin: appPrimaryColor,
+      begin: appAccentColor,
       end: Colors.transparent,
     ).animate(CurvedAnimation(
       parent: _animationController,
@@ -79,7 +79,7 @@ mixin SplashScreenStateMixin<T extends StatefulWidget> on State<T>
                         color: colorAnimation.value,
                         child: !_animationController.isAnimating
                             ? Lottie.asset(
-                                'assets/floating_boat.json',
+                                'assets/icons/floating_boat.json',
                                 alignment: Alignment.center,
                               )
                             : SizedBox(),

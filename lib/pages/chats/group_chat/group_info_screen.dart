@@ -160,10 +160,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: StreamSvgIcon.userAdd(
-                            color: StreamChatTheme.of(context)
-                                .colorTheme
-                                .accentBlue),
+                        child: StreamSvgIcon.userAdd(color: appAccentIconColor),
                       ),
                     ),
                   ),
@@ -349,13 +346,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Text(
-                'NAME',
-                style: StreamChatTheme.of(context)
-                    .textTheme
-                    .footnote
-                    .copyWith(color: appAccentColor.withOpacity(0.8)),
-              ),
+              child: StreamSvgIcon.user(
+              size: 24.0,
+              color:
+                  appAccentIconColor,
+            ),
             ),
             SizedBox(
               width: 7.0,
@@ -382,11 +377,14 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               ),
             ),
             if (channelName != _nameController!.text.trim())
+            // Trims the channel name incase string length is long
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   InkWell(
-                    child: StreamSvgIcon.closeSmall(),
+                    child: StreamSvgIcon.closeSmall(
+                      color: StreamChatTheme.of(context).colorTheme.accentRed,
+                    ),
                     onTap: () {
                       setState(() {
                         _nameController!.text = _getChannelName(
@@ -445,46 +443,38 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
         //   onTap: () {},
         // ),
         StreamBuilder<bool>(
-            stream: StreamChannel.of(context).channel.isMutedStream,
-            builder: (context, snapshot) {
-              mutedBool.value = snapshot.data;
+          stream: StreamChannel.of(context).channel.isMutedStream,
+          builder: (context, snapshot) {
+            mutedBool.value = snapshot.data;
+            return MuteOptionTile(
+              // Modular Widget
+              text: 'Mute Group',
+              trailingWidget: snapshot.data == null
+                  ? CircularProgressIndicator(
+                      color: appAccentColor,
+                    )
+                  : ValueListenableBuilder<bool?>(
+                      valueListenable: mutedBool,
+                      builder: (context, value, _) {
+                        return CupertinoSwitch(
+                          // Sliding switch
+                          activeColor: appAccentIconColor,
+                          value: value!,
+                          onChanged: (val) {
+                            mutedBool.value = val;
 
-              return OptionListTile(
-                tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-                separatorColor:
-                    StreamChatTheme.of(context).colorTheme.greyGainsboro,
-                title: 'Mute group',
-                titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: StreamSvgIcon.mute(
-                    size: 24.0,
-                    color: appAccentColor.withOpacity(0.8),
-                  ),
-                ),
-                trailing: snapshot.data == null
-                    ? CircularProgressIndicator(
-                        color: appAccentColor,
-                      )
-                    : ValueListenableBuilder<bool?>(
-                        valueListenable: mutedBool,
-                        builder: (context, value, _) {
-                          return CupertinoSwitch(
-                            value: value!,
-                            onChanged: (val) {
-                              mutedBool.value = val;
-
-                              if (snapshot.data!) {
-                                channel.channel.unmute();
-                              } else {
-                                channel.channel.mute();
-                              }
-                            },
-                          );
-                        }),
-                onTap: () {},
-              );
-            }),
+                            if (snapshot.data!) {
+                              channel.channel.unmute();
+                            } else {
+                              channel.channel.mute();
+                            }
+                          },
+                        );
+                      },
+                    ),
+            );
+          },
+        ),
         OptionListTile(
           title: 'Pinned Messages',
           tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
@@ -494,11 +484,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             child: StreamSvgIcon.pin(
               size: 24.0,
               color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+                  appAccentIconColor,
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appAccentIconColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -554,7 +544,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             child: StreamSvgIcon.pictures(
               size: 32.0,
               color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+                  appAccentIconColor,
             ),
           ),
           trailing: StreamSvgIcon.right(
@@ -1131,5 +1121,35 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     } else {
       return 'Last seen ${Jiffy(user.lastActive).fromNow()}';
     }
+  }
+}
+
+class MuteOptionTile extends StatelessWidget {
+  MuteOptionTile({
+    Key? key,
+    required this.trailingWidget,
+    required this.text,
+  }) : super(key: key);
+
+  Widget trailingWidget;
+  String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return OptionListTile(
+      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
+      title: 'Mute group',
+      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: StreamSvgIcon.mute(
+          size: 24.0,
+          color: appAccentIconColor,
+        ),
+      ),
+      trailing: trailingWidget,
+      onTap: () {},
+    );
   }
 }

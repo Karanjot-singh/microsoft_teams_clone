@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/group_info_screen.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
@@ -66,7 +67,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
 
   Widget _buildUserHeader() {
     return Material(
-      color: appAccentColor.withOpacity(0.8),
+      color: appAccentIconColor,
       // color: appYellowColor.withOpacity(0.7),
       child: SafeArea(
         child: Stack(
@@ -134,19 +135,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             stream: StreamChannel.of(context).channel.isMutedStream,
             builder: (context, snapshot) {
               mutedBool.value = snapshot.data;
-
-              return OptionListTile(
-                tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-                title: 'Mute user',
-                titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                  child: StreamSvgIcon.mute(
-                    size: 24.0,
-                    color: appAccentColor.withOpacity(0.8),
-                  ),
-                ),
-                trailing: snapshot.data == null
+              return MuteOptionTile(
+                // Modular Widget
+                text: 'Mute User',
+                trailingWidget: snapshot.data == null
                     ? CircularProgressIndicator(
                         color: appAccentColor,
                       )
@@ -154,11 +146,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                         valueListenable: mutedBool,
                         builder: (context, value, _) {
                           return CupertinoSwitch(
+                            // Sliding switch
                             activeColor: appAccentColor,
                             value: value!,
                             onChanged: (val) {
                               mutedBool.value = val;
-
                               if (snapshot.data!) {
                                 channel.channel.unmute();
                               } else {
@@ -166,8 +158,8 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                               }
                             },
                           );
-                        }),
-                onTap: () {},
+                        },
+                      ),
               );
             }),
         OptionListTile(
@@ -178,12 +170,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0),
             child: StreamSvgIcon.pin(
               size: 24.0,
-              color: appAccentColor.withOpacity(0.8),
+              color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(
-            color: appAccentColor.withOpacity(0.8),
-          ),
+          trailing: StreamSvgIcon.right(),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -236,12 +226,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: StreamSvgIcon.pictures(
               size: 36.0,
-              color: appAccentColor.withOpacity(0.8),
+              color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(
-            color: appAccentColor.withOpacity(0.8),
-          ),
+          trailing: StreamSvgIcon.right(),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -294,12 +282,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: StreamSvgIcon.files(
               size: 32.0,
-              color: appAccentColor.withOpacity(0.8),
+              color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(
-            color: appAccentColor.withOpacity(0.8),
-          ),
+          trailing: StreamSvgIcon.right(),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -332,12 +318,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0),
             child: StreamSvgIcon.iconGroup(
               size: 24.0,
-              color: appAccentColor.withOpacity(0.8),
+              color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(
-            color: appAccentColor.withOpacity(0.8),
-          ),
+          trailing: StreamSvgIcon.right(),
           onTap: () {
             Navigator.push(
                 context,
@@ -475,7 +459,7 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
               fontSize: 16.0),
         ),
         leading: StreamBackButton(),
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
       ),
       body: StreamBuilder<List<Channel>>(
         stream: chat.client.queryChannels(
@@ -500,7 +484,7 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
                 children: [
                   StreamSvgIcon.message(
                     size: 136.0,
-                    color: StreamChatTheme.of(context).colorTheme.greyGainsboro,
+                    color: appAccentIconColor,
                   ),
                   SizedBox(height: 16.0),
                   Text(
@@ -516,10 +500,7 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14.0,
-                      color: StreamChatTheme.of(context)
-                          .colorTheme
-                          .black
-                          .withOpacity(0.8),
+                      color: appLightColor,
                     ),
                   ),
                 ],
@@ -609,10 +590,9 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
                     child: Text(
                       '${channel.memberCount} members',
                       style: TextStyle(
-                          color: StreamChatTheme.of(context)
-                              .colorTheme
-                              .black
-                              .withOpacity(0.8)),
+                        color: appAccentIconColor,
+                        fontSize: 12.0,
+                      ),
                     ),
                   )
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -118,7 +119,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                   size: 24,
                   color: _isGroupNameEmpty
                       ? StreamChatTheme.of(context).colorTheme.grey
-                      : StreamChatTheme.of(context).colorTheme.accentBlue,
+                      : appAccentColor,
                 ),
                 onPressed: _isGroupNameEmpty
                     ? null

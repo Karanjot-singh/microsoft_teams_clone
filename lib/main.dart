@@ -115,21 +115,21 @@ class _MyAppState extends State<MyApp>
                   // messageInputTheme: MessageInputTheme(
                   //   inputBackground: appLightColor,
                   //   actionButtonIdleColor: Colors.white,
-                  //   sendButtonIdleColor: Colors.white,
+                    // sendButtonIdleColor: Colors.white,
                   //   inputDecoration: InputDecoration(
                   //     hintText: 'Yo',
                   //     hintStyle: TextStyle(color: Colors.white),
                   //   ),
                   // ),
                   // streamChatThemeData: StreamChatThemeData(
-                  colorTheme: ColorTheme.light(
-                    accentBlue: appPrimaryColor,
+                  colorTheme: ColorTheme.dark(
+                    accentBlue: appPurpleColor,
                   ),
                   channelTheme: ChannelTheme(
                     channelHeaderTheme: ChannelHeaderTheme(
-                      color: appPrimaryColor,
+                      color: appPurpleColor,
                       title: TextStyle(
-                        color: appLightColor,
+                        color: appAccentIconColor,
                       ),
                     ),
                   ),
