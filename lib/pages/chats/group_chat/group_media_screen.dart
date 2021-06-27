@@ -73,7 +73,7 @@ class _ChannelMediaDisplayScreenState extends State<ChannelMediaDisplayScreen> {
           ),
         ),
         leading: StreamBackButton(),
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
       ),
       body: _buildMediaGrid(),
     );

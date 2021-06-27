@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_info_screen.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
@@ -51,7 +51,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             height: 8.0,
             color: StreamChatTheme.of(context).colorTheme.greyGainsboro,
           ),
-          // COndition to allow deletion
+          // Condition to allow deletion only if the user is an admin
           if ([
             'admin',
             'owner',
@@ -68,7 +68,6 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
   Widget _buildUserHeader() {
     return Material(
       color: appAccentIconColor,
-      // color: appYellowColor.withOpacity(0.7),
       child: SafeArea(
         child: Stack(
           children: [
@@ -173,7 +172,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(),
+          trailing: StreamSvgIcon.right(
+              color: StreamChatTheme.of(context)
+                  .colorTheme
+                  .black
+                  .withOpacity(0.5)),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -229,7 +232,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(),
+          trailing: StreamSvgIcon.right(
+              color: StreamChatTheme.of(context)
+                  .colorTheme
+                  .black
+                  .withOpacity(0.5)),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -285,7 +292,10 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(),
+          trailing: StreamSvgIcon.right(
+            color:
+                StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+          ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
 
@@ -321,7 +331,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: appAccentIconColor,
             ),
           ),
-          trailing: StreamSvgIcon.right(),
+          trailing: StreamSvgIcon.right(
+              color: StreamChatTheme.of(context)
+                  .colorTheme
+                  .black
+                  .withOpacity(0.5)),
           onTap: () {
             Navigator.push(
                 context,

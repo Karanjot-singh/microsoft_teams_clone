@@ -36,7 +36,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: AppBar(
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
         elevation: 1,
         centerTitle: true,
         brightness: Theme.of(context).brightness,

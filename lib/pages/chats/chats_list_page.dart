@@ -79,6 +79,7 @@ class _ChannelListPageState extends State<ChannelListPage> {
       return Offstage();
     }
     return Scaffold(
+      //scaffold for search box
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelListHeader(
         onNewChatButtonTap: () {

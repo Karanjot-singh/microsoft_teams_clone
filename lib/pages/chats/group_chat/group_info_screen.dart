@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
@@ -100,7 +101,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               brightness: Theme.of(context).brightness,
               elevation: 1.0,
               toolbarHeight: 56.0,
-              backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+              backgroundColor: appPurpleColor,
               leading: StreamBackButton(),
               title: Column(
                 children: [
@@ -347,10 +348,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             Padding(
               padding: const EdgeInsets.all(7.0),
               child: StreamSvgIcon.user(
-              size: 24.0,
-              color:
-                  appAccentIconColor,
-            ),
+                size: 24.0,
+                color: appAccentIconColor,
+              ),
             ),
             SizedBox(
               width: 7.0,
@@ -377,7 +377,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               ),
             ),
             if (channelName != _nameController!.text.trim())
-            // Trims the channel name incase string length is long
+              // Trims the channel name incase string length is long
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -483,8 +483,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: StreamSvgIcon.pin(
               size: 24.0,
-              color:
-                  appAccentIconColor,
+              color: appAccentIconColor,
             ),
           ),
           trailing: StreamSvgIcon.right(
@@ -543,8 +542,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: StreamSvgIcon.pictures(
               size: 32.0,
-              color:
-                  appAccentIconColor,
+              color: appAccentIconColor,
             ),
           ),
           trailing: StreamSvgIcon.right(
@@ -1121,35 +1119,5 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     } else {
       return 'Last seen ${Jiffy(user.lastActive).fromNow()}';
     }
-  }
-}
-
-class MuteOptionTile extends StatelessWidget {
-  MuteOptionTile({
-    Key? key,
-    required this.trailingWidget,
-    required this.text,
-  }) : super(key: key);
-
-  Widget trailingWidget;
-  String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return OptionListTile(
-      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-      separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-      title: 'Mute group',
-      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: StreamSvgIcon.mute(
-          size: 24.0,
-          color: appAccentIconColor,
-        ),
-      ),
-      trailing: trailingWidget,
-      onTap: () {},
-    );
   }
 }

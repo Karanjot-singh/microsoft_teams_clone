@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../../../routes/routes.dart';
@@ -54,7 +55,7 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: AppBar(
         elevation: 1,
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
         leading: const StreamBackButton(),
         title: Text(
           'Add Group Members',

@@ -72,7 +72,7 @@ class _PinnedMessagesScreenState extends State<PinnedMessagesScreen> {
           ),
         ),
         leading: StreamBackButton(),
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
       ),
       body: _buildMediaGrid(),
     );

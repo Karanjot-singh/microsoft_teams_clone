@@ -40,14 +40,14 @@ mixin SplashScreenStateMixin<T extends StatefulWidget> on State<T>
       curve: Curves.easeInOut,
     ));
     colorAnimation = ColorTween(
-      begin: appAccentColor,
-      end: appAccentColor,
+      begin: appPurpleColor,
+      end: appPurpleColor,
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
     colorAnimation = ColorTween(
-      begin: appAccentColor,
+      begin: appPurpleColor,
       end: Colors.transparent,
     ).animate(CurvedAnimation(
       parent: _animationController,

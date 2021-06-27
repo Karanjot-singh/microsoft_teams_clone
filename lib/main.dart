@@ -103,6 +103,7 @@ class _MyAppState extends State<MyApp>
               defaultValue: 0,
             ),
             builder: (context, snapshot) => MaterialApp(
+              // Initialising the theme of the application
               theme: ThemeData.light(),
               darkTheme: ThemeData.dark(),
               themeMode: {
@@ -112,16 +113,9 @@ class _MyAppState extends State<MyApp>
               }[snapshot],
               builder: (context, child) => StreamChatTheme(
                 data: StreamChatThemeData(
-                  // messageInputTheme: MessageInputTheme(
-                  //   inputBackground: appLightColor,
-                  //   actionButtonIdleColor: Colors.white,
-                    // sendButtonIdleColor: Colors.white,
-                  //   inputDecoration: InputDecoration(
-                  //     hintText: 'Yo',
-                  //     hintStyle: TextStyle(color: Colors.white),
-                  //   ),
-                  // ),
-                  // streamChatThemeData: StreamChatThemeData(
+                  channelListHeaderTheme: ChannelListHeaderTheme(
+                    color: appPurpleColor,
+                  ),
                   colorTheme: ColorTheme.dark(
                     accentBlue: appPurpleColor,
                   ),
