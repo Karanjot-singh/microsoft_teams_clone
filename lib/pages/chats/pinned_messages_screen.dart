@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:video_player/video_player.dart';
 
@@ -84,7 +85,9 @@ class _PinnedMessagesScreenState extends State<PinnedMessagesScreen> {
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return Center(
-            child: const CircularProgressIndicator(),
+            child: const CircularProgressIndicator(
+              color: appAccentColor,
+            ),
           );
         }
 

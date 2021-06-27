@@ -66,7 +66,8 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
 
   Widget _buildUserHeader() {
     return Material(
-      color: appPrimaryColor,
+      color: appAccentColor.withOpacity(0.8),
+      // color: appYellowColor.withOpacity(0.7),
       child: SafeArea(
         child: Stack(
           children: [
@@ -146,7 +147,9 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                   ),
                 ),
                 trailing: snapshot.data == null
-                    ? CircularProgressIndicator()
+                    ? CircularProgressIndicator(
+                        color: appAccentColor,
+                      )
                     : ValueListenableBuilder<bool?>(
                         valueListenable: mutedBool,
                         builder: (context, value, _) {
@@ -179,7 +182,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: appLightColor,
+            color: appAccentColor.withOpacity(0.8),
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -237,7 +240,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: appLightColor,
+            color: appAccentColor.withOpacity(0.8),
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -295,7 +298,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: appLightColor,
+            color: appAccentColor.withOpacity(0.8),
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -333,7 +336,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: appLightColor,
+            color: appAccentColor.withOpacity(0.8),
           ),
           onTap: () {
             Navigator.push(
@@ -484,7 +487,9 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: appAccentColor,
+              ),
             );
           }
 

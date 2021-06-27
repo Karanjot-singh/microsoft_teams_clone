@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class ChannelFileDisplayScreen extends StatefulWidget {
@@ -89,7 +90,9 @@ class _ChannelFileDisplayScreenState extends State<ChannelFileDisplayScreen> {
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return Center(
-            child: const CircularProgressIndicator(),
+            child: const CircularProgressIndicator(
+              color: appAccentColor,
+            ),
           );
         }
 

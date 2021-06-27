@@ -4,6 +4,7 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
@@ -80,7 +81,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
           if (!snapshot.hasData) {
             return Container(
               color: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-              child: Center(child: CircularProgressIndicator()),
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: appAccentColor,
+              )),
             );
           }
 
@@ -462,7 +466,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   ),
                 ),
                 trailing: snapshot.data == null
-                    ? CircularProgressIndicator()
+                    ? CircularProgressIndicator(
+                        color: appAccentColor,
+                      )
                     : ValueListenableBuilder<bool?>(
                         valueListenable: mutedBool,
                         builder: (context, value, _) {

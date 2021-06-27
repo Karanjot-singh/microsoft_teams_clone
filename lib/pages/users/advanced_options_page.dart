@@ -1,3 +1,4 @@
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
@@ -275,7 +276,9 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                               height: 100,
                               width: 100,
                               child: Center(
-                                child: CircularProgressIndicator(),
+                                child: CircularProgressIndicator(
+                                  color: appAccentColor,
+                                ),
                               ),
                             ),
                           ),
