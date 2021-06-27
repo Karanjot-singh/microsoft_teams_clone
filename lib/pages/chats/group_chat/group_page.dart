@@ -60,7 +60,7 @@ class _ChannelPageState extends State<ChannelPage> {
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelHeader(
-        showTypingIndicator: false,
+        showTypingIndicator: true,
         onImageTap: () async {
           var channel = StreamChannel.of(context).channel;
 

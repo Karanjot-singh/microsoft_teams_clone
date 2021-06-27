@@ -34,7 +34,7 @@ class _ChannelListPageState extends State<ChannelListPage> {
         icon: Stack(
           clipBehavior: Clip.none,
           children: [
-            StreamSvgIcon.userAdd(
+            StreamSvgIcon.iconGroup(
               color: _isSelected(0) ? appAccentColor : Colors.grey,
             ),
           ],
@@ -173,7 +173,7 @@ class LeftDrawer extends StatelessWidget {
                     children: [
                       UserAvatar(
                         user: user,
-                        showOnlineStatus: false,
+                        showOnlineStatus: true,
                         constraints: BoxConstraints.tight(Size.fromRadius(20)),
                       ),
                       Padding(

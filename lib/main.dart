@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
@@ -46,6 +47,9 @@ class _MyAppState extends State<MyApp>
 
     if (userId != null && token != null) {
       await client.connectUser(
+        // Sets the current user and connect the websocket using the userID and token generated
+        //TODO: this should be done using a backend to generate
+        /// a user token using our server SDK
         User(id: userId),
         token,
       );
@@ -108,6 +112,27 @@ class _MyAppState extends State<MyApp>
               }[snapshot],
               builder: (context, child) => StreamChatTheme(
                 data: StreamChatThemeData(
+                  // messageInputTheme: MessageInputTheme(
+                  //   inputBackground: appLightColor,
+                  //   actionButtonIdleColor: Colors.white,
+                  //   sendButtonIdleColor: Colors.white,
+                  //   inputDecoration: InputDecoration(
+                  //     hintText: 'Yo',
+                  //     hintStyle: TextStyle(color: Colors.white),
+                  //   ),
+                  // ),
+                  // streamChatThemeData: StreamChatThemeData(
+                  colorTheme: ColorTheme.light(
+                    accentBlue: appPrimaryColor,
+                  ),
+                  channelTheme: ChannelTheme(
+                    channelHeaderTheme: ChannelHeaderTheme(
+                      color: appPrimaryColor,
+                      title: TextStyle(
+                        color: appLightColor,
+                      ),
+                    ),
+                  ),
                   brightness: Theme.of(context).brightness,
                 ),
                 child: child!,

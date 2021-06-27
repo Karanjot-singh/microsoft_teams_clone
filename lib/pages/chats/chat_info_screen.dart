@@ -2,6 +2,7 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
@@ -43,16 +44,13 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       body: ListView(
         children: [
-          _buildUserHeader(),
+          _buildUserHeader(), // User Header
+          _buildOptionListTiles(), // Options Tiles in the
           Container(
             height: 8.0,
             color: StreamChatTheme.of(context).colorTheme.greyGainsboro,
           ),
-          _buildOptionListTiles(),
-          Container(
-            height: 8.0,
-            color: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-          ),
+          // COndition to allow deletion
           if ([
             'admin',
             'owner',
@@ -68,7 +66,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
 
   Widget _buildUserHeader() {
     return Material(
-      color: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      color: appPrimaryColor,
       child: SafeArea(
         child: Stack(
           children: [
@@ -77,6 +75,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
+                  // User Avatar to reder images in a circular container
                   child: UserAvatar(
                     user: widget.user!,
                     constraints: BoxConstraints(
@@ -84,7 +83,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                       maxHeight: 72.0,
                     ),
                     borderRadius: BorderRadius.circular(36.0),
-                    showOnlineStatus: false,
+                    showOnlineStatus: true,
                   ),
                 ),
                 Text(
@@ -105,7 +104,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                           color: StreamChatTheme.of(context)
                               .colorTheme
                               .black
-                              .withOpacity(0.5),
+                              .withOpacity(0.8),
                           fontSize: 16.0),
                     ),
                   ),
@@ -130,18 +129,6 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
 
     return Column(
       children: [
-        // _OptionListTile(
-        //   title: 'Notifications',
-        //   leading: StreamSvgIcon.Icon_notification(
-        //     size: 24.0,
-        //     color: StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
-        //   ),
-        //   trailing: CupertinoSwitch(
-        //     value: true,
-        //     onChanged: (val) {},
-        //   ),
-        //   onTap: () {},
-        // ),
         StreamBuilder<bool>(
             stream: StreamChannel.of(context).channel.isMutedStream,
             builder: (context, snapshot) {
@@ -155,10 +142,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 22.0),
                   child: StreamSvgIcon.mute(
                     size: 24.0,
-                    color: StreamChatTheme.of(context)
-                        .colorTheme
-                        .black
-                        .withOpacity(0.5),
+                    color: appAccentColor.withOpacity(0.8),
                   ),
                 ),
                 trailing: snapshot.data == null
@@ -167,6 +151,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                         valueListenable: mutedBool,
                         builder: (context, value, _) {
                           return CupertinoSwitch(
+                            activeColor: appAccentColor,
                             value: value!,
                             onChanged: (val) {
                               mutedBool.value = val;
@@ -182,24 +167,6 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 onTap: () {},
               );
             }),
-        // _OptionListTile(
-        //   title: 'Block User',
-        //   leading: StreamSvgIcon.Icon_user_delete(
-        //     size: 24.0,
-        //     color: StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
-        //   ),
-        //   trailing: CupertinoSwitch(
-        //     value: widget.user.banned,
-        //     onChanged: (val) {
-        //       if (widget.user.banned) {
-        //         channel.channel.shadowBan(widget.user.id, {});
-        //       } else {
-        //         channel.channel.unbanUser(widget.user.id);
-        //       }
-        //     },
-        //   ),
-        //   onTap: () {},
-        // ),
         OptionListTile(
           title: 'Pinned Messages',
           tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
@@ -208,12 +175,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0),
             child: StreamSvgIcon.pin(
               size: 24.0,
-              color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+              color: appAccentColor.withOpacity(0.8),
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -267,12 +233,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: StreamSvgIcon.pictures(
               size: 36.0,
-              color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+              color: appAccentColor.withOpacity(0.8),
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -326,12 +291,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: StreamSvgIcon.files(
               size: 32.0,
-              color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+              color: appAccentColor.withOpacity(0.8),
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -365,12 +329,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 22.0),
             child: StreamSvgIcon.iconGroup(
               size: 24.0,
-              color:
-                  StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
+              color: appAccentColor.withOpacity(0.8),
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             Navigator.push(
@@ -438,7 +401,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: StreamChatTheme.of(context)
                   .colorTheme
                   .black
-                  .withOpacity(0.5)),
+                  .withOpacity(0.8)),
         );
       } else {
         alternativeWidget = Text(
@@ -447,7 +410,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
               color: StreamChatTheme.of(context)
                   .colorTheme
                   .black
-                  .withOpacity(0.5)),
+                  .withOpacity(0.8)),
         );
       }
     }
@@ -551,7 +514,7 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
                       color: StreamChatTheme.of(context)
                           .colorTheme
                           .black
-                          .withOpacity(0.5),
+                          .withOpacity(0.8),
                     ),
                   ),
                 ],
@@ -644,7 +607,7 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
                           color: StreamChatTheme.of(context)
                               .colorTheme
                               .black
-                              .withOpacity(0.5)),
+                              .withOpacity(0.8)),
                     ),
                   )
                 ],

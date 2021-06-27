@@ -202,7 +202,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                 shape: BoxShape.circle,
                               ),
                               child: UserAvatar(
-                                showOnlineStatus: false,
+                                showOnlineStatus: true,
                                 user: user,
                                 constraints: BoxConstraints.tightFor(
                                   height: 24,
