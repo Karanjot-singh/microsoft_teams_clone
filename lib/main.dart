@@ -128,6 +128,13 @@ class _MyAppState extends State<MyApp>
                       ),
                     ),
                   ),
+                  messageInputTheme: MessageInputTheme(
+                    actionButtonColor: appAccentColor,
+                    actionButtonIdleColor: appLightColor,
+                    sendButtonColor: appAccentColor,
+                    sendButtonIdleColor: appLightColor,
+                  ),
+                  primaryIconTheme: IconThemeData(color: appAccentColor),
                   brightness: Theme.of(context).brightness,
                 ),
                 child: child!,
