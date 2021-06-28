@@ -1,87 +1,93 @@
-import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:uuid/uuid.dart';
 
-import '../chats/group_chat/group_chats_page.dart';
+class JoinMeetingsPage extends StatefulWidget {
+  @override
+  _JoinMeetingsPageState createState() => _JoinMeetingsPageState();
+}
 
-class JoinMeetingsPage extends StatelessWidget {
+class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
+  String code = "";
+  createCode() {
+    setState(() {
+      code = Uuid().v1().substring(0, 6);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final user = StreamChat.of(context).user!;
-    return MessageSearchBloc(
-      child: MessageSearchListView(
-        filters: Filter.in_('members', [user.id]),
-        messageFilters: Filter.custom(
-          operator: r'$contains',
-          key: 'mentioned_users.id',
-          value: user.id,
-        ),
-        sortOptions: [
-          SortOption(
-            'created_at',
-            direction: SortOption.ASC,
+    return Scaffold(
+      backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+      appBar: AppBar(
+        brightness: Theme.of(context).brightness,
+        elevation: 1,
+        centerTitle: true,
+        title: Text(
+          'Meetings',
+          style: TextStyle(
+            color: StreamChatTheme.of(context).colorTheme.black,
+            fontSize: 16.0,
           ),
-        ],
-        paginationParams: PaginationParams(limit: 20),
-        showResultCount: false,
-        emptyBuilder: (_) {
-          return LayoutBuilder(
-            builder: (context, viewportConstraints) {
-              return SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: viewportConstraints.maxHeight,
-                  ),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(24),
-                          child: StreamSvgIcon.mentions(
-                            size: 96,
-                            color: StreamChatTheme.of(context)
-                                .colorTheme
-                                .greyGainsboro,
-                          ),
-                        ),
-                        Text(
-                          'No mentions exist yet...',
-                          style: StreamChatTheme.of(context)
-                              .textTheme
-                              .body
-                              .copyWith(
-                                color:
-                                    StreamChatTheme.of(context).colorTheme.grey,
-                              ),
-                        ),
-                      ],
+        ),
+        leading: StreamBackButton(),
+        backgroundColor: appPurpleColor,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            child: Text(
+              "Create an Instant Meeting",
+              style: TextStyle(
+                color: StreamChatTheme.of(context).colorTheme.black,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Code:",
+                style: TextStyle(
+                  color: StreamChatTheme.of(context).colorTheme.black,
+                  fontSize: 16.0,
+                ),
+              ),
+              Text(
+                code,
+                style: TextStyle(
+                  color: StreamChatTheme.of(context).colorTheme.black,
+                  fontSize: 16.0,
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                onTap: () => createCode(),
+                child: Container(
+                  color: appAccentIconColor,
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  child: Text(
+                    "Create Code",
+                    style: TextStyle(
+                      color: StreamChatTheme.of(context).colorTheme.black,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
-              );
-            },
-          );
-        },
-        onItemTap: (messageResponse) async {
-          final client = StreamChat.of(context).client;
-          final message = messageResponse.message;
-          final channel = client.channel(
-            messageResponse.channel!.type,
-            id: messageResponse.channel!.id,
-          );
-          if (channel.state == null) {
-            await channel.watch();
-          }
-          Navigator.pushNamed(
-            context,
-            Routes.CHANNEL_PAGE,
-            arguments: ChannelPageArgs(
-              channel: channel,
-              initialMessage: message,
-            ),
-          );
-        },
+              )
+            ],
+          )
+        ],
       ),
     );
   }
