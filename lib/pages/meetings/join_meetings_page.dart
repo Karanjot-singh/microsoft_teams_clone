@@ -28,9 +28,6 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
       if (Platform.isAndroid) {
         featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
       }
-      if (Platform.isIOS) {
-        featureFlags[FeatureFlagEnum.PIP_ENABLED] = false;
-      }
       var options = JitsiMeetingOptions(room: code)
         ..userDisplayName = "Karan"
         ..audioMuted = false
