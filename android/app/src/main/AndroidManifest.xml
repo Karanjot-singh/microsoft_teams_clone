@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.karanjot.microsoftTeams">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -13,6 +14,7 @@
         android:label="Microsoft Teams Clone"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true"
+        tools:replace="android:label"
         >
         <activity
             android:name=".MainActivity"

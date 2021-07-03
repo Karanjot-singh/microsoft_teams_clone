@@ -114,27 +114,6 @@ class _MyAppState extends State<MyApp>
               }[snapshot],
               builder: (context, child) => StreamChatTheme(
                 data: StreamChatThemeData(
-                  channelListHeaderTheme: ChannelListHeaderTheme(
-                    color: appPurpleColor,
-                  ),
-                  colorTheme: ColorTheme.dark(
-                    accentBlue: appPurpleColor,
-                  ),
-                  channelTheme: ChannelTheme(
-                    channelHeaderTheme: ChannelHeaderTheme(
-                      color: appPurpleColor,
-                      title: TextStyle(
-                        color: appAccentIconColor,
-                      ),
-                    ),
-                  ),
-                  messageInputTheme: MessageInputTheme(
-                    actionButtonColor: appAccentColor,
-                    actionButtonIdleColor: appLightColor,
-                    sendButtonColor: appAccentColor,
-                    sendButtonIdleColor: appLightColor,
-                  ),
-                  primaryIconTheme: IconThemeData(color: appAccentColor),
                   brightness: Theme.of(context).brightness,
                 ),
                 child: child!,
