@@ -24,9 +24,9 @@ class AuthPage extends StatelessWidget {
         ),
         icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
         onPressed: () {
-          final provider =
-              Provider.of<GoogleSignInProvider>(context, listen: false);
-          provider.login();
+          // final provider =
+          //     Provider.of<GoogleSignInProvider>(context, listen: false);
+          // provider.login();
         },
       );
 }

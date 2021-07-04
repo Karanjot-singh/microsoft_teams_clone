@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 class User {
   final String idUser;
   final String name;
@@ -20,10 +18,10 @@ class User {
     required bool isOnline,
   }) =>
       User(
-        idUser: idUser ?? this.idUser,
-        name: name ?? this.name,
-        imageUrl: imageUrl ?? this.imageUrl,
-        isOnline: isOnline ?? this.isOnline,
+        idUser: idUser,
+        name: name,
+        imageUrl: imageUrl,
+        isOnline: isOnline,
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
