@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
@@ -9,13 +10,13 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
-
 import 'services/stream_chat/app_config.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 
 void main() async {
   runApp(MyApp());
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatefulWidget {

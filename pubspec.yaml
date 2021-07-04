@@ -12,9 +12,11 @@ dependencies:
   firebase_auth:
   cloud_firestore:
   firebase_core:
+  firebase_storage:
 
   # Jitsi meet Dependencies
   jitsi_meet:
+
   # Stream Chat Dependencies
   flutter_app_badger: ^1.2.0
   flutter:
