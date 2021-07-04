@@ -13,7 +13,10 @@ dependencies:
   cloud_firestore:
   firebase_core:
   firebase_storage:
-
+  
+  #google sign in
+  google_sign_in:
+    
   # Jitsi meet Dependencies
   jitsi_meet:
 
@@ -44,6 +47,7 @@ dependencies:
   intl:
   pin_code_fields:
   flutter_custom_clippers:
+  font_awesome_flutter:
 
 dependency_overrides:
   stream_chat:
