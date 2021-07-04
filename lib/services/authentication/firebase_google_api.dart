@@ -20,7 +20,7 @@ class FirebaseGoogleApi {
     final userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
 
-    return userCredential.additionalUserInfo.isNewUser;
+    return userCredential.additionalUserInfo!.isNewUser;
   }
 
   static Future<String> uploadImage(String path, File file) async {

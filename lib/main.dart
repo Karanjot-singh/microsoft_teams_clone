@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
@@ -43,7 +44,8 @@ class _MyAppState extends State<MyApp>
       logLevel: Level.INFO,
     )..chatPersistenceClient = StreamApi.chatPersistentClient;
     // shorthand setter for chatPersistentClient
-
+    
+    StreamConfig.setClient(client);
     if (userId != null && token != null) {
       await client.connectUser(
         // Sets the current user and connect the websocket using the userID and token generated

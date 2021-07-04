@@ -1,11 +1,10 @@
-import 'package:chat_ui_stream_iii_example/api/firebase_google_api.dart';
-import 'package:chat_ui_stream_iii_example/api/stream_api.dart';
-import 'package:chat_ui_stream_iii_example/api/stream_user_api.dart';
-import 'package:chat_ui_stream_iii_example/app_routes.dart';
-import 'package:chat_ui_stream_iii_example/main.dart';
+import 'package:microsoft_teams_clone/main.dart';
+import 'package:microsoft_teams_clone/services/authentication/firebase_google_api.dart';
+import 'package:microsoft_teams_clone/services/authentication/stream_user_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/routes/app_routes.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
@@ -16,7 +15,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future _listenStatus() async {
-    final connectionStatus = StreamApi.client.wsConnectionStatus;
+    final connectionStatus =
+        StreamConfig.kDefaultStreamClient.wsConnectionStatus;
 
     connectionStatus.addListener(() {
       final navigator = MyApp.navigatorKey.currentState;

@@ -1,11 +1,10 @@
 import 'dart:convert';
-
-import 'package:microsoft_teams_clone/services/authentication/stream_api.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/foundation.dart';
 import 'package:foundation/model/user_token.dart';
 import 'package:foundation/request/authentication_request.dart';
 import 'package:foundation/request/authentication_response.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/model/user.dart' as model;
 import 'package:http/http.dart' as http;
@@ -15,7 +14,8 @@ import 'firebase_google_api.dart';
 class StreamUserApi {
   static Future<List<model.User>> getAllUsers({bool includeMe = false}) async {
     final sort = SortOption('last_message_at');
-    final response = await StreamApi.client.queryUsers(sort: [sort]);
+    final response =
+        await StreamConfig.kDefaultStreamClient.queryUsers(sort: [sort]);
 
     final defaultImage =
         'https://images.unsplash.com/photo-1580907114587-148483e7bd5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
@@ -46,14 +46,14 @@ class StreamUserApi {
         'image': urlImage,
       },
     );
-    await StreamApi.client.setUser(user, userToken.token);
+    await StreamConfig.kDefaultStreamClient.setUser(user, userToken.token);
   }
 
   static Future login({required String idUser}) async {
     final userToken = await _generateUserToken(idUser: idUser);
 
     final user = User(id: idUser);
-    await StreamApi.client.setUser(user, userToken.token);
+    await StreamConfig.kDefaultStreamClient.setUser(user, userToken.token);
   }
 
   static Future<UserToken> _generateUserToken({
@@ -89,7 +89,7 @@ class StreamUserApi {
   static Future logout() async {
     await FirebaseGoogleApi.logout();
     await FirebaseAuth.instance.signOut();
-    await StreamApi.client.disconnect(
+    await StreamConfig.kDefaultStreamClient.disconnect(
       clearUser: true,
       flushOfflineStorage: true,
     );
