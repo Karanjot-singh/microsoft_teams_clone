@@ -19,7 +19,7 @@ class FirebaseGoogleApi {
 
     final userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-
+    // Returns true if the user is a new user
     return userCredential.additionalUserInfo!.isNewUser;
   }
 

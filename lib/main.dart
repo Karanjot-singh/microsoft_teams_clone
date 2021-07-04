@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp>
       logLevel: Level.INFO,
     )..chatPersistenceClient = StreamApi.chatPersistentClient;
     // shorthand setter for chatPersistentClient
-    
+
     StreamConfig.setClient(client);
     if (userId != null && token != null) {
       await client.connectUser(
@@ -134,14 +134,14 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
-                      name: Routes.CHOOSE_USER,
+                      name: Routes.SIGN_IN,
                     ),
                   )!
                 ];
               },
               initialRoute: _initData!.client.state.user == null
                   //Choose the launch screen on basis of the state of user login
-                  ? Routes.CHOOSE_USER //TODO: Add sign in here
+                  ? Routes.SIGN_IN //TODO: Add sign in here
                   : Routes.HOME,
             ),
           ),

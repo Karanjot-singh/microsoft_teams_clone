@@ -11,4 +11,5 @@ class Routes {
   static const String CHAT_INFO_SCREEN = '/chat_info_screen';
   static const String GROUP_INFO_SCREEN = '/group_info_screen';
   static const String CHANNEL_LIST_PAGE = '/channel_list_page';
+  static const String SIGN_IN = '/auth_page';
 }
