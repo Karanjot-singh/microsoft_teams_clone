@@ -2,7 +2,6 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
-import 'package:microsoft_teams_clone/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -281,7 +280,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                             ),
                           ),
                         );
-                        //TODO: Login logic here
+                        //TODO: refer Login logic here
                         
                         final client = StreamChatClient(
                           apiKey,
@@ -332,7 +331,6 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                       }
                     },
                   ),
-                  StreamVersion(),
                 ],
               ),
             ),

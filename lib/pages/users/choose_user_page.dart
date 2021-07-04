@@ -2,13 +2,13 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
-import 'package:microsoft_teams_clone/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../routes/routes.dart';
-//TODO Fix these 
+
+//TODO Fix API String codes
 const kStreamApiKey = 'STREAM_API_KEY';
 const kStreamUserId = 'STREAM_USER_ID';
 const kStreamToken = 'STREAM_TOKEN';
@@ -16,7 +16,8 @@ const kStreamToken = 'STREAM_TOKEN';
 class ChooseUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final users = defaultUsers;
+    // final users = defaultUsers;
+    final users = {};
 
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
@@ -188,7 +189,6 @@ class ChooseUserPage extends StatelessWidget {
                 ),
               ),
             ),
-            StreamVersion(),
           ],
         ),
       ),
