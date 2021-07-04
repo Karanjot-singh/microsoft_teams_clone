@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';

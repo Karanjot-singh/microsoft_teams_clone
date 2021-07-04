@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../group_chat/group_chats_page.dart';
 import 'chips_input_text_field.dart';
 import '../../../routes/routes.dart';
 

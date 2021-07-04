@@ -256,8 +256,8 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         final userId = _userIdController.text;
                         final userToken = _userTokenController.text;
                         final username = _usernameController.text;
-
                         loading = true;
+                        //TODO: Modularise app indicator
                         showDialog(
                           barrierDismissible: false,
                           context: context,
@@ -281,7 +281,8 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                             ),
                           ),
                         );
-
+                        //TODO: Login logic here
+                        
                         final client = StreamChatClient(
                           apiKey,
                           logLevel: Level.INFO,
