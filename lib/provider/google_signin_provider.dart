@@ -70,16 +70,19 @@ class GoogleSignInProvider extends ChangeNotifier {
 
   Future login() async {
     try {
+      log("before fAwait ");
+
       final isNewUser = await FirebaseGoogleApi.login();
       final userFirebase = FirebaseAuth.instance.currentUser;
+      log("after fAwait ");
 
       if (isNewUser) {
         log("before Await new");
 
         await StreamUserApi.createUser(
           idUser: userFirebase!.uid,
-          username: userFirebase.displayName!,
-          urlImage: userFirebase.photoURL!,
+          username: userFirebase.displayName,
+          urlImage: userFirebase.photoURL,
         );
         log("New user created $userFirebase.uid");
       } else {

@@ -16,9 +16,9 @@ import 'firebase_google_api.dart';
 
 class StreamUserApi {
   static Future createUser({
-    required String idUser,
-    required String username,
-    required String urlImage,
+    String? idUser,
+    String? username,
+    String? urlImage,
   }) async {
     // final userToken = await _generateUserToken(idUser: idUser);
     final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
@@ -29,7 +29,7 @@ class StreamUserApi {
     )..chatPersistenceClient = StreamApi.chatPersistentClient;
 
     final user = User(
-      id: idUser,
+      id: idUser!,
       extraData: {
         'name': username,
         'image': urlImage,
