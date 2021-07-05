@@ -16,6 +16,9 @@ dependencies:
   
   #google sign in
   google_sign_in:
+
+  #state management for google:
+  provider:
     
   # Jitsi meet Dependencies
   jitsi_meet:

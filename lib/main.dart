@@ -21,6 +21,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+  static final navigatorKey = GlobalKey<NavigatorState>();
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp>
     with SplashScreenStateMixin, TickerProviderStateMixin {
   // mixins implemented for multiple inheritance like functionality
   InitData? _initData; //Nullable type indicated by ?
+  static final navigatorKey = GlobalKey<NavigatorState>();
 
   Future<InitData> _initConnection() async {
     String? apiKey, userId, token;
@@ -105,6 +107,7 @@ class _MyAppState extends State<MyApp>
               defaultValue: 0,
             ),
             builder: (context, snapshot) => MaterialApp(
+              navigatorKey: navigatorKey,
               // Initialising the theme of the application
               theme: ThemeData.light(),
               darkTheme: ThemeData.dark(),

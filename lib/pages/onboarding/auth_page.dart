@@ -3,6 +3,7 @@ import 'package:microsoft_teams_clone/provider/google_signin_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'dart:developer';
 
 class AuthPage extends StatelessWidget {
   @override
@@ -30,6 +31,7 @@ class AuthPage extends StatelessWidget {
         ),
         icon: FaIcon(FontAwesomeIcons.google, color: appPurpleColor),
         onPressed: () {
+          log("karan: Tap works");
           final provider =
               Provider.of<GoogleSignInProvider>(context, listen: false);
           provider.login();

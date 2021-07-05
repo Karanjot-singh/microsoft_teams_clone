@@ -1,37 +1,20 @@
-import 'dart:convert';
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart' hide User;
-import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 // import 'package:foundation/model/user_token.dart';
 // import 'package:foundation/request/authentication_request.dart';
 // import 'package:foundation/request/authentication_response.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:microsoft_teams_clone/model/user.dart' as model;
-import 'package:http/http.dart' as http;
+// import 'package:microsoft_teams_clone/model/user.dart' as model;
+// import 'package:http/http.dart' as http;
 
 import 'firebase_google_api.dart';
 
 class StreamUserApi {
-  static Future<List<model.User>> getAllUsers({bool includeMe = false}) async {
-    final sort = SortOption('last_message_at');
-    final response =
-        await StreamConfig.kDefaultStreamClient.queryUsers(sort: [sort]);
-
-    final defaultImage =
-        'https://images.unsplash.com/photo-1580907114587-148483e7bd5f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
-
-    final allUsers = response.users
-        .map((user) => model.User(
-              idUser: user.id,
-              name: user.name,
-              imageUrl: user.extraData['image'] ?? defaultImage,
-              isOnline: user.online,
-            ))
-        .toList();
-
-    return allUsers;
-  }
-
   static Future createUser({
     required String idUser,
     required String username,
@@ -40,6 +23,11 @@ class StreamUserApi {
     // final userToken = await _generateUserToken(idUser: idUser);
     final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
 
+    final client = StreamChatClient(
+      kDefaultStreamApiKey,
+      logLevel: Level.INFO,
+    )..chatPersistenceClient = StreamApi.chatPersistentClient;
+
     final user = User(
       id: idUser,
       extraData: {
@@ -47,7 +35,21 @@ class StreamUserApi {
         'image': urlImage,
       },
     );
-    await StreamConfig.kDefaultStreamClient.setUser(user, userToken.token);
+    await StreamConfig.kDefaultStreamClient.connectUser(user, userToken.token);
+    final secureStorage = FlutterSecureStorage();
+    secureStorage.write(
+      key: kStreamApiKey,
+      value: kDefaultStreamApiKey,
+    );
+    secureStorage.write(
+      key: kStreamUserId,
+      value: user.id,
+    );
+    secureStorage.write(
+      key: kStreamToken,
+      value: userToken.token,
+    );
+    log("New user created $user.id");
   }
 
   static Future login({required String idUser}) async {
@@ -56,7 +58,21 @@ class StreamUserApi {
     // final userToken = await _generateUserToken(idUser: idUser);
 
     final user = User(id: idUser);
-    await StreamConfig.kDefaultStreamClient.setUser(user, userToken.token);
+    await StreamConfig.kDefaultStreamClient.connectUser(user, userToken.token);
+    final secureStorage = FlutterSecureStorage();
+    secureStorage.write(
+      key: kStreamApiKey,
+      value: kDefaultStreamApiKey,
+    );
+    secureStorage.write(
+      key: kStreamUserId,
+      value: user.id,
+    );
+    secureStorage.write(
+      key: kStreamToken,
+      value: userToken.token,
+    );
+    log("Login user created $user.id");
   }
 
   // static Future<UserToken> _generateUserToken({
