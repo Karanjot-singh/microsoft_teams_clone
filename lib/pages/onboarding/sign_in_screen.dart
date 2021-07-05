@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/authentication.dart';
 import 'user_info_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -93,7 +96,48 @@ class _GoogleButtonState extends State<GoogleButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: _isSigningIn
+          ? CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            )
+          : OutlinedButton.icon(
+              style: OutlinedButton.styleFrom(
+                primary: Colors.black,
+                shape: StadiumBorder(),
+                padding: EdgeInsets.all(20),
+              ),
+              label: Text(
+                'Sign In With Google',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              icon: FaIcon(FontAwesomeIcons.google, color: appPurpleColor),
+              onPressed: () async {
+                log("Tap");
+                setState(() {
+                  _isSigningIn = true;
+                });
+
+                User? user =
+                    await Authentication.signInWithGoogle(context: context);
+                log("user");
+
+                setState(() {
+                  _isSigningIn = false;
+                });
+
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreen(
+                        user: user,
+                      ),
+                    ),
+                  );
+                }
+              }),
+    );
   }
 }
 

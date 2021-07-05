@@ -1,9 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'sign_in_screen.dart';
-import 'authentication.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/authentication.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
+class CustomColors{
+  static const firebaseNavy = appPurpleColor;
+  static const firebaseOrange = appAccentColor;
+  static const firebaseGrey = appLightColor;
+  static const firebaseYellow = Colors.yellow;
 
+}
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
       : _user = user,
@@ -16,10 +22,7 @@ class UserInfoScreen extends StatefulWidget {
 }
 
 class _UserInfoScreenState extends State<UserInfoScreen> {
-  late bool _isEmailVerified;
   late User _user;
-
-  bool _verificationEmailBeingSent = false;
   bool _isSigningOut = false;
 
   Route _routeToSignInScreen() {
@@ -44,7 +47,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void initState() {
     _user = widget._user;
-    _isEmailVerified = _user.emailVerified;
 
     super.initState();
   }
@@ -52,7 +54,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appPurpleColor,
+      backgroundColor: CustomColors.firebaseNavy,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -64,154 +66,66 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(),
+              _user.photoURL != null
+                  ? ClipOval(
+                      child: Material(
+                        color: CustomColors.firebaseGrey.withOpacity(0.3),
+                        child: Image.network(
+                          _user.photoURL!,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                    )
+                  : ClipOval(
+                      child: Material(
+                        color: CustomColors.firebaseGrey.withOpacity(0.3),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Icon(
+                            Icons.person,
+                            size: 60,
+                            color: CustomColors.firebaseGrey,
+                          ),
+                        ),
+                      ),
+                    ),
               SizedBox(height: 16.0),
               Text(
                 'Hello',
                 style: TextStyle(
-                  color: appPurpleColor,
+                  color: CustomColors.firebaseGrey,
                   fontSize: 26,
                 ),
               ),
               SizedBox(height: 8.0),
               Text(
-                widget._user.displayName!,
+                _user.displayName!,
                 style: TextStyle(
-                  color: appPurpleColor,
+                  color: CustomColors.firebaseYellow,
                   fontSize: 26,
                 ),
               ),
-              SizedBox(height: 24.0),
-              _isEmailVerified
-                  ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipOval(
-                          child: Material(
-                            color: Colors.greenAccent.withOpacity(0.6),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.check,
-                                size: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8.0),
-                        Text(
-                          'Email is verified',
-                          style: TextStyle(
-                            color: Colors.greenAccent,
-                            fontSize: 20,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ],
-                    )
-                  : Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipOval(
-                          child: Material(
-                            color: Colors.redAccent.withOpacity(0.8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.close,
-                                size: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 8.0),
-                        Text(
-                          'Email is not verified',
-                          style: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 20,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ],
-                    ),
               SizedBox(height: 8.0),
-              Visibility(
-                visible: !_isEmailVerified,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _verificationEmailBeingSent
-                        ? CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              appPurpleColor,
-                            ),
-                          )
-                        : ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                appPurpleColor,
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                            onPressed: () async {
-                              setState(() {
-                                _verificationEmailBeingSent = true;
-                              });
-                              await _user.sendEmailVerification();
-                              setState(() {
-                                _verificationEmailBeingSent = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                              child: Text(
-                                'Verify',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: appPurpleColor,
-                                  letterSpacing: 2,
-                                ),
-                              ),
-                            ),
-                          ),
-                    SizedBox(width: 16.0),
-                    IconButton(
-                      icon: Icon(Icons.refresh),
-                      onPressed: () async {
-                        User? user = await Authentication.refreshUser(_user);
-
-                        if (user != null) {
-                          setState(() {
-                            _user = user;
-                            _isEmailVerified = user.emailVerified;
-                          });
-                        }
-                      },
-                    ),
-                  ],
+              Text(
+                '( ${_user.email!} )',
+                style: TextStyle(
+                  color: CustomColors.firebaseOrange,
+                  fontSize: 20,
+                  letterSpacing: 0.5,
                 ),
               ),
               SizedBox(height: 24.0),
               Text(
-                'You are now signed in using Firebase Authentication. To sign out of your account click the "Sign Out" button below.',
+                'You are now signed in using your Google account. To sign out of your account click the "Sign Out" button below.',
                 style: TextStyle(
-                    color: appPurpleColor.withOpacity(0.8),
+                    color: CustomColors.firebaseGrey.withOpacity(0.8),
                     fontSize: 14,
                     letterSpacing: 0.2),
               ),
               SizedBox(height: 16.0),
               _isSigningOut
                   ? CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.redAccent,
-                      ),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     )
                   : ElevatedButton(
                       style: ButtonStyle(
@@ -228,7 +142,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         setState(() {
                           _isSigningOut = true;
                         });
-                        await FirebaseAuth.instance.signOut();
+                        await Authentication.signOut(context: context);
                         setState(() {
                           _isSigningOut = false;
                         });

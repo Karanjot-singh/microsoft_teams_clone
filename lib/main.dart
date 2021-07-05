@@ -137,14 +137,15 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
-                      name: Routes.SIGN_IN,
+                      // name: Routes.SIGN_IN,
+                      name: Routes.CHOOSE_USER,
                     ),
                   )!
                 ];
               },
               initialRoute: _initData!.client.state.user == null
                   //Choose the launch screen on basis of the state of user login
-                  ? Routes.SIGN_IN //TODO: Add sign in here
+                  ? Routes.CHOOSE_USER //TODO: Add sign in here
                   : Routes.HOME,
             ),
           ),
