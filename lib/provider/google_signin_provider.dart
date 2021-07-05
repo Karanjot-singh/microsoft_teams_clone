@@ -21,33 +21,34 @@ class GoogleSignInProvider extends ChangeNotifier {
         StreamConfig.kDefaultStreamClient.wsConnectionStatus;
 
     connectionStatus.addListener(() {
-      final navigator = MyApp.navigatorKey.currentState;
-      final status = connectionStatus.value;
+      // final navigator = MyApp.navigatorKey.currentState;
+      // final status = connectionStatus.value;
 
-      switch (status) {
-        case ConnectionStatus.connected:
-          if (_isSignedIn) return;
+      // switch (status) {
+      //   case ConnectionStatus.connected:
+      //     if (_isSignedIn) return;
 
-          _isSignedIn = true;
-          navigator.pushNamedAndRemoveUntil(
-            Routes.HOME,
-            ModalRoute.withName(Routes.HOME)
-          );
-          break;
-        case ConnectionStatus.disconnected:
-          final isSignedInFirebase = FirebaseAuth.instance.currentUser != null;
-          if (isSignedInFirebase) return;
+      //     _isSignedIn = true;
+      //     navigator.pushNamedAndRemoveUntil(
+      //       Routes.HOME,
+      //       ModalRoute.withName(Routes.HOME)
+      //     );
+      //     break;
+      //   case ConnectionStatus.disconnected:
+      //     final isSignedInFirebase = FirebaseAuth.instance.currentUser != null;
+      //     if (isSignedInFirebase) return;
 
-          _isSignedIn = false;
-          navigator.pushNamedAndRemoveUntil(
-            Routes.SIGN_IN,
-            ModalRoute.withName(Routes.SIGN_IN),
-          );
-          break;
-        default:
-          break;
-      }
-    });
+      //     _isSignedIn = false;
+      //     navigator.pushNamedAndRemoveUntil(
+      //       Routes.SIGN_IN,
+      //       ModalRoute.withName(Routes.SIGN_IN),
+      //     );
+      //     break;
+      //   default:
+      //     break;
+      // }
+    },
+    );
   }
 
   Future login() async {

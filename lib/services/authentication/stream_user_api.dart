@@ -37,7 +37,8 @@ class StreamUserApi {
     required String username,
     required String urlImage,
   }) async {
-    final userToken = await _generateUserToken(idUser: idUser);
+    // final userToken = await _generateUserToken(idUser: idUser);
+    final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
 
     final user = User(
       id: idUser,
@@ -50,7 +51,9 @@ class StreamUserApi {
   }
 
   static Future login({required String idUser}) async {
-    final userToken = await _generateUserToken(idUser: idUser);
+    final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
+
+    // final userToken = await _generateUserToken(idUser: idUser);
 
     final user = User(id: idUser);
     await StreamConfig.kDefaultStreamClient.setUser(user, userToken.token);

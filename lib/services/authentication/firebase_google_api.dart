@@ -9,6 +9,7 @@ class FirebaseGoogleApi {
 
   static Future<bool> login() async {
     final googleUser = await googleSignIn.signIn();
+
     if (googleUser == null) throw Exception('No user');
 
     final googleAuth = await googleUser.authentication;
