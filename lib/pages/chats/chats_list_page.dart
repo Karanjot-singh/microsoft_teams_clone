@@ -75,6 +75,9 @@ class _ChannelListPageState extends State<ChannelListPage> {
   @override
   Widget build(BuildContext context) {
     final user = StreamChat.of(context).user;
+    final streamClient = StreamChat.of(context).client;
+    final connectionStatus = streamClient.wsConnectionStatus;
+
     if (user == null) {
       return Offstage();
     }
@@ -82,6 +85,14 @@ class _ChannelListPageState extends State<ChannelListPage> {
       //scaffold for search box
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelListHeader(
+        titleBuilder: (context, connectionStatus, streamClient) {
+          return Text(
+            'Microsoft Teams',
+            style: TextStyle(
+                color: StreamChatTheme.of(context).colorTheme.black,
+                fontSize: 16.0),
+          );
+        },
         onNewChatButtonTap: () {
           Navigator.pushNamed(context, Routes.NEW_CHAT);
         },

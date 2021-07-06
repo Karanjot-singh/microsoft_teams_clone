@@ -18,18 +18,22 @@ class HomePage extends StatelessWidget {
   }) : super(key: key);
 
   final StreamChatClient chatClient;
-
   @override
   Widget build(BuildContext context) {
     return StreamChat(
       client: chatClient,
       streamChatThemeData: StreamChatThemeData(
+        brightness: Theme.of(context).brightness,
         channelListHeaderTheme: ChannelListHeaderTheme(
           color: appPurpleColor,
         ),
-        // colorTheme: ColorTheme.dark(
-        //   accentBlue: appPurpleColor,
-        // ),
+        colorTheme: Theme.of(context).brightness == Brightness.dark
+            ? ColorTheme.dark(
+                accentBlue: appPurpleColor,
+              )
+            : ColorTheme.light(
+                accentBlue: appPurpleColor,
+              ),
         channelTheme: ChannelTheme(
           channelHeaderTheme: ChannelHeaderTheme(
             color: appPurpleColor,
@@ -39,26 +43,26 @@ class HomePage extends StatelessWidget {
           ),
         ),
         messageInputTheme: MessageInputTheme(
-          actionButtonColor: appAccentColor,
-          sendButtonColor: appAccentColor,
+          actionButtonColor: appPurpleColor,
+          actionButtonIdleColor: appPurpleColor,
+          sendButtonIdleColor: appPurpleColor,
+          sendButtonColor: appPurpleColor,
         ),
         otherMessageTheme: MessageTheme(
-          reactionsMaskColor: appAccentColor,
           messageBackgroundColor: StreamChatTheme.of(context)
               .colorTheme
-              .accentBlue
+              .accentGreen
               .withOpacity(0.5),
           messageBorderColor: StreamChatTheme.of(context)
               .colorTheme
-              .accentBlue
+              .accentGreen
               .withOpacity(0.5),
         ),
         ownMessageTheme: MessageTheme(
           messageBackgroundColor: appPurpleColor.withOpacity(0.5),
           messageBorderColor: appPurpleColor,
         ),
-        primaryIconTheme: IconThemeData(color: appAccentColor),
-        brightness: Theme.of(context).brightness,
+        primaryIconTheme: IconThemeData(color: appPurpleColor),
       ),
       child: Navigator(
         onGenerateRoute: AppRoutes.generateRoute,
