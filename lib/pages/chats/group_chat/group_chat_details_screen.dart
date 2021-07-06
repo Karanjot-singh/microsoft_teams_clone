@@ -84,7 +84,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                     'NAME',
                     style: TextStyle(
                       fontSize: 12,
-                      color: StreamChatTheme.of(context).colorTheme.grey,
+                      color: appLightColor,
                     ),
                   ),
                   SizedBox(width: 16),
@@ -102,7 +102,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                         hintText: 'Choose a group chat name',
                         hintStyle: TextStyle(
                           fontSize: 14,
-                          color: StreamChatTheme.of(context).colorTheme.grey,
+                          color: appLightColor,
                         ),
                       ),
                     ),
@@ -116,9 +116,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
               padding: const EdgeInsets.all(0),
               icon: StreamSvgIcon.check(
                 size: 24,
-                color: _isGroupNameEmpty
-                    ? StreamChatTheme.of(context).colorTheme.grey
-                    : appAccentColor,
+                color: _isGroupNameEmpty ? appLightColor : appAccentColor,
               ),
               onPressed: _isGroupNameEmpty
                   ? null
@@ -186,7 +184,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                       child: Text(
                         '$_totalUsers ${_totalUsers > 1 ? 'Members' : 'Member'}',
                         style: TextStyle(
-                          color: StreamChatTheme.of(context).colorTheme.grey,
+                          color: appLightColor,
                         ),
                       ),
                     ),

@@ -2,7 +2,6 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
-import 'package:microsoft_teams_clone/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -95,7 +94,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontWeight: FontWeight.bold,
                         color: _apiKeyError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -142,7 +141,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontSize: 14,
                         color: _userIdError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -188,7 +187,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontSize: 14,
                         color: _userTokenError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -210,7 +209,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                       labelStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -256,8 +255,8 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         final userId = _userIdController.text;
                         final userToken = _userTokenController.text;
                         final username = _usernameController.text;
-
                         loading = true;
+                        //TODO: Modularise app indicator
                         showDialog(
                           barrierDismissible: false,
                           context: context,
@@ -281,6 +280,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                             ),
                           ),
                         );
+                        //TODO: refer Login logic here
 
                         final client = StreamChatClient(
                           apiKey,
@@ -331,7 +331,6 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                       }
                     },
                   ),
-                  StreamVersion(),
                 ],
               ),
             ),

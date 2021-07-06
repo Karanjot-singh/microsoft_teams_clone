@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/group_chats_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../group_chat/group_chats_page.dart';
 import 'chips_input_text_field.dart';
 import '../../../routes/routes.dart';
 
@@ -122,7 +122,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
       appBar: AppBar(
         brightness: Theme.of(context).brightness,
         elevation: 0,
-        backgroundColor: StreamChatTheme.of(context).colorTheme.white,
+        backgroundColor: appPurpleColor,
         leading: const StreamBackButton(),
         title: Text(
           'New Chat',
@@ -176,9 +176,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                color: StreamChatTheme.of(context)
-                                    .colorTheme
-                                    .greyGainsboro,
+                                color: appLightColor,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               padding: const EdgeInsets.only(left: 24),
@@ -212,10 +210,8 @@ class _NewChatScreenState extends State<NewChatScreen> {
                               ),
                             ),
                             StreamSvgIcon.close(
-                              color: StreamChatTheme.of(context)
-                                  .colorTheme
-                                  .accentRed
-                                  .withOpacity(0.5),
+                              color:
+                                  StreamChatTheme.of(context).colorTheme.black,
                             ),
                           ],
                         ),
@@ -229,36 +225,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                     },
                   ),
                   if (!_isSearchActive && !_selectedUsers.isNotEmpty)
-                    Container(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            Routes.NEW_GROUP_CHAT,
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: Row(
-                            children: [
-                              Center(
-                                child: StreamSvgIcon.contacts(
-                                  color: appAccentIconColor,
-                                  size: 24,
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                'Create a Group',
-                                style: StreamChatTheme.of(context)
-                                    .textTheme
-                                    .bodyBold,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    CreateGroupTile(),
                   if (_showUserList)
                     Container(
                       width: double.maxFinite,
@@ -331,29 +298,7 @@ class _NewChatScreenState extends State<NewChatScreen> {
                                             minHeight:
                                                 viewportConstraints.maxHeight,
                                           ),
-                                          child: Center(
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(24),
-                                                  child: StreamSvgIcon.search(
-                                                    size: 96,
-                                                    color: appLightColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  'No user matches these keywords...',
-                                                  style: StreamChatTheme.of(
-                                                          context)
-                                                      .textTheme
-                                                      .footnote
-                                                      .copyWith(
-                                                          color: appLightColor),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                          child: NoUserMatch(),
                                         ),
                                       );
                                     },
@@ -381,26 +326,105 @@ class _NewChatScreenState extends State<NewChatScreen> {
                             },
                           ),
                   ),
-                  // MessageInput(
-                  //   focusNode: _messageInputFocusNode,
-                  //   preMessageSending: (message) async {
-                  //     await channel!.watch();
-                  //     return message;
-                  //   },
-                  //   onMessageSent: (m) {
-                  //     Navigator.pushNamedAndRemoveUntil(
-                  //       context,
-                  //       Routes.CHANNEL_PAGE,
-                  //       ModalRoute.withName(Routes.HOME),
-                  //       arguments: ChannelPageArgs(channel: channel),
-                  //     );
-                  //   },
-                  // ),
+                  MessageInput(
+                    focusNode: _messageInputFocusNode,
+                    preMessageSending: (message) async {
+                      await channel!.watch();
+                      return message;
+                    },
+                    onMessageSent: (m) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.CHANNEL_PAGE,
+                        ModalRoute.withName(Routes.HOME),
+                        arguments: ChannelPageArgs(channel: channel),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class NoUserMatch extends StatelessWidget {
+  const NoUserMatch({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: StreamSvgIcon.search(
+              size: 96,
+              color: appLightColor,
+            ),
+          ),
+          Text(
+            'No user matches these keywords...',
+            style: StreamChatTheme.of(context)
+                .textTheme
+                .footnote
+                .copyWith(color: appLightColor),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CreateGroupTile extends StatelessWidget {
+  const CreateGroupTile({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            Routes.NEW_GROUP_CHAT,
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 12,
+            horizontal: 7,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                child: StreamSvgIcon.contacts(
+                  color: appAccentIconColor,
+                  size: 24,
+                ),
+              ),
+              SizedBox(width: 10),
+              Text(
+                'Create a Group',
+                style: StreamChatTheme.of(context).textTheme.bodyBold,
+              ),
+              SizedBox(width: 3),
+              Center(
+                child: StreamSvgIcon.right(
+                  color: appAccentIconColor,
+                  size: 24,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

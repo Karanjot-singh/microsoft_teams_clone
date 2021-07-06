@@ -154,7 +154,6 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               centerTitle: true,
               actions: [
                 if (!channel.channel.isDistinct && isOwner)
-
                   StreamNeumorphicButton(
                     child: InkWell(
                       onTap: () {
@@ -299,8 +298,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 21.0, vertical: 12.0),
                             child: StreamSvgIcon.down(
-                              color:
-                                  StreamChatTheme.of(context).colorTheme.grey,
+                              color: appLightColor,
                             ),
                           ),
                           Expanded(
@@ -402,7 +400,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     padding: const EdgeInsets.only(right: 16.0, left: 8.0),
                     child: InkWell(
                       child: StreamSvgIcon.check(
-                        color:appAccentIconColor,
+                        color: appAccentIconColor,
                         size: 24.0,
                       ),
                       onTap: () {
@@ -487,7 +485,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -546,7 +544,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             var channel = StreamChannel.of(context).channel;
@@ -605,7 +603,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             var channel = StreamChannel.of(context).channel;
@@ -885,7 +883,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     _buildModalListTile(
                       context,
                       StreamSvgIcon.user(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 20.0,
                       ),
                       'View info',
@@ -919,7 +917,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     _buildModalListTile(
                       context,
                       StreamSvgIcon.message(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 24.0,
                       ),
                       'Message',
@@ -946,18 +944,6 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                         );
                       },
                     ),
-                  // if (!channel.isDistinct &&
-                  //     StreamChat.of(context).user!.id != user.id &&
-                  //     isUserAdmin)
-                  //   _buildModalListTile(
-                  //       context,
-                  //       StreamSvgIcon.iconUserSettings(
-                  //         color: StreamChatTheme.of(context).colorTheme.grey,
-                  //         size: 24.0,
-                  //       ),
-                  //       'Make Owner', () {
-                  //     // TODO: Add make owner implementation (Remaining from backend)
-                  //   }),
                   if (!channel.isDistinct &&
                       StreamChat.of(context).user!.id != user.id &&
                       isUserAdmin)
@@ -986,7 +972,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   _buildModalListTile(
                       context,
                       StreamSvgIcon.closeSmall(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 24.0,
                       ),
                       'Cancel', () {

@@ -1,6 +1,6 @@
 import 'dart:async';
-
-import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
@@ -11,16 +11,17 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
-
 import 'services/stream_chat/app_config.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 
 void main() async {
   runApp(MyApp());
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatefulWidget {
+  static final navigatorKey = GlobalKey<NavigatorState>();
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp>
     with SplashScreenStateMixin, TickerProviderStateMixin {
   // mixins implemented for multiple inheritance like functionality
   InitData? _initData; //Nullable type indicated by ?
+  static final navigatorKey = GlobalKey<NavigatorState>();
 
   Future<InitData> _initConnection() async {
     String? apiKey, userId, token;
@@ -45,6 +47,7 @@ class _MyAppState extends State<MyApp>
     )..chatPersistenceClient = StreamApi.chatPersistentClient;
     // shorthand setter for chatPersistentClient
 
+    StreamConfig.setClient(client);
     if (userId != null && token != null) {
       await client.connectUser(
         // Sets the current user and connect the websocket using the userID and token generated
@@ -104,6 +107,7 @@ class _MyAppState extends State<MyApp>
               defaultValue: 0,
             ),
             builder: (context, snapshot) => MaterialApp(
+              navigatorKey: navigatorKey,
               // Initialising the theme of the application
               theme: ThemeData.light(),
               darkTheme: ThemeData.dark(),
@@ -133,6 +137,7 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
+                      // name: Routes.SIGN_IN,
                       name: Routes.CHOOSE_USER,
                     ),
                   )!

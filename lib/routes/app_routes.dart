@@ -1,5 +1,7 @@
 import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/auth_page.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../pages/users/advanced_options_page.dart';
@@ -39,6 +41,12 @@ class AppRoutes {
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
               return ChooseUserPage();
+            });
+      case Routes.SIGN_IN:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.CHOOSE_USER),
+            builder: (_) {
+              return SignInScreen();
             });
       case Routes.ADVANCED_OPTIONS:
         return MaterialPageRoute(

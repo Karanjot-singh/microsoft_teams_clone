@@ -8,13 +8,21 @@ environment:
 
 dependencies:
 
-  # Firebase Dependencies
-  firebase_auth:
+  # Firebase storage Dependencies
   cloud_firestore:
-  firebase_core:
+  firebase_storage:
+  
+  #google sign in 
+  firebase_core: ^1.0.1
+  firebase_auth: ^1.0.1
+  google_sign_in: ^5.0.0
 
+  #state management for google:
+  provider:
+    
   # Jitsi meet Dependencies
   jitsi_meet:
+
   # Stream Chat Dependencies
   flutter_app_badger: ^1.2.0
   flutter:
@@ -42,6 +50,7 @@ dependencies:
   intl:
   pin_code_fields:
   flutter_custom_clippers:
+  font_awesome_flutter:
 
 dependency_overrides:
   stream_chat:

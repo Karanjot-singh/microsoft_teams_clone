@@ -2,13 +2,13 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
-import 'package:microsoft_teams_clone/stream_version.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../routes/routes.dart';
 
+//TODO Fix API String codes
 const kStreamApiKey = 'STREAM_API_KEY';
 const kStreamUserId = 'STREAM_USER_ID';
 const kStreamToken = 'STREAM_TOKEN';
@@ -17,6 +17,7 @@ class ChooseUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final users = defaultUsers;
+    // final users = {};
 
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
@@ -62,6 +63,8 @@ class ChooseUserPage extends StatelessWidget {
                   itemBuilder: (context, i) {
                     return [
                       ...users.entries.map((entry) {
+                        //TODO:LOGIC reads the values from list of stored users
+                        // generates a listtile for each entry
                         final token = entry.key;
                         final user = entry.value;
                         return ListTile(
@@ -91,17 +94,30 @@ class ChooseUserPage extends StatelessWidget {
                                 ),
                               ),
                             );
-
+                            //TODO:LOGIC
                             final client = StreamChatClient(
                               kDefaultStreamApiKey,
                               logLevel: Level.INFO,
                             )..chatPersistenceClient =
                                 StreamApi.chatPersistentClient;
 
+                            //TODO:LOGIC
                             await client.connectUser(
-                              user,
-                              token,
-                            );
+                                // user,
+                                User(
+                                  id: 'salvatore',
+                                  extraData: {
+                                    'name': 'Salvatore Giordano',
+                                    'image':
+                                        'https://avatars.githubusercontent.com/u/20601437?s=460&u=3f66c22a7483980624804054ae7f357cf102c784&v=4',
+                                  },
+                                ),
+                                // token,
+                                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FsdmF0b3JlIn0.pgiJz7sIc7iP29BHKFwe3nLm5-OaR_1l2P-SlgiC9a8'
+                                //string
+                                );
+                            //TODO:LOGIC Serialisation of UserID
+                            // to save the user state on second visit
 
                             final secureStorage = FlutterSecureStorage();
                             secureStorage.write(
@@ -110,11 +126,14 @@ class ChooseUserPage extends StatelessWidget {
                             );
                             secureStorage.write(
                               key: kStreamUserId,
-                              value: user.id,
+                              value: 'salvatore',
+                              // user.id,
                             );
                             secureStorage.write(
                               key: kStreamToken,
-                              value: token,
+                              value:
+                                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FsdmF0b3JlIn0.pgiJz7sIc7iP29BHKFwe3nLm5-OaR_1l2P-SlgiC9a8',
+                              // token,
                             );
                             Navigator.pushNamedAndRemoveUntil(
                               context,
@@ -133,17 +152,6 @@ class ChooseUserPage extends StatelessWidget {
                             user.name,
                             style:
                                 StreamChatTheme.of(context).textTheme.bodyBold,
-                          ),
-                          subtitle: Text(
-                            'Stream test account',
-                            style: StreamChatTheme.of(context)
-                                .textTheme
-                                .footnote
-                                .copyWith(
-                                  color: StreamChatTheme.of(context)
-                                      .colorTheme
-                                      .grey,
-                                ),
                           ),
                           trailing: StreamSvgIcon.arrowRight(
                             color: appAccentColor,
@@ -172,15 +180,8 @@ class ChooseUserPage extends StatelessWidget {
                               .textTheme
                               .footnote
                               .copyWith(
-                                color:
-                                    StreamChatTheme.of(context).colorTheme.grey,
+                                color: appLightColor,
                               ),
-                        ),
-                        trailing: SvgPicture.asset(
-                          'assets/icon_arrow_right.svg',
-                          height: 24,
-                          width: 24,
-                          clipBehavior: Clip.none,
                         ),
                       ),
                     ][i];
@@ -188,7 +189,6 @@ class ChooseUserPage extends StatelessWidget {
                 ),
               ),
             ),
-            StreamVersion(),
           ],
         ),
       ),

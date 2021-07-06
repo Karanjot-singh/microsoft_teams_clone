@@ -66,26 +66,26 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
         ),
         centerTitle: true,
         actions: [
-          if (_selectedUsers.isNotEmpty)
-            IconButton(
-              icon: StreamSvgIcon.arrowRight(
-                color: appPurpleColor,
-              ),
-              onPressed: () async {
-                final updatedList = await Navigator.pushNamed(
-                  context,
-                  Routes.NEW_GROUP_CHAT_DETAILS,
-                  arguments: _selectedUsers.toList(growable: false),
-                );
-                if (updatedList != null) {
-                  setState(() {
-                    _selectedUsers
-                      ..clear()
-                      ..addAll(updatedList as Iterable<User>);
-                  });
-                }
-              },
-            )
+          // if (_selectedUsers.isNotEmpty)
+          IconButton(
+            icon: StreamSvgIcon.arrowRight(
+              color: StreamChatTheme.of(context).colorTheme.black,
+            ),
+            onPressed: () async {
+              final updatedList = await Navigator.pushNamed(
+                context,
+                Routes.NEW_GROUP_CHAT_DETAILS,
+                arguments: _selectedUsers.toList(growable: false),
+              );
+              if (updatedList != null) {
+                setState(() {
+                  _selectedUsers
+                    ..clear()
+                    ..addAll(updatedList as Iterable<User>);
+                });
+              }
+            },
+          )
         ],
       ),
       body: ConnectionStatusBuilder(
@@ -213,8 +213,7 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
                                 ? 'Matches for \"$_userNameQuery\"'
                                 : 'On the platform',
                             style: TextStyle(
-                              color:
-                                  StreamChatTheme.of(context).colorTheme.grey,
+                              color: appLightColor,
                             ),
                           ),
                         ),
