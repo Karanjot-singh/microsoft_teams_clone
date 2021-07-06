@@ -94,7 +94,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontWeight: FontWeight.bold,
                         color: _apiKeyError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -141,7 +141,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontSize: 14,
                         color: _userIdError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -187,7 +187,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                         fontSize: 14,
                         color: _userTokenError != null
                             ? StreamChatTheme.of(context).colorTheme.accentRed
-                            : StreamChatTheme.of(context).colorTheme.grey,
+                            : appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -209,7 +209,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                       labelStyle: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                       ),
                       border: UnderlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -281,7 +281,7 @@ class _AdvancedOptionsPageState extends State<AdvancedOptionsPage> {
                           ),
                         );
                         //TODO: refer Login logic here
-                        
+
                         final client = StreamChatClient(
                           apiKey,
                           logLevel: Level.INFO,

@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/pages/chats/thread_page.dart';
 import 'package:flutter/material.dart';
@@ -159,9 +160,7 @@ class _ChannelPageState extends State<ChannelPage> {
                       style: StreamChatTheme.of(context)
                           .textTheme
                           .footnote
-                          .copyWith(
-                              color:
-                                  StreamChatTheme.of(context).colorTheme.grey),
+                          .copyWith(color: appLightColor),
                     ),
                   ),
                 ),

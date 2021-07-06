@@ -1,3 +1,4 @@
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -51,8 +52,7 @@ class UserMentionsPage extends StatelessWidget {
                               .textTheme
                               .body
                               .copyWith(
-                                color:
-                                    StreamChatTheme.of(context).colorTheme.grey,
+                                color: appLightColor,
                               ),
                         ),
                       ],

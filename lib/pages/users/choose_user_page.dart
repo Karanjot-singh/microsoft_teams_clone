@@ -180,8 +180,7 @@ class ChooseUserPage extends StatelessWidget {
                               .textTheme
                               .footnote
                               .copyWith(
-                                color:
-                                    StreamChatTheme.of(context).colorTheme.grey,
+                                color: appLightColor,
                               ),
                         ),
                       ),

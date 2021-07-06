@@ -298,8 +298,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 21.0, vertical: 12.0),
                             child: StreamSvgIcon.down(
-                              color:
-                                  StreamChatTheme.of(context).colorTheme.grey,
+                              color: appLightColor,
                             ),
                           ),
                           Expanded(
@@ -486,7 +485,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             final channel = StreamChannel.of(context).channel;
@@ -545,7 +544,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             var channel = StreamChannel.of(context).channel;
@@ -604,7 +603,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             ),
           ),
           trailing: StreamSvgIcon.right(
-            color: StreamChatTheme.of(context).colorTheme.grey,
+            color: appLightColor,
           ),
           onTap: () {
             var channel = StreamChannel.of(context).channel;
@@ -884,7 +883,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     _buildModalListTile(
                       context,
                       StreamSvgIcon.user(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 20.0,
                       ),
                       'View info',
@@ -918,7 +917,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     _buildModalListTile(
                       context,
                       StreamSvgIcon.message(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 24.0,
                       ),
                       'Message',
@@ -973,7 +972,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   _buildModalListTile(
                       context,
                       StreamSvgIcon.closeSmall(
-                        color: StreamChatTheme.of(context).colorTheme.grey,
+                        color: appLightColor,
                         size: 24.0,
                       ),
                       'Cancel', () {
