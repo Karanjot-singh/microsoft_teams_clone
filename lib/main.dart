@@ -137,8 +137,8 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
-                      // name: Routes.SIGN_IN,
-                      name: Routes.CHOOSE_USER,
+                      name: Routes.SIGN_IN,
+                      // name: Routes.CHOOSE_USER,
                     ),
                   )!
                 ];

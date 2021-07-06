@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +11,11 @@ class FirebaseGoogleApi {
   static Future<bool> login() async {
     final googleUser = await googleSignIn.signIn();
 
-    if (googleUser == null) throw Exception('No user');
+    if (googleUser == null) {
+      log("googleUser null");
+      throw Exception('No user');
+    }
+    log("googleUser pass");
 
     final googleAuth = await googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
