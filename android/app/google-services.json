@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "804132482573-efq53grp4aa5t7jf9eqq48ctn1ufn9br.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karanjot.microsoftTeams",
+            "certificate_hash": "6ecce243d16450f269d71c0948da22c85c9501a5"
+          }
+        },
+        {
           "client_id": "804132482573-18sb8ckap47g2o221jnb3fmbmojkpfrs.apps.googleusercontent.com",
           "client_type": 3
         }
