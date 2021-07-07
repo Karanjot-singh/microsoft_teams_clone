@@ -1,15 +1,15 @@
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class StreamConfig {
-  static const kDefaultStreamApiKey = 'kv7mcsxr24p8';
+  static const kDefaultStreamApiKey = 'rz79kjrkajgx';
   static late var kDefaultStreamClient;
-  static void setClient(client){
+  static void setClient(client) {
     kDefaultStreamClient = client;
   }
 }
 
 // TODO: Change API key here
-const kDefaultStreamApiKey = 'kv7mcsxr24p8';
+const kDefaultStreamApiKey = 'rz79kjrkajgx';
 
 final defaultUsers = <String, User>{
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FsdmF0b3JlIn0.pgiJz7sIc7iP29BHKFwe3nLm5-OaR_1l2P-SlgiC9a8':
