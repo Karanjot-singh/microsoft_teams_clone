@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:microsoft_teams_clone/constants.dart';
-import 'package:microsoft_teams_clone/screens/onboarding/video_screen.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/video_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../widgets/rounded_button.dart';
 

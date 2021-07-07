@@ -1,6 +1,6 @@
 import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../pages/chats/group_chat/group_chats_page.dart';
 import '../pages/chats/chat_info_screen.dart';

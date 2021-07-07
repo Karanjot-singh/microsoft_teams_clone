@@ -20,10 +20,6 @@ class _Body extends StatelessWidget {
 }
 
 class LoginBody extends StatelessWidget {
-  const LoginBody({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,8 +68,8 @@ class LoginBody extends StatelessWidget {
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
   const TextFieldContainer({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

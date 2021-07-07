@@ -23,10 +23,6 @@ class Body extends StatelessWidget {
 }
 
 class VideoBody extends StatelessWidget {
-  const VideoBody({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

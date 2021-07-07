@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:microsoft_teams_clone/constants.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../widgets/rounded_button.dart';
 import '../login/user_login_screen.dart';
@@ -23,10 +23,6 @@ class _Body extends StatelessWidget {
 }
 
 class ShareBody extends StatelessWidget {
-  const ShareBody({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
