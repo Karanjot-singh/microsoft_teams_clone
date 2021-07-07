@@ -1,23 +1,25 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'sign_in_screen.dart';
-
 import 'authentication.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required User user})
+  const UserInfoScreen({Key? key, required Firebase.User user})
       : _user = user,
         super(key: key);
 
-  final User _user;
+  final Firebase.User _user;
 
   @override
   _UserInfoScreenState createState() => _UserInfoScreenState();
 }
 
 class _UserInfoScreenState extends State<UserInfoScreen> {
-  late User _user;
+  late Firebase.User _user;
   bool _isSigningOut = false;
 
   Route _routeToSignInScreen() {
@@ -49,10 +51,17 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
+      backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: CustomColors.firebaseNavy,
+        elevation: 1,
+        centerTitle: true,
+        title: Text(
+          'User Login',
+          style: TextStyle(
+              color: StreamChatTheme.of(context).colorTheme.black,
+              fontSize: 16.0),
+        ),
+        backgroundColor: appPurpleColor,
       ),
       body: SafeArea(
         child: Padding(
@@ -90,11 +99,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
               SizedBox(height: 16.0),
               Text(
-                'Hello',
-                style: TextStyle(
-                  color: CustomColors.firebaseGrey,
-                  fontSize: 26,
-                ),
+                'Welcome',
+                style: StreamChatTheme.of(context).textTheme.title,
               ),
               SizedBox(height: 8.0),
               Text(
@@ -113,6 +119,26 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   letterSpacing: 0.5,
                 ),
               ),
+              SizedBox(height: 24.0),
+              Text(
+                StreamConfig.kDefaultStreamClient
+                    .devToken(_user.uid)
+                    .toString(),
+                style: TextStyle(
+                    color: CustomColors.firebaseGrey.withOpacity(0.8),
+                    fontSize: 14,
+                    letterSpacing: 0.2),
+              ),
+              SizedBox(height: 24.0),
+              Text(
+                _user.uid.toString(),
+                style: TextStyle(
+                    color: CustomColors.firebaseGrey.withOpacity(0.8),
+                    fontSize: 14,
+                    letterSpacing: 0.2),
+              ),
+              // final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
+
               SizedBox(height: 24.0),
               Text(
                 'You are now signed in using your Google account. To sign out of your account click the "Sign Out" button below.',
@@ -161,6 +187,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         ),
                       ),
                     ),
+              SizedBox(height: 24.0),
             ],
           ),
         ),

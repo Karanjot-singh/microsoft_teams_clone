@@ -6,6 +6,11 @@ import 'user_info_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
+  static late UserCredential googleUser;
+  static void setUserCredential(credential) {
+    googleUser = credential;
+  }
+
   static Future<FirebaseApp> initializeFirebase({
     required BuildContext context,
   }) async {
@@ -74,6 +79,7 @@ class Authentication {
       try {
         final UserCredential userCredential =
             await auth.signInWithCredential(credential);
+        setUserCredential(userCredential);
 
         user = userCredential.user;
       } on FirebaseAuthException catch (e) {
