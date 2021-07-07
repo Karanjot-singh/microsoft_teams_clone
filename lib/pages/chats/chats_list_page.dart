@@ -89,6 +89,7 @@ class _ChannelListPageState extends State<ChannelListPage> {
           return Text(
             'Microsoft Teams',
             style: TextStyle(
+                fontWeight: FontWeight.bold,
                 color: StreamChatTheme.of(context).colorTheme.black,
                 fontSize: 16.0),
           );

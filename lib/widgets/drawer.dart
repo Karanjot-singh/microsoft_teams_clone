@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/authentication.dart';
+import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -46,7 +48,7 @@ class LeftDrawer extends StatelessWidget {
                         child: Text(
                           user.name,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -119,14 +121,9 @@ class LeftDrawer extends StatelessWidget {
                       final client = StreamChat.of(context).client;
                       client.disconnectUser();
                       await client.dispose();
-
-                      await Navigator.of(
-                        context,
-                        rootNavigator: true,
-                      ).pushNamedAndRemoveUntil(
-                        Routes.CHOOSE_USER,
-                        ModalRoute.withName(Routes.CHOOSE_USER),
-                      );
+                      await Authentication.signOut(context: context);
+                      await Navigator.of(context)
+                          .pushReplacement(routeToSignInScreen());
                     },
                     leading: StreamSvgIcon.userRemove(
                       color: appAccentColor,
