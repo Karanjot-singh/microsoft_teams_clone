@@ -51,6 +51,7 @@ dependencies:
   pin_code_fields:
   flutter_custom_clippers:
   font_awesome_flutter:
+  page_transition: ^2.0.2
 
 dependency_overrides:
   stream_chat:
