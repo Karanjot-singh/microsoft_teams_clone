@@ -1,11 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
+import 'package:microsoft_teams_clone/pages/home/home_page.dart';
+import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'sign_in_screen.dart';
 import 'authentication.dart';
+
+// TO be written by flutter secure storage for persistence
+const kStreamApiKey = 'STREAM_API_KEY';
+const kStreamUserId = 'STREAM_USER_ID';
+const kStreamToken = 'STREAM_TOKEN';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required Firebase.User user})
@@ -123,6 +132,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               Text(
                 StreamConfig.kDefaultStreamClient
                     .devToken(_user.uid)
+                    .rawValue
                     .toString(),
                 style: TextStyle(
                     color: CustomColors.firebaseGrey.withOpacity(0.8),
@@ -137,7 +147,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     fontSize: 14,
                     letterSpacing: 0.2),
               ),
-              // final userToken = StreamConfig.kDefaultStreamClient.devToken(idUser);
 
               SizedBox(height: 24.0),
               Text(
@@ -188,6 +197,115 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                     ),
               SizedBox(height: 24.0),
+              //TODO: Modular Buttons
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Colors.redAccent,
+                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                // onPressed: () async {
+                //   setState(() {
+                //     _isSigningOut = true;
+                //   });
+                //   await Authentication.signOut(context: context);
+                //   setState(() {
+                //     _isSigningOut = false;
+                //   });
+                //   Navigator.of(context).pushReplacement(
+                //     MaterialPageRoute(
+                //       builder: (context) => UserInfoScreen(
+                //         user: user,
+                //       ),
+                //     ),
+                //   );
+                // },
+                onPressed: () async {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    barrierColor:
+                        StreamChatTheme.of(context).colorTheme.overlay,
+                    builder: (context) => Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: StreamChatTheme.of(context).colorTheme.white,
+                        ),
+                        height: 100,
+                        width: 100,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: appAccentColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                  //TODO:LOGIC
+                  final client = StreamChatClient(
+                    kDefaultStreamApiKey,
+                    logLevel: Level.INFO,
+                  )..chatPersistenceClient = StreamApi.chatPersistentClient;
+                  final token = StreamConfig.kDefaultStreamClient
+                      .devToken(_user.uid)
+                      .rawValue
+                      .toString();
+                  //TODO:LOGIC
+                  if (Authentication.googleUser.additionalUserInfo!.isNewUser) {
+                    User newUser = User(
+                      id: _user.uid,
+                      extraData: {
+                        'name': _user.displayName!,
+                        'image': _user.photoURL!,
+                      },
+                    );
+                    await client.connectUser(newUser, token);
+                  } else {
+                    final newUser = User(id: _user.uid);
+                    await client.connectUser(newUser, token);
+                  }
+                  //TODO:LOGIC Serialisation of UserID
+                  // to save the user state on second visit
+
+                  final secureStorage = FlutterSecureStorage();
+                  secureStorage.write(
+                    key: kStreamApiKey,
+                    value: kDefaultStreamApiKey,
+                  );
+                  secureStorage.write(
+                    key: kStreamUserId,
+                    value: _user.uid,
+                  );
+                  secureStorage.write(
+                    key: kStreamToken,
+                    value: token,
+                  );
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    Routes.HOME,
+                    ModalRoute.withName(Routes.HOME),
+                    arguments: HomePageArgs(client),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text(
+                    'Proceed',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
