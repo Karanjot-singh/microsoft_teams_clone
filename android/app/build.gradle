@@ -83,8 +83,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation 'com.google.firebase:firebase-messaging:20.1.2'
+    // implementation 'com.google.firebase:firebase-messaging:20.1.2'
+    implementation platform('com.google.firebase:firebase-bom:28.2.0')
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.android.material:material:<version>'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

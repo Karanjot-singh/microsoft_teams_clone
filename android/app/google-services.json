@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "804132482573",
-    "project_id": "teams-abfc8",
-    "storage_bucket": "teams-abfc8.appspot.com"
+    "project_number": "799815426915",
+    "project_id": "ms-teams-70a74",
+    "storage_bucket": "ms-teams-70a74.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:804132482573:android:f64666634b190dfd6fef44",
+        "mobilesdk_app_id": "1:799815426915:android:c9174a41a927e92256e956",
         "android_client_info": {
           "package_name": "com.karanjot.microsoftTeams"
         }
       },
       "oauth_client": [
         {
-          "client_id": "804132482573-efq53grp4aa5t7jf9eqq48ctn1ufn9br.apps.googleusercontent.com",
+          "client_id": "799815426915-cfj703hu1t26r22847301ugrhhffr89j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.karanjot.microsoftTeams",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "804132482573-18sb8ckap47g2o221jnb3fmbmojkpfrs.apps.googleusercontent.com",
+          "client_id": "799815426915-ajr2puka42k1qjvsov5cgqsvaqlbu8o0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyByy59gv6eFn8fZFsgcxGYDphAJ2QTfPb4"
+          "current_key": "AIzaSyAE4SO6S8ijQXMCFe0Kq2oZmbF4n606GKw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "804132482573-18sb8ckap47g2o221jnb3fmbmojkpfrs.apps.googleusercontent.com",
+              "client_id": "799815426915-ajr2puka42k1qjvsov5cgqsvaqlbu8o0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
