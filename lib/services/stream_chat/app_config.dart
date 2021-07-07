@@ -8,7 +8,6 @@ class StreamConfig {
   }
 }
 
-// TODO: Change API key here
 const kDefaultStreamApiKey = 'rz79kjrkajgx';
 
 final defaultUsers = <String, User>{
