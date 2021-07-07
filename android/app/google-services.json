@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "799815426915-3u3m5v0qqgce326a0k4sh0r7leun0tmm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karanjot.microsoftTeams",
+            "certificate_hash": "2d4956f6df985fe567719b005cd412821a4ed325"
+          }
+        },
+        {
+          "client_id": "799815426915-b3khv38sj4lbjui5da2a0bb6vol77ndt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karanjot.microsoftTeams",
+            "certificate_hash": "d7705a44a7ce00d73852d48bd4ecd553407458fe"
+          }
+        },
+        {
           "client_id": "799815426915-cfj703hu1t26r22847301ugrhhffr89j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
