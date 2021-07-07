@@ -1,13 +1,9 @@
 import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/auth_page.dart';
 import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-
-import '../pages/users/advanced_options_page.dart';
 import '../pages/chats/group_chat/group_chats_page.dart';
 import '../pages/chats/chat_info_screen.dart';
-import '../pages/users/choose_user_page.dart';
 import '../pages/chats/group_chat/group_chat_details_screen.dart';
 import '../pages/chats/group_chat/group_info_screen.dart';
 import '../pages/home/home_page.dart';
@@ -40,7 +36,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
-              return ChooseUserPage();
+              return SignInScreen();
             });
       case Routes.SIGN_IN:
         return MaterialPageRoute(
@@ -52,7 +48,7 @@ class AppRoutes {
       case Routes.ADVANCED_OPTIONS:
         return MaterialPageRoute(
           settings: const RouteSettings(name: Routes.ADVANCED_OPTIONS),
-          builder: (_) => AdvancedOptionsPage(),
+          builder: (_) => SignInScreen(),
         );
       case Routes.CHANNEL_PAGE:
         return MaterialPageRoute(

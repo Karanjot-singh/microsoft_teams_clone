@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'authentication.dart';
+import '../../services/authentication/authentication.dart';
 import 'user_info_screen.dart';
 
 class GoogleSignInButton extends StatefulWidget {

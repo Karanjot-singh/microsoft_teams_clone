@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
 import 'google_sign_in_button.dart';
 
-import 'authentication.dart';
+import '../../services/authentication/authentication.dart';
 
 class SignInScreen extends StatefulWidget {
   @override

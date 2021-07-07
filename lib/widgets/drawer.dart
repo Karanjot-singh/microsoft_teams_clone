@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/authentication.dart';
+import 'package:microsoft_teams_clone/services/authentication/authentication.dart';
 import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:flutter/foundation.dart';

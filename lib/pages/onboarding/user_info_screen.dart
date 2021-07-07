@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -10,7 +10,7 @@ import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'authentication.dart';
+import '../../services/authentication/authentication.dart';
 
 // To be written by flutter secure storage for persistence
 const kStreamApiKey = 'STREAM_API_KEY';
@@ -222,6 +222,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       .devToken(_user.uid)
                       .rawValue
                       .toString();
+                      //TODO: Test EmailID instead of UserID
                   User newUser = User(
                     id: _user.uid,
                     extraData: {
@@ -230,6 +231,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     },
                   );
                   await client.connectUser(newUser, token);
+
                   //Serialisation of UserID
                   // to save the user state on second visit
 

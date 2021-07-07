@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
-import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/user_info_screen.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/pages/onboarding/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,7 +49,6 @@ class _MyAppState extends State<MyApp>
     if (userId != null && token != null) {
       await client.connectUser(
         // Sets the current user and connect the websocket using the userID and token generated
-        //TODO: this should be done using a backend to generate
         /// a user token using our server SDK
         //TODO Fix padding in group name and mute
         User(id: userId),
@@ -143,7 +142,7 @@ class _MyAppState extends State<MyApp>
               },
               initialRoute: _initData!.client.state.user == null
                   //Choose the launch screen on basis of the state of user login
-                  ? Routes.CHOOSE_USER //TODO: Add sign in here
+                  ? Routes.SIGN_IN
                   : Routes.HOME,
             ),
           ),
