@@ -1,15 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/authentication.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
-class CustomColors{
-  static const firebaseNavy = appPurpleColor;
-  static const firebaseOrange = appAccentColor;
-  static const firebaseGrey = appLightColor;
-  static const firebaseYellow = Colors.yellow;
+import 'package:microsoft_teams_clone/config/custom_colors.dart';
+import 'sign_in_screen.dart';
 
-}
+import 'authentication.dart';
+
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
       : _user = user,
@@ -55,6 +50,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.firebaseNavy,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: CustomColors.firebaseNavy,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(

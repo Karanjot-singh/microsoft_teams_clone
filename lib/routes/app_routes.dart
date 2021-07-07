@@ -47,6 +47,7 @@ class AppRoutes {
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
               return SignInScreen();
+              // return AuthPage();
             });
       case Routes.ADVANCED_OPTIONS:
         return MaterialPageRoute(

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/users/choose_user_page.dart';
@@ -17,7 +16,6 @@ import 'routes/routes.dart';
 
 void main() async {
   runApp(MyApp());
-  await Firebase.initializeApp();
 }
 
 class MyApp extends StatefulWidget {
@@ -137,8 +135,8 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
-                      // name: Routes.SIGN_IN,
-                      name: Routes.CHOOSE_USER,
+                      name: Routes.SIGN_IN,
+                      // name: Routes.CHOOSE_USER,
                     ),
                   )!
                 ];

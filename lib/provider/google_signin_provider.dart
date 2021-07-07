@@ -19,53 +19,41 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future _listenStatus() async {
-    final client = StreamChatClient(
-      kDefaultStreamApiKey,
-      logLevel: Level.INFO,
-    )..chatPersistenceClient = StreamApi.chatPersistentClient;
+    final client = StreamConfig.kDefaultStreamClient;
+    final connectionStatus = client.wsConnectionStatus;
     // final connectionStatus = client.wsConnectionStatus;
     final navigator = MyApp.navigatorKey.currentState;
 
-    navigator!.pushNamedAndRemoveUntil(
-      Routes.HOME,
-      ModalRoute.withName(Routes.HOME),
-      arguments: HomePageArgs(client),
-    );
+    switch (connectionStatus) {
+      case ConnectionStatus.connected:
+        if (_isSignedIn) return;
+        log("karan: ConnectionStatus.connected");
 
-    // client.wsConnectionStatus.addListener(
-    //   () {
-    //     final status = connectionStatus.value;
+        _isSignedIn = true;
+        // navigator!.pushNamedAndRemoveUntil(
+        //   Routes.HOME,
+        //   ModalRoute.withName(Routes.HOME),
+        //   arguments: HomePageArgs(client),
+        // );
+        break;
+      case ConnectionStatus.disconnected:
+        final isSignedInFirebase = FirebaseAuth.instance.currentUser != null;
+        if (isSignedInFirebase) {
+          log("karan: Sign in Firebase");
+          return;
+        }
 
-    //     switch (status) {
-    //       case ConnectionStatus.connected:
-    //         if (_isSignedIn) return;
+        _isSignedIn = false;
+        log("karan: Sign in Failed");
 
-    //         _isSignedIn = true;
-    //         navigator!.pushNamedAndRemoveUntil(
-    //           Routes.HOME,
-    //           ModalRoute.withName(Routes.HOME),
-    //           arguments: HomePageArgs(client),
-    //         );
-    //         break;
-    //       case ConnectionStatus.disconnected:
-    //         final isSignedInFirebase =
-    //             FirebaseAuth.instance.currentUser != null;
-    //         if (isSignedInFirebase) {
-    //           log("karan: Sign in Failed");
-    //           return;
-    //         }
-
-    //         _isSignedIn = false;
-    //         navigator!.pushNamedAndRemoveUntil(
-    //           Routes.SIGN_IN,
-    //           ModalRoute.withName(Routes.SIGN_IN),
-    //         );
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //   },
-    // );
+        // navigator.pushNamedAndRemoveUntil(
+        //   Routes.SIGN_IN,
+        //   ModalRoute.withName(Routes.SIGN_IN),
+        // );
+        break;
+      default:
+        break;
+    }
   }
 
   Future login() async {
@@ -81,7 +69,7 @@ class GoogleSignInProvider extends ChangeNotifier {
 
         await StreamUserApi.createUser(
           idUser: userFirebase!.uid,
-          username: userFirebase.displayName,
+          username: userFirebase.displayName!,
           urlImage: userFirebase.photoURL,
         );
         log("New user created $userFirebase.uid");
@@ -91,8 +79,9 @@ class GoogleSignInProvider extends ChangeNotifier {
         await StreamUserApi.login(idUser: userFirebase!.uid);
         log("login user created $userFirebase.uid");
       }
-    } catch (e) {}
-
+    } catch (e) {
+      log(e.toString());
+    }
     notifyListeners();
   }
 
