@@ -85,7 +85,7 @@ class _CreateMeetingsPageState extends State<CreateMeetingsPage> {
                     fontSize: 20.0,
                   ),
                 ),
-                Text(
+                SelectableText(
                   code,
                   style: TextStyle(
                       color: appLightColor,
