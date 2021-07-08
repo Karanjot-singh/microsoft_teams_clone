@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import '../../widgets/rounded_button.dart';
-import '../login/user_login_screen.dart';
 import 'video_screen.dart';
 
 class ShareScreen extends StatelessWidget {
@@ -42,10 +42,10 @@ class ShareBody extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: size.height * 0.03),
-          SvgPicture.asset(
-            "assets/icons/onboarding_share.svg",
-            height: size.height * 0.40,
-          ),
+          // SvgPicture.asset(
+          //   "assets/icons/onboarding_share.svg",
+          //   height: size.height * 0.40,
+          // ),
           SizedBox(height: size.height * 0.01),
           RoundedButton(
             buttonColor: appPurpleColor,
@@ -56,7 +56,7 @@ class ShareBody extends StatelessWidget {
                 context,
                 PageTransition(
                   type: PageTransitionType.rightToLeftWithFade,
-                  child: UserLoginScreen(),
+                  child: SignInScreen(),
                 ),
               );
             },

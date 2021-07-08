@@ -39,10 +39,10 @@ class Body extends StatelessWidget {
           //   style: TextStyle(fontWeight: FontWeight.bold),
           // ),
           SizedBox(height: size.height * 0.03),
-          SvgPicture.asset(
-            "assets/icons/onboarding_chat.svg",
-            height: size.height * 0.40,
-          ),
+          // SvgPicture.asset(
+          //   "assets/icons/onboarding_chat.svg",
+          //   height: size.height * 0.40,
+          // ),
           SizedBox(height: size.height * 0.03),
           RoundedButton(
             buttonColor: appPurpleColor,

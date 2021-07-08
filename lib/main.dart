@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/user_info_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/user_info_screen.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/pages/onboarding/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
