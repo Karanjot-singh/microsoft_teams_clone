@@ -1,47 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
 
-class JoinMeetingsPage extends StatefulWidget {
-  const JoinMeetingsPage({Key? key}) : super(key: key);
-
-  @override
-  _JoinMeetingsPageState createState() => _JoinMeetingsPageState();
-}
-
-class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
-  String code = "";
-  createCode() {
-    setState(() {
-      code = Uuid().v1().substring(0, 6);
-    });
-  }
-
-  joinMeet() async {
-    try {
-      Map<FeatureFlagEnum, bool> featureFlags = {
-        FeatureFlagEnum.WELCOME_PAGE_ENABLED: false
-      };
-      if (Platform.isAndroid) {
-        featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
-      }
-      var options = JitsiMeetingOptions(room: code)
-        ..userDisplayName = "Karan"
-        ..audioMuted = false
-        ..videoMuted = true
-        ..featureFlags.addAll(featureFlags);
-
-      await JitsiMeet.joinMeeting(options);
-    } catch (e) {
-      print("Error: $e");
-    }
-  }
-
+class MeetingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -68,31 +34,12 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
             "assets/icons/conference.svg",
             height: size.height * 0.35,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "Code:",
-                style: TextStyle(
-                  color: StreamChatTheme.of(context).colorTheme.black,
-                  fontSize: 16.0,
-                ),
-              ),
-              Text(
-                code,
-                style: TextStyle(
-                  color: StreamChatTheme.of(context).colorTheme.black,
-                  fontSize: 16.0,
-                ),
-              ),
-            ],
-          ),
 
           SizedBox(
             height: 25,
           ),
           InkWell(
-            onTap: () => createCode(),
+            onTap: () => (){},
             child: Container(
               color: appAccentIconColor,
               width: MediaQuery.of(context).size.width * 0.4,
@@ -112,7 +59,7 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
             height: 25,
           ),
           InkWell(
-            onTap: () => joinMeet(),
+            onTap: () => (){},
             child: Container(
               color: appAccentIconColor,
               width: MediaQuery.of(context).size.width * 0.4,
@@ -134,3 +81,4 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
     );
   }
 }
+

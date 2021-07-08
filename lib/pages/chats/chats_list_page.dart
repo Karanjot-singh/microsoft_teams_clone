@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
+import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/pages/mentions/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
@@ -120,7 +120,7 @@ class _ChannelListPageState extends State<ChannelListPage> {
         // To map the indexes of Pages with Bottom Navigation Bar icons
         index: _currentIndex,
         children: [
-          JoinMeetingsPage(),
+          MeetingsPage(),
           ChannelList(),
           UserMentionsPage(),
         ],
