@@ -28,7 +28,7 @@ class LeftDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                   bottom: 10.0,
-                  left: 8,
+                  left: 4,
                 ),
                 child: Container(
                   color: appPurpleColor,
