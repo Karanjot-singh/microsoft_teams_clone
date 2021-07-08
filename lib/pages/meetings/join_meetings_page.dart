@@ -43,20 +43,6 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.white,
-      appBar: AppBar(
-        brightness: Theme.of(context).brightness,
-        elevation: 1,
-        centerTitle: true,
-        title: Text(
-          'Meetings',
-          style: TextStyle(
-            color: StreamChatTheme.of(context).colorTheme.black,
-            fontSize: 16.0,
-          ),
-        ),
-        leading: StreamBackButton(),
-        backgroundColor: appPurpleColor,
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
