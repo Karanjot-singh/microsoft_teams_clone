@@ -48,8 +48,8 @@ class MeetingsPage extends StatelessWidget {
                       iconSize: 50,
                       icon: FaIcon(FontAwesomeIcons.solidPlusSquare,
                           color: appPurpleColor),
-                      onPressed: () => (context) {
-                        Navigator.popAndPushNamed(
+                      onPressed: (){
+                        Navigator.pushNamed(
                           context,
                           Routes.CREATE_MEET,
                         );
@@ -73,8 +73,8 @@ class MeetingsPage extends StatelessWidget {
                       iconSize: 50,
                       icon:
                           FaIcon(FontAwesomeIcons.video, color: appPurpleColor),
-                      onPressed: () => (context) {
-                        Navigator.popAndPushNamed(
+                      onPressed: () {
+                        Navigator.pushNamed(
                           context,
                           Routes.JOIN_MEET,
                         );
