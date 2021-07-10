@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
@@ -7,6 +8,7 @@ import 'package:microsoft_teams_clone/pages/mentions/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/widgets/drawer.dart';
 
@@ -83,6 +85,16 @@ class _ChannelListPageState extends State<ChannelListPage> {
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelListHeader(
         titleBuilder: (context, connectionStatus, streamClient) {
+          var status = StreamConfig.kDefaultStreamClient.wsConnectionStatus;
+          if (status == ConnectionStatus.connecting) {
+            return Text(
+              'Connecting...',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: StreamChatTheme.of(context).colorTheme.black,
+                  fontSize: 16.0),
+            );
+          }
           return Text(
             'Microsoft Teams',
             style: TextStyle(
