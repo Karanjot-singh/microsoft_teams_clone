@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,6 +8,7 @@ import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
+import 'package:microsoft_teams_clone/widgets/rounded_button.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../services/authentication/authentication.dart';
 
@@ -41,6 +41,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: AppBar(
@@ -90,185 +92,141 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
               SizedBox(height: 16.0),
               Text(
-                'Welcome',
+                'Welcome,',
                 style: StreamChatTheme.of(context).textTheme.title,
+                
               ),
               SizedBox(height: 8.0),
               Text(
                 _user.displayName!,
                 style: TextStyle(
-                  color: CustomColors.firebaseYellow,
-                  fontSize: 26,
-                ),
+                    color: StreamChatTheme.of(context).colorTheme.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8.0),
               Text(
                 '( ${_user.email!} )',
                 style: TextStyle(
-                  color: CustomColors.firebaseOrange,
+                  color: appPurpleColor,
                   fontSize: 20,
                   letterSpacing: 0.5,
                 ),
               ),
               SizedBox(height: 24.0),
-              Text(
-                StreamConfig.kDefaultStreamClient
-                    .devToken(_user.uid)
-                    .rawValue
-                    .toString(),
-                style: TextStyle(
-                    color: CustomColors.firebaseGrey.withOpacity(0.8),
-                    fontSize: 14,
-                    letterSpacing: 0.2),
-              ),
-              SizedBox(height: 24.0),
-              Text(
-                _user.uid.toString(),
-                style: TextStyle(
-                    color: CustomColors.firebaseGrey.withOpacity(0.8),
-                    fontSize: 14,
-                    letterSpacing: 0.2),
-              ),
+              Container(
+                height: size.height * 0.055,
+                width: size.width * 0.5,
+                child: TextButton(
+                  onPressed: () async {
+                    showDialog(
+                      barrierDismissible: true,
+                      context: context,
+                      barrierColor:
+                          StreamChatTheme.of(context).colorTheme.overlay,
+                      builder: (context) => Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: StreamChatTheme.of(context).colorTheme.white,
+                          ),
+                          height: 100,
+                          width: 100,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: appAccentColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                    String? name = _user.displayName!;
+                    final client = StreamChatClient(
+                      kDefaultStreamApiKey,
+                      logLevel: Level.INFO,
+                    )..chatPersistenceClient = StreamApi.chatPersistentClient;
+                    final token = StreamConfig.kDefaultStreamClient
+                        .devToken(_user.uid)
+                        .rawValue
+                        .toString();
+                    User newUser = User(
+                      id: _user.uid,
+                      extraData: {
+                        'name': name,
+                        'image': _user.photoURL!,
+                      },
+                    );
+                    await client.connectUser(newUser, token);
 
-              SizedBox(height: 24.0),
-              Text(
-                'Sign out',
-                style: TextStyle(
-                    color: CustomColors.firebaseGrey.withOpacity(0.8),
-                    fontSize: 14,
-                    letterSpacing: 0.2),
+                    //Serialisation of UserID
+                    // to save the user state on second visit
+
+                    final secureStorage = FlutterSecureStorage();
+                    secureStorage.write(
+                      key: kStreamApiKey,
+                      value: kDefaultStreamApiKey,
+                    );
+                    secureStorage.write(
+                      key: kStreamUserId,
+                      value: _user.uid,
+                    );
+                    secureStorage.write(
+                      key: kStreamToken,
+                      value: token,
+                    );
+                    Navigator.pop(context);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.HOME,
+                      ModalRoute.withName(Routes.HOME),
+                      arguments: HomePageArgs(client),
+                    );
+                  },
+                  child: Text(
+                    "Proceed",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: appPurpleColor,
+                      shape: StadiumBorder()),
+                ),
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 24.0),
               _isSigningOut
                   ? CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      valueColor: AlwaysStoppedAnimation<Color>(appPurpleColor),
                     )
-                  : ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.redAccent,
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      onPressed: () async {
-                        setState(() {
-                          _isSigningOut = true;
-                        });
-                        await Authentication.signOut(context: context);
-                        setState(() {
-                          _isSigningOut = false;
-                        });
-                        Navigator.of(context)
-                            .pushReplacement(routeToSignInScreen());
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  : Container(
+                      height: size.height * 0.055,
+                      width: size.width * 0.5,
+                      child: TextButton(
+                        onPressed: () async {
+                          setState(() {
+                            _isSigningOut = true;
+                          });
+                          await Authentication.signOut(context: context);
+                          setState(() {
+                            _isSigningOut = false;
+                          });
+                          Navigator.of(context)
+                              .pushReplacement(routeToSignInScreen());
+                        },
                         child: Text(
-                          'Sign Out',
+                          "Sign Out",
                           style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 2,
+                            fontSize: 18,
                           ),
                         ),
+                        style: TextButton.styleFrom(
+                            primary: Colors.white,
+                            backgroundColor: Colors.redAccent,
+                            shape: StadiumBorder()),
                       ),
                     ),
               SizedBox(height: 24.0),
-              //TODO: Modular Buttons
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.redAccent,
-                  ),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                onPressed: () async {
-                  showDialog(
-                    barrierDismissible: true,
-                    context: context,
-                    barrierColor:
-                        StreamChatTheme.of(context).colorTheme.overlay,
-                    builder: (context) => Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: StreamChatTheme.of(context).colorTheme.white,
-                        ),
-                        height: 100,
-                        width: 100,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: appAccentColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                  String? name = _user.displayName!;
-                  final client = StreamChatClient(
-                    kDefaultStreamApiKey,
-                    logLevel: Level.INFO,
-                  )..chatPersistenceClient = StreamApi.chatPersistentClient;
-                  final token = StreamConfig.kDefaultStreamClient
-                      .devToken(_user.uid)
-                      .rawValue
-                      .toString();
-                      //TODO: Test EmailID instead of UserID
-                  User newUser = User(
-                    id: _user.uid,
-                    extraData: {
-                      'name': name,
-                      'image': _user.photoURL!,
-                    },
-                  );
-                  await client.connectUser(newUser, token);
-
-                  //Serialisation of UserID
-                  // to save the user state on second visit
-
-                  final secureStorage = FlutterSecureStorage();
-                  secureStorage.write(
-                    key: kStreamApiKey,
-                    value: kDefaultStreamApiKey,
-                  );
-                  secureStorage.write(
-                    key: kStreamUserId,
-                    value: _user.uid,
-                  );
-                  secureStorage.write(
-                    key: kStreamToken,
-                    value: token,
-                  );
-                  Navigator.pop(context);
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    Routes.HOME,
-                    ModalRoute.withName(Routes.HOME),
-                    arguments: HomePageArgs(client),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Text(
-                    'Proceed',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

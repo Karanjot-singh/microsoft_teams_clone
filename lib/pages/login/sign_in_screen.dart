@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
-import 'package:microsoft_teams_clone/pages/login/user_login_screen.dart';
-import 'package:microsoft_teams_clone/widgets/rounded_button.dart';
 import 'google_sign_in_button.dart';
 
 import '../../services/authentication/authentication.dart';
@@ -18,52 +17,59 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     // This size makes the app responsive to various screen sizes
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        minimum: const EdgeInsets.all(20),
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20.0,
-            right: 20.0,
-            bottom: 30.0,
-            top: 30.0,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                "Almost there...",
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 20,
+          right: 20,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "Microsoft Teams",
+              style: TextStyle(
+                  color: appPurpleColor,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: size.height * 0.03),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                "Login to this Experience",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: appLightColor,
-                ),
-                textAlign: TextAlign.center,
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: size.height * 0.03),
-              SvgPicture.asset(
-                "assets/icons/mobile.svg",
-                height: size.height * 0.40,
-              ),
-              SizedBox(height: size.height * 0.03),
-              FutureBuilder(
-                future: Authentication.initializeFirebase(context: context),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Error initializing Firebase');
-                  } else if (snapshot.connectionState == ConnectionState.done) {
-                    return GoogleSignInButton();
-                  }
-                  return CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomColors.firebaseOrange,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: size.height * 0.04),
+            SvgPicture.asset(
+              "assets/icons/mobile.svg",
+              height: size.height * 0.40,
+              alignment: Alignment.center,
+            ),
+            SizedBox(height: size.height * 0.03),
+            FutureBuilder(
+              future: Authentication.initializeFirebase(context: context),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error initializing Firebase');
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  return GoogleSignInButton();
+                }
+                return CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    CustomColors.firebaseOrange,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
