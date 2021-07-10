@@ -70,7 +70,7 @@ class LeftDrawer extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  'New Meeting',
+                  'New meeting',
                   style: TextStyle(
                     fontSize: 14.5,
                   ),
@@ -87,7 +87,7 @@ class LeftDrawer extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  'New direct message',
+                  'New message',
                   style: TextStyle(
                     fontSize: 14.5,
                   ),
