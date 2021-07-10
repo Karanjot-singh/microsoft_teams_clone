@@ -15,9 +15,11 @@ class LeftDrawer extends StatelessWidget {
   }) : super(key: key);
 
   final User user;
+  static String? userName;
 
   @override
   Widget build(BuildContext context) {
+    userName = user.name;
     return Drawer(
       child: Container(
         color: StreamChatTheme.of(context).colorTheme.white,

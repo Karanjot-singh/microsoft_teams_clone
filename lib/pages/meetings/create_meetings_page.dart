@@ -4,11 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/widgets/drawer.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateMeetingsPage extends StatefulWidget {
   const CreateMeetingsPage({Key? key}) : super(key: key);
+
+  static joinMeet(String code) async {
+    try {
+      Map<FeatureFlagEnum, bool> featureFlags = {
+        FeatureFlagEnum.WELCOME_PAGE_ENABLED: false
+      };
+      if (Platform.isAndroid) {
+        featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
+      }
+      var options = JitsiMeetingOptions(room: code)
+        ..userDisplayName = LeftDrawer.userName
+        ..audioMuted = false
+        ..videoMuted = true
+        ..featureFlags.addAll(featureFlags);
+
+      await JitsiMeet.joinMeeting(options);
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
 
   @override
   _CreateMeetingsPageState createState() => _CreateMeetingsPageState();
@@ -20,26 +41,6 @@ class _CreateMeetingsPageState extends State<CreateMeetingsPage> {
     setState(() {
       code = Uuid().v1().substring(0, 6);
     });
-  }
-
-  joinMeet() async {
-    try {
-      Map<FeatureFlagEnum, bool> featureFlags = {
-        FeatureFlagEnum.WELCOME_PAGE_ENABLED: false
-      };
-      if (Platform.isAndroid) {
-        featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
-      }
-      var options = JitsiMeetingOptions(room: code)
-        ..userDisplayName = "Karan"
-        ..audioMuted = false
-        ..videoMuted = true
-        ..featureFlags.addAll(featureFlags);
-
-      await JitsiMeet.joinMeeting(options);
-    } catch (e) {
-      print("Error: $e");
-    }
   }
 
   @override
@@ -133,7 +134,7 @@ class _CreateMeetingsPageState extends State<CreateMeetingsPage> {
             height: 25,
           ),
           InkWell(
-            onTap: () => joinMeet(),
+            onTap: () => CreateMeetingsPage.joinMeet(code),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),

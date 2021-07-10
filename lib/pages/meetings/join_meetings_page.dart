@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:microsoft_teams_clone/widgets/drawer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'dart:io';
@@ -34,9 +35,12 @@ class _JoinMeetingsPageState extends State<JoinMeetingsPage> {
       if (Platform.isAndroid) {
         featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
       }
+      var _finalName = _namecontroller.text;
+      if (_namecontroller.text.isEmpty) {
+        _finalName = LeftDrawer.userName!;
+      }
       var options = JitsiMeetingOptions(room: _codecontroller.text)
-        ..userDisplayName =
-            _isAnonymous ? "Anonymous User" : _namecontroller.text
+        ..userDisplayName = _isAnonymous ? "Anonymous User" : _finalName
         ..audioMuted = _isAudioDisabled
         ..videoMuted = _isVideoDisabled
         ..featureFlags.addAll(featureFlags);
