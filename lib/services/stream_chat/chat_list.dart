@@ -53,6 +53,10 @@ class _ChannelList extends State<ChannelList> {
   Widget build(BuildContext context) {
     final user = StreamChat.of(context).user;
     return WillPopScope(
+      /*
+      Creates a widget that registers a callback to veto attempts by the user
+      to dismiss the enclosing ModalRoute.
+       */
       onWillPop: () async {
         if (_isSearchActive) {
           _controller!.clear();

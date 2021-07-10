@@ -19,7 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
     Size size = MediaQuery.of(context).size;
     // This size makes the app responsive to various screen sizes
     return Scaffold(
-      backgroundColor: CustomColors.firebaseNavy,
+      backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.all(20),
         child: Padding(
@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               SizedBox(height: size.height * 0.03),
               SvgPicture.asset(
-                "assets/icons/login.svg",
+                "assets/icons/mobile.svg",
                 height: size.height * 0.40,
               ),
               SizedBox(height: size.height * 0.03),
