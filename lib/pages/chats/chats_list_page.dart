@@ -10,7 +10,7 @@ import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/widgets/drawer.dart';
 
-import 'chat_list.dart';
+import '../../services/stream_chat/chat_list.dart';
 
 class ChannelListPage extends StatefulWidget {
   const ChannelListPage({
