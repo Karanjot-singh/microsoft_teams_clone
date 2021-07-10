@@ -76,12 +76,12 @@ class _MyAppState extends State<MyApp>
 
         final now = DateTime.now().millisecondsSinceEpoch;
 
-        if (now - timeOfStartMs > 1500) {
+        if (now - timeOfStartMs > 2000) {
           SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
             forwardAnimations();
           });
         } else {
-          Future.delayed(Duration(milliseconds: 1500)).then((value) {
+          Future.delayed(Duration(milliseconds: 2000)).then((value) {
             forwardAnimations();
           });
         }
