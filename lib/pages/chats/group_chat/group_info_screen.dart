@@ -675,6 +675,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     var channel = StreamChannel.of(context).channel;
 
     showDialog(
+      /*Displays a Material dialog above the current contents of the app, with Material entrance 
+        and exit animations, modal barrier color, and modal barrier behavior
+      */
+      useRootNavigator: false,
       context: context,
       barrierColor: StreamChatTheme.of(context).colorTheme.overlay,
       builder: (context) {
@@ -836,6 +840,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     final color = StreamChatTheme.of(context).colorTheme.white;
 
     showModalBottomSheet(
+      useRootNavigator: false,
       context: context,
       clipBehavior: Clip.antiAlias,
       isScrollControlled: true,
