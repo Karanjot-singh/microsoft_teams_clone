@@ -8,26 +8,26 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_screen.dart';
 import 'group_media_screen.dart';
-import 'group_chats_page.dart';
+import 'channel_page.dart';
 import '../chat_info_screen.dart';
 import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
-class GroupInfoScreen extends StatefulWidget {
+class ChannelInfoScreen extends StatefulWidget {
   final MessageTheme messageTheme;
 
-  const GroupInfoScreen({
+  const ChannelInfoScreen({
     Key? key,
     required this.messageTheme,
   }) : super(key: key);
 
   @override
-  _GroupInfoScreenState createState() => _GroupInfoScreenState();
+  _ChannelInfoScreenState createState() => _ChannelInfoScreenState();
 }
 
-class _GroupInfoScreenState extends State<GroupInfoScreen> {
+class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
   TextEditingController? _nameController;
 
   TextEditingController? _searchController;
@@ -613,7 +613,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: ChannelFileDisplayScreen(
+                    child: ChannelFilePage(
                       sortOptions: [
                         SortOption(
                           'created_at',

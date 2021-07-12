@@ -2,34 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-class ChannelFileDisplayScreen extends StatefulWidget {
-  /// The sorting used for the channels matching the filters.
-  /// Sorting is based on field and direction, multiple sorting options can be provided.
-  /// You can sort based on last_updated, last_message_at, updated_at, created_at or member_count.
-  /// Direction can be ascending or descending.
+class ChannelFilePage extends StatefulWidget {
+
   final List<SortOption>? sortOptions;
 
-  /// Pagination parameters
-  /// limit: the number of users to return (max is 30)
-  /// offset: the offset (max is 1000)
-  /// message_limit: how many messages should be included to each channel
   final PaginationParams? paginationParams;
 
-  /// The builder used when the file list is empty.
   final WidgetBuilder? emptyBuilder;
 
-  const ChannelFileDisplayScreen({
+  const ChannelFilePage({
     this.sortOptions,
     this.paginationParams,
     this.emptyBuilder,
   });
 
   @override
-  _ChannelFileDisplayScreenState createState() =>
-      _ChannelFileDisplayScreenState();
+  _ChannelFilePageState createState() =>
+      _ChannelFilePageState();
 }
 
-class _ChannelFileDisplayScreenState extends State<ChannelFileDisplayScreen> {
+class _ChannelFilePageState extends State<ChannelFilePage> {
   @override
   void initState() {
     super.initState();

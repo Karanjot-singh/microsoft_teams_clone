@@ -3,7 +3,7 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:video_player/video_player.dart';
 
-class ChannelMediaDisplayScreen extends StatefulWidget {
+class ChannelMediaPage extends StatefulWidget {
   /// The sorting used for the channels matching the filters.
   /// Sorting is based on field and direction, multiple sorting options can be provided.
   /// You can sort based on last_updated, last_message_at, updated_at, created_at or member_count.
@@ -23,7 +23,7 @@ class ChannelMediaDisplayScreen extends StatefulWidget {
 
   final MessageTheme messageTheme;
 
-  const ChannelMediaDisplayScreen({
+  const ChannelMediaPage({
     required this.messageTheme,
     this.sortOptions,
     this.paginationParams,
@@ -32,11 +32,11 @@ class ChannelMediaDisplayScreen extends StatefulWidget {
   });
 
   @override
-  _ChannelMediaDisplayScreenState createState() =>
-      _ChannelMediaDisplayScreenState();
+  _ChannelMediaPageState createState() =>
+      _ChannelMediaPageState();
 }
 
-class _ChannelMediaDisplayScreenState extends State<ChannelMediaDisplayScreen> {
+class _ChannelMediaPageState extends State<ChannelMediaPage> {
   Map<String?, VideoPlayerController?> controllerCache = {};
 
   @override

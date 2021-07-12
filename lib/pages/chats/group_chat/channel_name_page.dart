@@ -3,22 +3,27 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:uuid/uuid.dart';
 
-import 'group_chats_page.dart';
+import 'channel_page.dart';
 import '../../../routes/routes.dart';
 
-class GroupChatDetailsScreen extends StatefulWidget {
+/*
+This page sets the Name of the group chat, once the user has selected
+members to add in the group
+*/
+
+class ChannelNamePage extends StatefulWidget {
   final List<User>? selectedUsers;
 
-  const GroupChatDetailsScreen({
+  const ChannelNamePage({
     Key? key,
     required this.selectedUsers,
   }) : super(key: key);
 
   @override
-  _GroupChatDetailsScreenState createState() => _GroupChatDetailsScreenState();
+  _ChannelNamePage createState() => _ChannelNamePage();
 }
 
-class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
+class _ChannelNamePage extends State<ChannelNamePage> {
   final _selectedUsers = <User>[];
 
   TextEditingController? _groupNameController;
@@ -147,6 +152,9 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
           ],
         ),
         body: ConnectionStatusBuilder(
+          /*
+          Sets the Connection Status on the basis of the state of the server
+          * */
           statusBuilder: (context, status) {
             String statusString = '';
             bool showStatus = true;
@@ -212,6 +220,9 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
                           }
                           final user = _selectedUsers[index];
                           return ListTile(
+                            /*
+                            Creates a list of the selected Members for the Group
+                            * */
                             key: ObjectKey(user),
                             leading: UserAvatar(
                               user: user,
