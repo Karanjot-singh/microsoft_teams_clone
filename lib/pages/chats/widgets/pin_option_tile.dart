@@ -8,6 +8,11 @@ import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
 import 'package:microsoft_teams_clone/pages/chats/pinned_messages_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 
+/*
+Option Tile Widgets for info screen of channels and private chats.
+Generalised and Modular Tiles implemented
+*/
+
 class PinOptionTile extends StatelessWidget {
   const PinOptionTile({
     Key? key,

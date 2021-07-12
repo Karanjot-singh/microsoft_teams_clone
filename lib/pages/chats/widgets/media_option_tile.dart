@@ -8,6 +8,12 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 
+/*
+Option Tile Widgets for info screen of channels and private chats.
+Generalised and Modular Tiles implemented
+*/
+
+
 class MediaOptionsTile extends StatelessWidget {
   const MediaOptionsTile({
     Key? key,
