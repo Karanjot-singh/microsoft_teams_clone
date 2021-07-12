@@ -17,18 +17,18 @@ const kStreamApiKey = 'STREAM_API_KEY';
 const kStreamUserId = 'STREAM_USER_ID';
 const kStreamToken = 'STREAM_TOKEN';
 
-class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required Firebase.User user})
+class UserInfoPage extends StatefulWidget {
+  const UserInfoPage({Key? key, required Firebase.User user})
       : _user = user,
         super(key: key);
 
   final Firebase.User _user;
 
   @override
-  _UserInfoScreenState createState() => _UserInfoScreenState();
+  _UserInfoPageState createState() => _UserInfoPageState();
 }
 
-class _UserInfoScreenState extends State<UserInfoScreen> {
+class _UserInfoPageState extends State<UserInfoPage> {
   late Firebase.User _user;
   bool _isSigningOut = false;
 
@@ -212,7 +212,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             _isSigningOut = false;
                           });
                           Navigator.of(context)
-                              .pushReplacement(routeToSignInScreen());
+                              .pushReplacement(routeToSignInPage());
                         },
                         child: Text(
                           "Sign Out",

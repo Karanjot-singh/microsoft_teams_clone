@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import '../../services/authentication/authentication.dart';
-import 'user_info_screen.dart';
+import 'user_info_page.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 if (user != null) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => UserInfoScreen(
+                      builder: (context) => UserInfoPage(
                         user: user,
                       ),
                     ),

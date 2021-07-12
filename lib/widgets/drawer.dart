@@ -125,7 +125,7 @@ class LeftDrawer extends StatelessWidget {
                       await client.dispose();
                       await Authentication.signOut(context: context);
                       await Navigator.of(context)
-                          .pushReplacement(routeToSignInScreen());
+                          .pushReplacement(routeToSignInPage());
                     },
                     leading: StreamSvgIcon.userRemove(
                       color: appAccentColor,

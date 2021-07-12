@@ -349,6 +349,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
   }
 
   Widget _buildNameTile() {
+    /*Renders the tiles for each name*/
     var channel = StreamChannel.of(context).channel;
     var channelName = (channel.extraData['name'] as String?) ?? '';
 
@@ -737,6 +738,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
                           ),
                           filter: Filter.and(
                             [
+                              // Logic to filter on basis of search quety
                               if (_searchController!.text.isNotEmpty)
                                 Filter.autoComplete('name', _userNameQuery),
                               Filter.notIn('id', [
@@ -980,6 +982,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
                           size: 24.0,
                         ),
                         'Remove From Group', () async {
+                          // Remove members of the group
                       final res = await showConfirmationDialog(
                         context,
                         title: 'Remove member',
@@ -1124,6 +1127,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
   }
 
   String _getLastSeen(User user) {
+    // gets the last seen status
     if (user.online) {
       return 'Online';
     } else {

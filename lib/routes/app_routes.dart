@@ -1,6 +1,6 @@
 import 'package:microsoft_teams_clone/pages/chats/chats_home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/sign_in_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
@@ -39,7 +39,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
-              return SignInScreen();
+              return SignInPage();
             });
       case Routes.MEET:
         return MaterialPageRoute(
@@ -123,9 +123,9 @@ class AppRoutes {
   }
 }
 
-Route routeToSignInScreen() {
+Route routeToSignInPage() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => SignInPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(-1.0, 0.0);
       var end = Offset.zero;
