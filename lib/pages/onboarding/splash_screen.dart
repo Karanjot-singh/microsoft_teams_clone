@@ -75,11 +75,10 @@ mixin SplashScreenStateMixin<T extends StatefulWidget> on State<T>
                     builder: (context, snapshot) {
                       return Container(
                         alignment: Alignment.center,
-                        constraints: BoxConstraints.expand(),
                         color: colorAnimation.value,
                         child: !_animationController.isAnimating
                             ? Lottie.asset(
-                                'assets/icons/floating_boat.json',
+                                'assets/icons/conference.json',
                                 alignment: Alignment.center,
                               )
                             : SizedBox(),

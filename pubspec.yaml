@@ -1,7 +1,7 @@
 name: microsoft_teams_clone
-description: A new Flutter project.
+description: A Fully Functional clone of Microsoft Teams by Karanjot Singh.
 publish_to: 'none'
-version: 1.6.0
+version: 1.0.1
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -51,6 +51,7 @@ dependencies:
   pin_code_fields:
   flutter_custom_clippers:
   font_awesome_flutter:
+  page_transition: ^2.0.2
 
 dependency_overrides:
   stream_chat:

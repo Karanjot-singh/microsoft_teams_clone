@@ -15,7 +15,6 @@ import '../chat_info_screen.dart';
 import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
-// TODO: Break this file and add theme & search Streamsvg
 class GroupInfoScreen extends StatefulWidget {
   final MessageTheme messageTheme;
 
@@ -676,6 +675,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     var channel = StreamChannel.of(context).channel;
 
     showDialog(
+      /*Displays a Material dialog above the current contents of the app, with Material entrance 
+        and exit animations, modal barrier color, and modal barrier behavior
+      */
+      useRootNavigator: false,
       context: context,
       barrierColor: StreamChatTheme.of(context).colorTheme.overlay,
       builder: (context) {
@@ -837,6 +840,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     final color = StreamChatTheme.of(context).colorTheme.white;
 
     showModalBottomSheet(
+      useRootNavigator: false,
       context: context,
       clipBehavior: Clip.antiAlias,
       isScrollControlled: true,

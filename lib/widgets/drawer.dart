@@ -15,9 +15,11 @@ class LeftDrawer extends StatelessWidget {
   }) : super(key: key);
 
   final User user;
+  static String? userName;
 
   @override
   Widget build(BuildContext context) {
+    userName = user.name;
     return Drawer(
       child: Container(
         color: StreamChatTheme.of(context).colorTheme.white,
@@ -28,7 +30,7 @@ class LeftDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                   bottom: 10.0,
-                  left: 8,
+                  left: 4,
                 ),
                 child: Container(
                   color: appPurpleColor,
@@ -64,11 +66,11 @@ class LeftDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.popAndPushNamed(
                     context,
-                    Routes.NEW_CHAT,
+                    Routes.CREATE_MEET,
                   );
                 },
                 title: Text(
-                  'New Meeting',
+                  'New meeting',
                   style: TextStyle(
                     fontSize: 14.5,
                   ),
@@ -85,7 +87,7 @@ class LeftDrawer extends StatelessWidget {
                   );
                 },
                 title: Text(
-                  'New direct message',
+                  'New message',
                   style: TextStyle(
                     fontSize: 14.5,
                   ),

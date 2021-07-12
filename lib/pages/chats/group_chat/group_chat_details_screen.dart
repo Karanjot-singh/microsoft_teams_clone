@@ -262,6 +262,7 @@ class _GroupChatDetailsScreenState extends State<GroupChatDetailsScreen> {
 
   void _showErrorAlert() {
     showModalBottomSheet(
+      useRootNavigator: false,
       backgroundColor: StreamChatTheme.of(context).colorTheme.white,
       context: context,
       shape: RoundedRectangleBorder(

@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/pages/chats/thread_page.dart';
 import 'package:flutter/material.dart';
@@ -59,13 +63,16 @@ class _ChannelPageState extends State<ChannelPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    var channel = StreamChannel.of(context).channel;
+    var code = channel.id.toString().substring(0, 6);
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelHeader(
+        leading: StreamBackButton(),
         showTypingIndicator: true,
         onImageTap: () async {
           var channel = StreamChannel.of(context).channel;
-
           if (channel.memberCount == 2 && channel.isDistinct) {
             final currentUser = StreamChat.of(context).user;
             final otherUser = channel.state!.members.firstWhereOrNull(
@@ -140,6 +147,17 @@ class _ChannelPageState extends State<ChannelPage> {
                     );
                   },
                   pinPermissions: ['owner', 'admin', 'member'],
+                ),
+                Positioned(
+                  top: size.height * 0.75,
+                  left: 8,
+                  child: IconButton(
+                    onPressed: () {
+                      CreateMeetingsPage.joinMeet(code);
+                    },
+                    icon: FaIcon(FontAwesomeIcons.video, color: appPurpleColor),
+                    iconSize: 25,
+                  ),
                 ),
                 Positioned(
                   bottom: 0,

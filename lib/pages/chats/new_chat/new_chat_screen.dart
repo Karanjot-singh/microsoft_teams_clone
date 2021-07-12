@@ -418,7 +418,7 @@ class CreateGroupTile extends StatelessWidget {
               SizedBox(width: 3),
               Center(
                 child: StreamSvgIcon.right(
-                  color: appAccentIconColor,
+                  color: StreamChatTheme.of(context).colorTheme.black,
                   size: 24,
                 ),
               ),

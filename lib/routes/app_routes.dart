@@ -1,6 +1,9 @@
 import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/sign_in_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
+import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
+import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
+import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../pages/chats/group_chat/group_chats_page.dart';
 import '../pages/chats/chat_info_screen.dart';
@@ -32,24 +35,30 @@ class AppRoutes {
                 chatClient: homePageArgs.chatClient,
               );
             });
-      case Routes.CHOOSE_USER:
-        return MaterialPageRoute(
-            settings: const RouteSettings(name: Routes.CHOOSE_USER),
-            builder: (_) {
-              return SignInScreen();
-            });
       case Routes.SIGN_IN:
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
               return SignInScreen();
-              // return AuthPage();
             });
-      case Routes.ADVANCED_OPTIONS:
+      case Routes.MEET:
         return MaterialPageRoute(
-          settings: const RouteSettings(name: Routes.ADVANCED_OPTIONS),
-          builder: (_) => SignInScreen(),
-        );
+            settings: const RouteSettings(name: Routes.CHOOSE_USER),
+            builder: (_) {
+              return MeetingsPage();
+            });
+      case Routes.JOIN_MEET:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.CHOOSE_USER),
+            builder: (_) {
+              return JoinMeetingsPage();
+            });
+      case Routes.CREATE_MEET:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.CHOOSE_USER),
+            builder: (_) {
+              return CreateMeetingsPage();
+            });
       case Routes.CHANNEL_PAGE:
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHANNEL_PAGE),
