@@ -9,8 +9,8 @@ import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
 import 'package:microsoft_teams_clone/pages/chats/pinned_messages_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 
-class MediaTileChannel extends StatelessWidget {
-  const MediaTileChannel({
+class MediaOptionsTile extends StatelessWidget {
+  const MediaOptionsTile({
     Key? key,
     required this.context,
     this.channelWidget,
