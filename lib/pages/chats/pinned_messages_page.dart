@@ -111,10 +111,7 @@ class _PinnedMessagesPageState extends State<PinnedMessagesPage> {
                       text: 'Long-press an important message and\nchoose ',
                       style: TextStyle(
                         fontSize: 14.0,
-                        color: StreamChatTheme.of(context)
-                            .colorTheme
-                            .black
-                            .withOpacity(0.5),
+                        color: appPurpleColor,
                       ),
                     ),
                     TextSpan(

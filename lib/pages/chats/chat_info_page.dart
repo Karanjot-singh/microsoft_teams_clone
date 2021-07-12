@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
-import 'group_chat/channel_media_page.dart';
-import 'group_chat/channel_page.dart';
-import 'pinned_messages_page.dart';
-import '../../routes/routes.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_media_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
+import 'package:microsoft_teams_clone/routes/routes.dart';
 
 /// Detail screen for a 1:1 chat correspondence
 class ChatInfoPage extends StatefulWidget {
@@ -130,7 +130,7 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
     return Column(
       children: [
         StreamBuilder<bool>(
-          /*
+            /*
           * Creates a new StreamBuilder that builds itself based on the latest
           * snapshot of interaction with the specified stream and whose
           * build strategy is given by builder.
@@ -165,66 +165,7 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
                       ),
               );
             }),
-        OptionListTile(
-          title: 'Pinned Messages',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: StreamSvgIcon.pin(
-              size: 24.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: PinnedMessagesPage(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+        PinOptionTile(context: context, widget: widget),
         OptionListTile(
           title: 'Photos & Videos',
           tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
@@ -448,6 +389,7 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
     );
   }
 }
+
 
 class _SharedGroupsScreen extends StatefulWidget {
   final User? mainUser;
