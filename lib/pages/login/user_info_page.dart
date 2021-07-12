@@ -6,7 +6,6 @@ import 'package:microsoft_teams_clone/config/custom_colors.dart';
 import 'package:microsoft_teams_clone/home_page.dart';
 import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
-import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../services/authentication/authentication.dart';
@@ -93,7 +92,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
               Text(
                 'Welcome,',
                 style: StreamChatTheme.of(context).textTheme.title,
-                
               ),
               SizedBox(height: 8.0),
               Text(
@@ -141,10 +139,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     );
                     String? name = _user.displayName!;
                     final client = StreamChatClient(
-                      kDefaultStreamApiKey,
+                      StreamApi.kDefaultStreamApiKey,
                       logLevel: Level.INFO,
                     )..chatPersistenceClient = StreamApi.chatPersistentClient;
-                    final token = StreamConfig.kDefaultStreamClient
+                    final token = StreamApi.kDefaultStreamClient
                         .devToken(_user.uid)
                         .rawValue
                         .toString();
@@ -163,7 +161,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     final secureStorage = FlutterSecureStorage();
                     secureStorage.write(
                       key: kStreamApiKey,
-                      value: kDefaultStreamApiKey,
+                      value: StreamApi.kDefaultStreamApiKey,
                     );
                     secureStorage.write(
                       key: kStreamUserId,

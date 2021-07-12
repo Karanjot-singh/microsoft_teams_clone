@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
         channelListHeaderTheme: ChannelListHeaderTheme(
           color: appPurpleColor,
         ),
+        //Theme of the application
         colorTheme: Theme.of(context).brightness == Brightness.dark
             ? ColorTheme.dark(
                 accentBlue: appPurpleColor,

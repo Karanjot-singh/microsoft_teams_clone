@@ -162,22 +162,26 @@ class _ChannelPageState extends State<ChannelPage> {
                 ),
                 Positioned(
                   //sets the video icon for the call functionality
-                  top: size.height * 0.765,
-                  left: -18,
+                  top: size.height * 0.765 + 5,
+                  left: -15,
 
-                  child: RawMaterialButton(
-                    fillColor: appPurpleColor,
-                    shape: CircleBorder(),
-                    onPressed: () {
-                      log(channel.id.toString());
-                      log(code.toString());
+                  child: Container(
+                    height: 38,
+                    child: RawMaterialButton(
+                      elevation: 3,
+                      fillColor: appPurpleColor,
+                      shape: CircleBorder(),
+                      onPressed: () {
+                        log(channel.id.toString());
+                        log(code.toString());
 
-                      CreateMeetingsPage.joinMeet(code);
-                    },
-                    child: FaIcon(
-                      FontAwesomeIcons.video,
-                      color: StreamChatTheme.of(context).colorTheme.black,
-                      size: 18,
+                        CreateMeetingsPage.joinMeet(code);
+                      },
+                      child: FaIcon(
+                        FontAwesomeIcons.video,
+                        color: Colors.white,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ),

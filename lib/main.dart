@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:microsoft_teams_clone/pages/login/user_info_page.dart';
 import 'package:microsoft_teams_clone/home_page.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
-import 'services/stream_chat/app_config.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 
@@ -33,19 +31,21 @@ class _MyAppState extends State<MyApp>
   Future<InitData> _initConnection() async {
     String? apiKey, userId, token;
     final secureStorage = FlutterSecureStorage();
+    /*FLutter Secure Storage is used to retain user details and preferences
+    in order to keep them saved on each new launch*/
     apiKey = await secureStorage.read(key: kStreamApiKey);
     userId = await secureStorage.read(key: kStreamUserId);
     token = await secureStorage.read(key: kStreamToken);
 
     final client = StreamChatClient(
-      apiKey ?? kDefaultStreamApiKey,
+      apiKey ?? StreamApi.kDefaultStreamApiKey,
       // ?? null-aware operator which returns the expression on its left
       // unless that expression’s value is null
       logLevel: Level.INFO,
     )..chatPersistenceClient = StreamApi.chatPersistentClient;
     // shorthand setter for chatPersistentClient
 
-    StreamConfig.setClient(client);
+    StreamApi.setClient(client);
     if (userId != null && token != null) {
       await client.connectUser(
         // Sets the current user and connect the websocket using the userID and token generated
