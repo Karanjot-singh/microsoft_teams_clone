@@ -38,6 +38,7 @@ class _AddChannelMembersPageState extends State<AddChannelMembersPage> {
   @override
   void initState() {
     super.initState();
+
     _controller = TextEditingController()..addListener(_userNameListener);
   }
 

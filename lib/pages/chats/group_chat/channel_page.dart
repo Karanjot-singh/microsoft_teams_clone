@@ -9,7 +9,7 @@ import 'package:microsoft_teams_clone/pages/chats/thread_page.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../chat_info_screen.dart';
+import '../chat_info_page.dart';
 import 'channel_info_page.dart';
 
 /*
@@ -91,7 +91,7 @@ class _ChannelPageState extends State<ChannelPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => StreamChannel(
-                    child: ChatInfoScreen(
+                    child: ChatInfoPage(
                       messageTheme: StreamChatTheme.of(context).ownMessageTheme,
                       user: otherUser.user,
                     ),

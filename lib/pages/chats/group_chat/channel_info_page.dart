@@ -11,8 +11,8 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
 import 'channel_media_page.dart';
 import 'channel_page.dart';
-import '../chat_info_screen.dart';
-import '../pinned_messages_screen.dart';
+import '../chat_info_page.dart';
+import '../pinned_messages_page.dart';
 import '../../../routes/routes.dart';
 
 /*
@@ -516,7 +516,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: PinnedMessagesScreen(
+                    child: PinnedMessagesPage(
                       messageTheme: widget.messageTheme,
                       sortOptions: [
                         SortOption(
@@ -929,7 +929,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
                           MaterialPageRoute(
                             builder: (context) => StreamChannel(
                               channel: c,
-                              child: ChatInfoScreen(
+                              child: ChatInfoPage(
                                 messageTheme: widget.messageTheme,
                                 user: user,
                               ),
