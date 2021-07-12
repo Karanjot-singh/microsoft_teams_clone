@@ -3,27 +3,18 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:video_player/video_player.dart';
 
-class PinnedMessagesScreen extends StatefulWidget {
-  /// The sorting used for the channels matching the filters.
-  /// Sorting is based on field and direction, multiple sorting options can be provided.
-  /// You can sort based on last_updated, last_message_at, updated_at, created_at or member_count.
-  /// Direction can be ascending or descending.
+class PinnedMessagesPage extends StatefulWidget {
   final List<SortOption>? sortOptions;
 
-  /// Pagination parameters
-  /// limit: the number of users to return (max is 30)
-  /// offset: the offset (max is 1000)
-  /// message_limit: how many messages should be included to each channel
   final PaginationParams? paginationParams;
 
-  /// The builder used when the file list is empty.
   final WidgetBuilder? emptyBuilder;
 
   final ShowMessageCallback? onShowMessage;
 
   final MessageTheme messageTheme;
 
-  const PinnedMessagesScreen({
+  const PinnedMessagesPage({
     required this.messageTheme,
     this.sortOptions,
     this.paginationParams,
@@ -32,10 +23,10 @@ class PinnedMessagesScreen extends StatefulWidget {
   });
 
   @override
-  _PinnedMessagesScreenState createState() => _PinnedMessagesScreenState();
+  _PinnedMessagesPageState createState() => _PinnedMessagesPageState();
 }
 
-class _PinnedMessagesScreenState extends State<PinnedMessagesScreen> {
+class _PinnedMessagesPageState extends State<PinnedMessagesPage> {
   Map<String?, VideoPlayerController?> controllerCache = {};
 
   @override

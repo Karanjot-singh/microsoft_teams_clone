@@ -14,16 +14,16 @@ import 'package:microsoft_teams_clone/widgets/drawer.dart';
 
 import '../../services/stream_chat/chat_list.dart';
 
-class ChannelListPage extends StatefulWidget {
-  const ChannelListPage({
+class ChatsHomePage extends StatefulWidget {
+  const ChatsHomePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _ChannelListPageState createState() => _ChannelListPageState();
+  _ChatsHomePageState createState() => _ChatsHomePageState();
 }
 
-class _ChannelListPageState extends State<ChannelListPage> {
+class _ChatsHomePageState extends State<ChatsHomePage> {
   int _currentIndex = 0;
 
   bool _isSelected(int index) => _currentIndex == index;

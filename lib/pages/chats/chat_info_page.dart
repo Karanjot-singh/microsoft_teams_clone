@@ -9,26 +9,26 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
 import 'group_chat/channel_media_page.dart';
 import 'group_chat/channel_page.dart';
-import 'pinned_messages_screen.dart';
+import 'pinned_messages_page.dart';
 import '../../routes/routes.dart';
 
 /// Detail screen for a 1:1 chat correspondence
-class ChatInfoScreen extends StatefulWidget {
+class ChatInfoPage extends StatefulWidget {
   final User? user;
 
   final MessageTheme messageTheme;
 
-  const ChatInfoScreen({
+  const ChatInfoPage({
     Key? key,
     required this.messageTheme,
     this.user,
   }) : super(key: key);
 
   @override
-  _ChatInfoScreenState createState() => _ChatInfoScreenState();
+  _ChatInfoPageState createState() => _ChatInfoPageState();
 }
 
-class _ChatInfoScreenState extends State<ChatInfoScreen> {
+class _ChatInfoPageState extends State<ChatInfoPage> {
   ValueNotifier<bool?> mutedBool = ValueNotifier(false);
 
   @override
@@ -190,7 +190,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: PinnedMessagesScreen(
+                    child: PinnedMessagesPage(
                       messageTheme: widget.messageTheme,
                       sortOptions: [
                         SortOption(

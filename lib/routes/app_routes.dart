@@ -1,4 +1,4 @@
-import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/chats_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
 import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
@@ -6,10 +6,10 @@ import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../pages/chats/group_chat/channel_page.dart';
-import '../pages/chats/chat_info_screen.dart';
+import '../pages/chats/chat_info_page.dart';
 import '../pages/chats/group_chat/channel_name_page.dart';
 import '../pages/chats/group_chat/channel_info_page.dart';
-import '../pages/home/home_page.dart';
+import '../home_page.dart';
 import '../main.dart';
 import '../pages/chats/new_chat/new_chat_page.dart';
 import '../pages/chats/new_chat/add_channel_members_page.dart';
@@ -97,7 +97,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHAT_INFO_SCREEN),
             builder: (context) {
-              return ChatInfoScreen(
+              return ChatInfoPage(
                 user: args as User?,
                 messageTheme: StreamChatTheme.of(context).ownMessageTheme,
               );
@@ -114,7 +114,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHANNEL_LIST_PAGE),
             builder: (context) {
-              return ChannelListPage();
+              return ChatsHomePage();
             });
       // Default case, should not reach here.
       default:

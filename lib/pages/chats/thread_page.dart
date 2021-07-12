@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+/*
+This page renders the threads for the messages sent a chat conversation
+or a channel discussion
+*/
+
 class ThreadPage extends StatefulWidget {
   final Message? parent;
   final int? initialScrollIndex;
