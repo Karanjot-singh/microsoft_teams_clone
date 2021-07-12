@@ -2,18 +2,28 @@
 <!-- [![Gitter](https://img.shields.io/badge/chat-on%20gitter-ff006f.svg)](https://gitter.im/oppia/oppia-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Mailing List](https://img.shields.io/badge/Mailing%20List-Oppia%20Android-dev.svg)](mailto:oppia-android-dev@googlegroups.com) [![Twitter Follow](https://img.shields.io/twitter/follow/oppiaorg.svg?style=social&label=Follow&maxAge=2592000?style=flat-square)](https://twitter.com/oppiaorg) [![GitHub issues by-label](/github/issues-search?query=repo%3Abadges%2Fshields%20is%3Aclosed%20label%3Abug%20author%3Aapp%2Fsentry-io)](https://github.com/Karanjot-singh/microsoft_teams_clone/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee) -->
 <!-- 
 [![Unit Tests (Robolectric -- Gradle)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/main.yml/badge.svg)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/main.yml) [![Unit Tests (Robolectric - Bazel)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/unit_tests.yml) [![Build Tests](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/build_tests.yml/badge.svg)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/build_tests.yml) [![Static Checks](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/static_checks.yml/badge.svg)](https://github.com/Karanjot-singh/microsoft_teams_clone/actions/workflows/static_checks.yml) -->
-
+## About
 Microsoft Teams Clone is a Video conference application with a rich integrated chat experience, to connect with friends,family & colleagues.
-<!-- Oppia is an online learning tool that enables anyone to easily create and share interactive activities (called 'explorations'). These activities simulate a one-on-one conversation with a tutor, making it possible for students to learn by doing while getting feedback. --> -->
+Developed as a redesign of Microsoft Teams during my menteeship at [Microsoft Engage 2021](https://microsoft.acehacker.com/engage2021/index.html),
+It implements the following features of the original app 
+  * [Instant Messaging](https://www.microsoft.com/en-in/microsoft-teams/instant-messaging)    
+    Share your opinion and have fun with your team. Send GIFs, stickers, and emojis in a group chat or in one-to-one messages.
+  * [Online Messaging](https://www.microsoft.com/en-in/microsoft-teams/online-meetings)    
+    Instantly go from group chat to video conference with the touch of a button.
+  * [Collaborate](https://www.microsoft.com/en-in/microsoft-teams/online-meetings)    
+    Easily find, share files in real time, in chat to keep the work on :)
 
-This application is written using Flutter & Dart, It leverages Gradle and AndroidX and utilises StreamChat SDK ,Google Firebase and JisiMeet Android SDK.
+[Full Feature List](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki)
+    
+<!-- Oppia is an online learning tool that enables anyone to easily create and share interactive activities (called 'explorations'). These activities simulate a one-on-one conversation with a tutor, making it possible for students to learn by doing while getting feedback. -->
 
-This project was developed by me as Final Project Submission for a Microsoft Teams Clone as part of [Microsoft Engage] 2021.
+This application is written using Flutter & Dart, It leverages Gradle and AndroidX and utilises StreamChat SDK ,Google Firebase and Jisi Meet Android SDK.
 
   * [Contributors' wiki](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki)
-  * [COntact](mailto:karanjot19050@iiitd.ac.in)
+  * [Contact](mailto:karanjot19050@iiitd.ac.in)
   * [File an issue](https://github.com/Karanjot-singh/microsoft_teams_clone/issues/new/choose)
-
+  * [Feature List](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki)
+ 
 ## Installation
 
 Please refer to the [installation wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#installation) for full instructions.
