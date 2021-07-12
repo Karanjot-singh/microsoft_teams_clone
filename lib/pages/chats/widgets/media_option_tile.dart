@@ -6,7 +6,6 @@ import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_info_page.d
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_media_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
-import 'package:microsoft_teams_clone/pages/chats/pinned_messages_page.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 
 class MediaOptionsTile extends StatelessWidget {

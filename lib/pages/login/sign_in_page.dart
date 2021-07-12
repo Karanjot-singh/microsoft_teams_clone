@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
 import 'google_sign_in_button.dart';

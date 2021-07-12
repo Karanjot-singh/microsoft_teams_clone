@@ -8,7 +8,6 @@ import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
-import 'package:microsoft_teams_clone/widgets/rounded_button.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../services/authentication/authentication.dart';
 

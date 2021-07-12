@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/media_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/mute_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -163,7 +163,7 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
               );
             }),
         PinOptionTile(context: context, chatWidget: widget),
-        MediaTileChannel(
+        MediaOptionsTile(
           context: context,
           chatWidget: widget,
         ),

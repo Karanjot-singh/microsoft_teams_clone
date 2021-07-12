@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';

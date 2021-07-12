@@ -5,19 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/media_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/mute_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
-import 'channel_media_page.dart';
-import 'channel_page.dart';
-import '../chat_info_page.dart';
-import '../pinned_messages_page.dart';
-import '../../../routes/routes.dart';
-
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/chat_info_page.dart';
 /*
 This page renders the information screen for the channel
 and sets the tiles for files, media screen and other group related options
@@ -501,7 +496,7 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
           context: context,
           channelWidget: widget,
         ),
-        MediaTileChannel(
+        MediaOptionsTile(
           context: context,
           channelWidget: widget,
         ),
