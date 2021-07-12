@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/chat_info_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_info_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
 import 'package:microsoft_teams_clone/pages/chats/pinned_messages_page.dart';
@@ -11,11 +12,13 @@ class PinOptionTile extends StatelessWidget {
   const PinOptionTile({
     Key? key,
     required this.context,
-    required this.widget,
+    this.channelWidget,
+    this.chatWidget,
   }) : super(key: key);
 
   final BuildContext context;
-  final ChatInfoPage widget;
+  final ChannelInfoPage? channelWidget;
+  final ChatInfoPage? chatWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,9 @@ class PinOptionTile extends StatelessWidget {
               channel: channel,
               child: MessageSearchBloc(
                 child: PinnedMessagesPage(
-                  messageTheme: widget.messageTheme,
+                  messageTheme: chatWidget == null
+                      ? channelWidget!.messageTheme
+                      : chatWidget!.messageTheme,
                   sortOptions: [
                     SortOption(
                       'created_at',

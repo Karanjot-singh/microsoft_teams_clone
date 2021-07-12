@@ -7,6 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
@@ -495,8 +496,14 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
             );
           },
         ),
-        PinTileChannel(context: context, widget: widget),
-        MediaTileChannel(context: context, channelWidget: widget),
+        PinOptionTile(
+          context: context,
+          channelWidget: widget,
+        ),
+        MediaTileChannel(
+          context: context,
+          channelWidget: widget,
+        ),
         FilesTileChannel(context: context),
         if (!channel.channel.isDistinct) LeaveGroupTile(context: context),
       ],

@@ -21,7 +21,7 @@ class MuteOptionTile extends StatelessWidget {
       title: 'Mute group',
       titleTextStyle: StreamChatTheme.of(context).textTheme.body,
       leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: StreamSvgIcon.mute(
           size: 24.0,
           color: appAccentIconColor,

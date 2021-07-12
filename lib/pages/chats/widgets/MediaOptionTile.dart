@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/chat_info_page.dart';
@@ -30,7 +29,7 @@ class MediaTileChannel extends StatelessWidget {
       title: 'Photos & Videos',
       titleTextStyle: StreamChatTheme.of(context).textTheme.body,
       leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: StreamSvgIcon.pictures(
           size: 32.0,
           color: appAccentIconColor,

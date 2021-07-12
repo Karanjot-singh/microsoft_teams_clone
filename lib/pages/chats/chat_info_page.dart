@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -165,66 +166,10 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
                       ),
               );
             }),
-        PinOptionTile(context: context, widget: widget),
-        OptionListTile(
-          title: 'Photos & Videos',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: StreamSvgIcon.pictures(
-              size: 36.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelMediaPage(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+        PinOptionTile(context: context, chatWidget: widget),
+        MediaTileChannel(
+          context: context,
+          chatWidget: widget,
         ),
         OptionListTile(
           title: 'Files',
@@ -389,7 +334,6 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
     );
   }
 }
-
 
 class _SharedGroupsScreen extends StatefulWidget {
   final User? mainUser;
