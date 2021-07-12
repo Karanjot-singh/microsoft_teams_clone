@@ -13,12 +13,12 @@ This page renders the UI for the new chat page and integrates the BusinessLogic
 to start personal chats or create new channels with other members.
 */
 
-class NewChatScreen extends StatefulWidget {
+class NewChatPage extends StatefulWidget {
   @override
-  _NewChatScreenState createState() => _NewChatScreenState();
+  _NewChatPageState createState() => _NewChatPageState();
 }
 
-class _NewChatScreenState extends State<NewChatScreen> {
+class _NewChatPageState extends State<NewChatPage> {
   final _chipInputTextFieldStateKey =
       GlobalKey<ChipInputTextFieldState<User>>();
 

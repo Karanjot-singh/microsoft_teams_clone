@@ -6,9 +6,9 @@ import 'package:microsoft_teams_clone/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../../pages/chats/group_chat/group_chats_page.dart';
+import '../../pages/chats/group_chat/channel_page.dart';
 import '../../pages/chats/chat_info_screen.dart';
-import '../../pages/chats/group_chat/group_info_screen.dart';
+import '../../pages/chats/group_chat/channel_info_page.dart';
 
 class ChannelList extends StatefulWidget {
   @override
@@ -184,7 +184,7 @@ class _ChannelList extends State<ChannelList> {
                               MaterialPageRoute(
                                 builder: (context) => StreamChannel(
                                   channel: channel,
-                                  child: GroupInfoScreen(
+                                  child: ChannelInfoPage(
                                     messageTheme: StreamChatTheme.of(context)
                                         .ownMessageTheme,
                                   ),

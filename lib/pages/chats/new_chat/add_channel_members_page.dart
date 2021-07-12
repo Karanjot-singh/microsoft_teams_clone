@@ -89,6 +89,9 @@ class _AddChannelMembersPageState extends State<AddChannelMembersPage> {
         ],
       ),
       body: ConnectionStatusBuilder(
+        /*
+          Sets the Connection Status on the basis of the state of the server
+          * */
         statusBuilder: (context, status) {
           String statusString = '';
           bool showStatus = true;

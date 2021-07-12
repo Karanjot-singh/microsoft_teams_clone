@@ -5,14 +5,14 @@ import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import '../pages/chats/group_chat/group_chats_page.dart';
+import '../pages/chats/group_chat/channel_page.dart';
 import '../pages/chats/chat_info_screen.dart';
-import '../pages/chats/group_chat/group_chat_details_screen.dart';
-import '../pages/chats/group_chat/group_info_screen.dart';
+import '../pages/chats/group_chat/channel_name_page.dart';
+import '../pages/chats/group_chat/channel_info_page.dart';
 import '../pages/home/home_page.dart';
 import '../main.dart';
-import '../pages/chats/new_chat/new_chat_screen.dart';
-import '../pages/chats/new_chat/new_group_chat_screen.dart';
+import '../pages/chats/new_chat/new_chat_page.dart';
+import '../pages/chats/new_chat/add_channel_members_page.dart';
 import 'routes.dart';
 
 class AppRoutes {
@@ -77,19 +77,19 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.NEW_CHAT),
             builder: (_) {
-              return NewChatScreen();
+              return NewChatPage();
             });
       case Routes.NEW_GROUP_CHAT:
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT),
             builder: (_) {
-              return NewGroupChatScreen();
+              return AddChannelMembersPage();
             });
       case Routes.NEW_GROUP_CHAT_DETAILS:
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT_DETAILS),
             builder: (_) {
-              return GroupChatDetailsScreen(
+              return ChannelNamePage(
                 selectedUsers: args as List<User>?,
               );
             });
@@ -106,7 +106,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.GROUP_INFO_SCREEN),
             builder: (context) {
-              return GroupInfoScreen(
+              return ChannelInfoPage(
                 messageTheme: StreamChatTheme.of(context).ownMessageTheme,
               );
             });
