@@ -6,9 +6,9 @@ import 'package:microsoft_teams_clone/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'group_chat/group_chats_page.dart';
-import 'chat_info_screen.dart';
-import 'group_chat/group_info_screen.dart';
+import '../../pages/chats/group_chat/group_chats_page.dart';
+import '../../pages/chats/chat_info_screen.dart';
+import '../../pages/chats/group_chat/group_info_screen.dart';
 
 class ChannelList extends StatefulWidget {
   @override
@@ -53,6 +53,10 @@ class _ChannelList extends State<ChannelList> {
   Widget build(BuildContext context) {
     final user = StreamChat.of(context).user;
     return WillPopScope(
+      /*
+      Creates a widget that registers a callback to veto attempts by the user
+      to dismiss the enclosing ModalRoute.
+       */
       onWillPop: () async {
         if (_isSearchActive) {
           _controller!.clear();

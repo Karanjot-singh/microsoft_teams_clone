@@ -15,7 +15,6 @@ import '../chat_info_screen.dart';
 import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
-// TODO: Break this file and add theme & search Streamsvg
 class GroupInfoScreen extends StatefulWidget {
   final MessageTheme messageTheme;
 

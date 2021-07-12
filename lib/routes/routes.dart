@@ -12,4 +12,7 @@ class Routes {
   static const String GROUP_INFO_SCREEN = '/group_info_screen';
   static const String CHANNEL_LIST_PAGE = '/channel_list_page';
   static const String SIGN_IN = '/sign_in_screen';
+  static const String JOIN_MEET = '/join_meetings_page';
+  static const String CREATE_MEET = '/create_meetings_page';
+  static const String MEET = '/meetings_page';
 }

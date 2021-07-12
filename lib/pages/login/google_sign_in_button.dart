@@ -23,9 +23,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             )
           : OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
-                primary: Colors.black,
+                primary: Colors.white,
+                backgroundColor: appPurpleColor,
                 shape: StadiumBorder(),
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(16),
               ),
               onPressed: () async {
                 setState(() {
@@ -49,10 +50,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   );
                 }
               },
-              icon: FaIcon(FontAwesomeIcons.google, color: appPurpleColor),
+              icon: FaIcon(FontAwesomeIcons.google, color: Colors.white),
               label: Text(
-                'Sign In With Google',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                'Sign in with Google',
+                style: TextStyle(fontSize: 18),
               ),
             ),
     );

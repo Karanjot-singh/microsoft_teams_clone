@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
-import 'package:microsoft_teams_clone/pages/onboarding/user_info_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/user_info_screen.dart';
 import 'package:microsoft_teams_clone/pages/home/home_page.dart';
 import 'package:microsoft_teams_clone/pages/onboarding/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,12 +76,12 @@ class _MyAppState extends State<MyApp>
 
         final now = DateTime.now().millisecondsSinceEpoch;
 
-        if (now - timeOfStartMs > 1500) {
+        if (now - timeOfStartMs > 2000) {
           SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
             forwardAnimations();
           });
         } else {
-          Future.delayed(Duration(milliseconds: 1500)).then((value) {
+          Future.delayed(Duration(milliseconds: 2000)).then((value) {
             forwardAnimations();
           });
         }
