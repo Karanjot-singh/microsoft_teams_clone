@@ -5,13 +5,9 @@ import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-
-import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
-import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_media_page.dart';
-import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
-import 'package:microsoft_teams_clone/routes/routes.dart';
 
 /// Detail screen for a 1:1 chat correspondence
 class ChatInfoPage extends StatefulWidget {
@@ -171,69 +167,8 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
           context: context,
           chatWidget: widget,
         ),
-        OptionListTile(
-          title: 'Files',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: StreamSvgIcon.files(
-              size: 32.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-            color:
-                StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
-          ),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelFilePage(
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-        OptionListTile(
-          title: 'Shared groups',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: StreamSvgIcon.iconGroup(
-              size: 24.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => _SharedGroupsScreen(
-                        StreamChat.of(context).user, widget.user)));
-          },
-        ),
+        FilesOptionTile(context: context),
+        SharedOptionsTile(context: context,widget: widget),
       ],
     );
   }
@@ -331,6 +266,45 @@ class _ChatInfoPageState extends State<ChatInfoPage> {
             width: 24.0,
           ),
       ],
+    );
+  }
+}
+
+class SharedOptionsTile extends StatelessWidget {
+  const SharedOptionsTile({
+    Key? key,
+    required this.context,
+    required this.widget,
+  }) : super(key: key);
+
+  final BuildContext context;
+  final ChatInfoPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return OptionListTile(
+      title: 'Shared groups',
+      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        child: StreamSvgIcon.iconGroup(
+          size: 24.0,
+          color: appAccentIconColor,
+        ),
+      ),
+      trailing: StreamSvgIcon.right(
+          color: StreamChatTheme.of(context)
+              .colorTheme
+              .black
+              .withOpacity(0.5)),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => _SharedGroupsScreen(
+                    StreamChat.of(context).user, widget.user)));
+      },
     );
   }
 }

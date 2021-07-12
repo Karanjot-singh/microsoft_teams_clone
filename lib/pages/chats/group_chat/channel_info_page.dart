@@ -7,6 +7,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MediaOptionTile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -504,8 +505,8 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
           context: context,
           channelWidget: widget,
         ),
-        FilesTileChannel(context: context),
-        if (!channel.channel.isDistinct) LeaveGroupTile(context: context),
+        FilesOptionTile(context: context),
+        if (!channel.channel.isDistinct) LeaveOptionTile(context: context),
       ],
     );
   }
@@ -953,8 +954,8 @@ class _ChannelInfoPageState extends State<ChannelInfoPage> {
   }
 }
 
-class LeaveGroupTile extends StatelessWidget {
-  const LeaveGroupTile({
+class LeaveOptionTile extends StatelessWidget {
+  const LeaveOptionTile({
     Key? key,
     required this.context,
   }) : super(key: key);
@@ -996,130 +997,6 @@ class LeaveGroupTile extends StatelessWidget {
           await channel.removeMembers([StreamChat.of(context).user!.id]);
           Navigator.pop(context);
         }
-      },
-    );
-  }
-}
-
-class FilesTileChannel extends StatelessWidget {
-  const FilesTileChannel({
-    Key? key,
-    required this.context,
-  }) : super(key: key);
-
-  final BuildContext context;
-  @override
-  Widget build(BuildContext context) {
-    return OptionListTile(
-      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-      separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-      title: 'Files',
-      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: StreamSvgIcon.files(
-          size: 32.0,
-          color: appAccentIconColor,
-        ),
-      ),
-      trailing: StreamSvgIcon.right(
-        color: appLightColor,
-      ),
-      onTap: () {
-        var channel = StreamChannel.of(context).channel;
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => StreamChannel(
-              channel: channel,
-              child: MessageSearchBloc(
-                child: ChannelFilePage(
-                  sortOptions: [
-                    SortOption(
-                      'created_at',
-                      direction: SortOption.ASC,
-                    ),
-                  ],
-                  paginationParams: PaginationParams(limit: 20),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class PinTileChannel extends StatelessWidget {
-  const PinTileChannel({
-    Key? key,
-    required this.context,
-    required this.widget,
-  }) : super(key: key);
-
-  final BuildContext context;
-  final ChannelInfoPage widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return OptionListTile(
-      title: 'Pinned Messages',
-      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-      leading: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: StreamSvgIcon.pin(
-          size: 24.0,
-          color: appAccentIconColor,
-        ),
-      ),
-      trailing: StreamSvgIcon.right(
-        color: appLightColor,
-      ),
-      onTap: () {
-        final channel = StreamChannel.of(context).channel;
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => StreamChannel(
-              channel: channel,
-              child: MessageSearchBloc(
-                child: PinnedMessagesPage(
-                  messageTheme: widget.messageTheme,
-                  sortOptions: [
-                    SortOption(
-                      'created_at',
-                      direction: SortOption.ASC,
-                    ),
-                  ],
-                  paginationParams: PaginationParams(limit: 20),
-                  onShowMessage: (m, c) async {
-                    final client = StreamChat.of(context).client;
-                    final message = m;
-                    final channel = client.channel(
-                      c.type,
-                      id: c.id,
-                    );
-                    if (channel.state == null) {
-                      await channel.watch();
-                    }
-                    Navigator.pushNamed(
-                      context,
-                      Routes.CHANNEL_PAGE,
-                      arguments: ChannelPageArgs(
-                        channel: channel,
-                        initialMessage: message,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-        );
       },
     );
   }
