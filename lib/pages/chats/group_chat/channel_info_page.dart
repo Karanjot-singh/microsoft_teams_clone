@@ -8,26 +8,31 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_screen.dart';
-import 'group_media_screen.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
+import 'channel_media_page.dart';
 import 'channel_page.dart';
 import '../chat_info_screen.dart';
 import '../pinned_messages_screen.dart';
 import '../../../routes/routes.dart';
 
-class ChannelInfoScreen extends StatefulWidget {
+/*
+This page renders the information screen for the channel
+and sets the tiles for files, media screen and other group related options
+*/
+
+class ChannelInfoPage extends StatefulWidget {
   final MessageTheme messageTheme;
 
-  const ChannelInfoScreen({
+  const ChannelInfoPage({
     Key? key,
     required this.messageTheme,
   }) : super(key: key);
 
   @override
-  _ChannelInfoScreenState createState() => _ChannelInfoScreenState();
+  _ChannelInfoPageState createState() => _ChannelInfoPageState();
 }
 
-class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
+class _ChannelInfoPageState extends State<ChannelInfoPage> {
   TextEditingController? _nameController;
 
   TextEditingController? _searchController;
@@ -77,6 +82,11 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
     var channel = StreamChannel.of(context);
 
     return StreamBuilder<List<Member>>(
+      /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
         stream: channel.channel.state!.membersStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -105,6 +115,11 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
               title: Column(
                 children: [
                   StreamBuilder<ChannelState>(
+                    /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
                       stream: channel.channelStateStream,
                       builder: (context, state) {
                         if (!state.hasData) {
@@ -139,7 +154,8 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
                     height: 3.0,
                   ),
                   Text(
-                    '${channel.channel.memberCount} Members, ${snapshot.data?.where((e) => e.user!.online).length ?? 0} Online',
+                    '${channel.channel.memberCount} Members, '
+                    '${snapshot.data?.where((e) => e.user!.online).length ?? 0} Online',
                     style: TextStyle(
                       color: StreamChatTheme.of(context)
                           .colorTheme
@@ -440,6 +456,11 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
         //   onTap: () {},
         // ),
         StreamBuilder<bool>(
+          /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
           stream: StreamChannel.of(context).channel.isMutedStream,
           builder: (context, snapshot) {
             mutedBool.value = snapshot.data;
@@ -554,7 +575,7 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: ChannelMediaDisplayScreen(
+                    child: ChannelMediaPage(
                       messageTheme: widget.messageTheme,
                       sortOptions: [
                         SortOption(
@@ -675,7 +696,7 @@ class _ChannelInfoScreenState extends State<ChannelInfoScreen> {
     var channel = StreamChannel.of(context).channel;
 
     showDialog(
-      /*Displays a Material dialog above the current contents of the app, with Material entrance 
+      /*Displays a Material dialog above the current contents of the app, with Material entrance
         and exit animations, modal barrier color, and modal barrier behavior
       */
       useRootNavigator: false,

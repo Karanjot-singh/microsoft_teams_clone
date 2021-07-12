@@ -2,11 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_chats_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'chips_input_text_field.dart';
 import '../../../routes/routes.dart';
+
+/*
+This page renders the UI for the new chat page and integrates the BusinessLogic
+to start personal chats or create new channels with other members.
+*/
 
 class NewChatScreen extends StatefulWidget {
   @override
@@ -38,6 +43,9 @@ class _NewChatScreenState extends State<NewChatScreen> {
   bool _showUserList = true;
 
   void _userNameListener() {
+    /*
+    Sets the listener for the user name
+    * */
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 350), () {
       if (mounted)
@@ -134,6 +142,9 @@ class _NewChatScreenState extends State<NewChatScreen> {
         centerTitle: true,
       ),
       body: ConnectionStatusBuilder(
+        /*
+          Sets the Connection Status on the basis of the state of the server
+          * */
         statusBuilder: (context, status) {
           String statusString = '';
           bool showStatus = true;

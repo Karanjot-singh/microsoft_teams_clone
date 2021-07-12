@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+/*
+This page renders the shared Files in a list and integrates the BusinessLogic
+with the widgets for the files shared in a chat channel
+powered by Stream Chat SDK.
+*/
+
+
 class ChannelFilePage extends StatefulWidget {
 
   final List<SortOption>? sortOptions;
@@ -79,6 +86,11 @@ class _ChannelFilePageState extends State<ChannelFilePage> {
     final messageSearchBloc = MessageSearchBloc.of(context);
 
     return StreamBuilder<List<GetMessageResponse>>(
+      /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return Center(

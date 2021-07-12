@@ -6,15 +6,14 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
-import 'group_chat/group_media_screen.dart';
-import 'group_chat/group_chats_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
+import 'group_chat/channel_media_page.dart';
+import 'group_chat/channel_page.dart';
 import 'pinned_messages_screen.dart';
 import '../../routes/routes.dart';
 
 /// Detail screen for a 1:1 chat correspondence
 class ChatInfoScreen extends StatefulWidget {
-  /// User in consideration
   final User? user;
 
   final MessageTheme messageTheme;
@@ -131,6 +130,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
     return Column(
       children: [
         StreamBuilder<bool>(
+          /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
             stream: StreamChannel.of(context).channel.isMutedStream,
             builder: (context, snapshot) {
               mutedBool.value = snapshot.data;
@@ -246,7 +250,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: ChannelMediaDisplayScreen(
+                    child: ChannelMediaPage(
                       messageTheme: widget.messageTheme,
                       sortOptions: [
                         SortOption(
@@ -305,7 +309,7 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 builder: (context) => StreamChannel(
                   channel: channel,
                   child: MessageSearchBloc(
-                    child: ChannelFileDisplayScreen(
+                    child: ChannelFilePage(
                       sortOptions: [
                         SortOption(
                           'created_at',
@@ -476,6 +480,11 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
         backgroundColor: appPurpleColor,
       ),
       body: StreamBuilder<List<Channel>>(
+        /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
         stream: chat.client.queryChannels(
           filter: Filter.and([
             Filter.in_('members', [widget.otherUser!.id]),

@@ -3,20 +3,18 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:video_player/video_player.dart';
 
+/*
+This page renders the media Files in a grid form and integrates the BusinessLogic
+with the widgets for the media shared in a channel
+powered by Stream Chat SDK.
+*/
+
+
 class ChannelMediaPage extends StatefulWidget {
-  /// The sorting used for the channels matching the filters.
-  /// Sorting is based on field and direction, multiple sorting options can be provided.
-  /// You can sort based on last_updated, last_message_at, updated_at, created_at or member_count.
-  /// Direction can be ascending or descending.
   final List<SortOption>? sortOptions;
 
-  /// Pagination parameters
-  /// limit: the number of users to return (max is 30)
-  /// offset: the offset (max is 1000)
-  /// message_limit: how many messages should be included to each channel
   final PaginationParams? paginationParams;
 
-  /// The builder used when the file list is empty.
   final WidgetBuilder? emptyBuilder;
 
   final ShowMessageCallback? onShowMessage;
@@ -44,6 +42,9 @@ class _ChannelMediaPageState extends State<ChannelMediaPage> {
     super.initState();
     final messageSearchBloc = MessageSearchBloc.of(context);
     messageSearchBloc.search(
+      /*
+      Filters the media attachments with cid
+      * */
       filter: Filter.in_(
         'cid',
         [StreamChannel.of(context).channel.cid!],
@@ -83,6 +84,11 @@ class _ChannelMediaPageState extends State<ChannelMediaPage> {
     final messageSearchBloc = MessageSearchBloc.of(context);
 
     return StreamBuilder<List<GetMessageResponse>>(
+      /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
       builder: (context, snapshot) {
         if (snapshot.data == null) {
           return Center(
@@ -166,6 +172,10 @@ class _ChannelMediaPageState extends State<ChannelMediaPage> {
             ),
           ),
           child: GridView.builder(
+            /*
+            Builds the media attachments in the form of a builder
+            to Create a scrollable, 2D array of widgets
+            * */
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemBuilder: (context, position) {

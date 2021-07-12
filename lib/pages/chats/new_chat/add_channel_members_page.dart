@@ -7,12 +7,12 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/search_text_field.dart';
 
-class NewGroupChatScreen extends StatefulWidget {
+class AddChannelMembersPage extends StatefulWidget {
   @override
-  _NewGroupChatScreenState createState() => _NewGroupChatScreenState();
+  _AddChannelMembersPageState createState() => _AddChannelMembersPageState();
 }
 
-class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
+class _AddChannelMembersPageState extends State<AddChannelMembersPage> {
   TextEditingController? _controller;
 
   String _userNameQuery = '';

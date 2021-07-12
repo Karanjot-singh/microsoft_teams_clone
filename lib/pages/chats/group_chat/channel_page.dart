@@ -10,7 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import '../chat_info_screen.dart';
-import 'group_info_screen.dart';
+import 'channel_info_page.dart';
+
+/*
+This page renders the UI and integrates the BusinessLogic
+for the Chat thread page for Channels or Group Chats
+ in a channel of the Chat functionality
+powered by Stream Chat SDK.
+*/
+
 
 class ChannelPageArgs {
   final Channel? channel;
@@ -101,7 +109,7 @@ class _ChannelPageState extends State<ChannelPage> {
               context,
               MaterialPageRoute(
                 builder: (context) => StreamChannel(
-                  child: GroupInfoScreen(
+                  child: ChannelInfoPage(
                     messageTheme: StreamChatTheme.of(context).ownMessageTheme,
                   ),
                   channel: channel,
@@ -117,6 +125,10 @@ class _ChannelPageState extends State<ChannelPage> {
             child: Stack(
               children: <Widget>[
                 MessageListView(
+                  /*
+                  Renders the chat messages for the channel obtained from the
+                  stream chat servers for the current client
+                  * */
                   initialScrollIndex: widget.initialScrollIndex,
                   initialAlignment: widget.initialAlignment,
                   highlightInitialMessage: widget.highlightInitialMessage,
@@ -147,8 +159,10 @@ class _ChannelPageState extends State<ChannelPage> {
                     );
                   },
                   pinPermissions: ['owner', 'admin', 'member'],
+                  // Sets the permissions only to privileged members
                 ),
                 Positioned(
+                  //sets the video icon for the call functionality
                   top: size.height * 0.75,
                   left: 8,
                   child: IconButton(
@@ -186,6 +200,7 @@ class _ChannelPageState extends State<ChannelPage> {
             ),
           ),
           MessageInput(
+            // Widget to input messages from the user
             focusNode: _focusNode,
             quotedMessage: _quotedMessage,
             onQuotedMessageCleared: () {
