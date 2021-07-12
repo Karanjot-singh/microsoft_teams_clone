@@ -15,7 +15,12 @@ import '../pages/chats/new_chat/new_chat_page.dart';
 import '../pages/chats/new_chat/add_channel_members_page.dart';
 import 'routes.dart';
 
+/*
+This Constructs a MaterialPageRoute for each of the pages created in the application
+in an organised manner for scalable projects
+*/
 class AppRoutes {
+  
   /// Add entry for new route here
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -79,15 +84,15 @@ class AppRoutes {
             builder: (_) {
               return NewChatPage();
             });
-      case Routes.NEW_GROUP_CHAT:
+      case Routes.NEW_CHANNEL:
         return MaterialPageRoute(
-            settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT),
+            settings: const RouteSettings(name: Routes.NEW_CHANNEL),
             builder: (_) {
               return AddChannelMembersPage();
             });
-      case Routes.NEW_GROUP_CHAT_DETAILS:
+      case Routes.NEW_CHANNEL_DETAILS:
         return MaterialPageRoute(
-            settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT_DETAILS),
+            settings: const RouteSettings(name: Routes.NEW_CHANNEL_DETAILS),
             builder: (_) {
               return ChannelNamePage(
                 selectedUsers: args as List<User>?,

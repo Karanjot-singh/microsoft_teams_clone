@@ -404,7 +404,7 @@ class CreateGroupTile extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            Routes.NEW_GROUP_CHAT,
+            Routes.NEW_CHANNEL,
           );
         },
         child: Padding(

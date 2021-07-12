@@ -75,7 +75,7 @@ class _AddChannelMembersPageState extends State<AddChannelMembersPage> {
             onPressed: () async {
               final updatedList = await Navigator.pushNamed(
                 context,
-                Routes.NEW_GROUP_CHAT_DETAILS,
+                Routes.NEW_CHANNEL_DETAILS,
                 arguments: _selectedUsers.toList(growable: false),
               );
               if (updatedList != null) {

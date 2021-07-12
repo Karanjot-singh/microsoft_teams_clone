@@ -100,7 +100,7 @@ class LeftDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.popAndPushNamed(
                     context,
-                    Routes.NEW_GROUP_CHAT,
+                    Routes.NEW_CHANNEL,
                   );
                 },
                 title: Text(
