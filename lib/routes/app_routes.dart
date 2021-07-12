@@ -1,21 +1,26 @@
-import 'package:microsoft_teams_clone/pages/chats/chats_list_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/chats_home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:microsoft_teams_clone/pages/login/sign_in_screen.dart';
+import 'package:microsoft_teams_clone/pages/login/sign_in_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import '../pages/chats/group_chat/group_chats_page.dart';
-import '../pages/chats/chat_info_screen.dart';
-import '../pages/chats/group_chat/group_chat_details_screen.dart';
-import '../pages/chats/group_chat/group_info_screen.dart';
-import '../pages/home/home_page.dart';
+import '../pages/chats/group_chat/channel_page.dart';
+import '../pages/chats/chat_info_page.dart';
+import '../pages/chats/group_chat/channel_name_page.dart';
+import '../pages/chats/group_chat/channel_info_page.dart';
+import '../home_page.dart';
 import '../main.dart';
-import '../pages/chats/new_chat/new_chat_screen.dart';
-import '../pages/chats/new_chat/new_group_chat_screen.dart';
+import '../pages/chats/new_chat/new_chat_page.dart';
+import '../pages/chats/new_chat/add_channel_members_page.dart';
 import 'routes.dart';
 
+/*
+This Constructs a MaterialPageRoute for each of the pages created in the application
+in an organised manner for scalable projects
+*/
 class AppRoutes {
+  
   /// Add entry for new route here
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -39,7 +44,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHOOSE_USER),
             builder: (_) {
-              return SignInScreen();
+              return SignInPage();
             });
       case Routes.MEET:
         return MaterialPageRoute(
@@ -77,19 +82,19 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.NEW_CHAT),
             builder: (_) {
-              return NewChatScreen();
+              return NewChatPage();
             });
-      case Routes.NEW_GROUP_CHAT:
+      case Routes.NEW_CHANNEL:
         return MaterialPageRoute(
-            settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT),
+            settings: const RouteSettings(name: Routes.NEW_CHANNEL),
             builder: (_) {
-              return NewGroupChatScreen();
+              return AddChannelMembersPage();
             });
-      case Routes.NEW_GROUP_CHAT_DETAILS:
+      case Routes.NEW_CHANNEL_DETAILS:
         return MaterialPageRoute(
-            settings: const RouteSettings(name: Routes.NEW_GROUP_CHAT_DETAILS),
+            settings: const RouteSettings(name: Routes.NEW_CHANNEL_DETAILS),
             builder: (_) {
-              return GroupChatDetailsScreen(
+              return ChannelNamePage(
                 selectedUsers: args as List<User>?,
               );
             });
@@ -97,7 +102,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHAT_INFO_SCREEN),
             builder: (context) {
-              return ChatInfoScreen(
+              return ChatInfoPage(
                 user: args as User?,
                 messageTheme: StreamChatTheme.of(context).ownMessageTheme,
               );
@@ -106,7 +111,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.GROUP_INFO_SCREEN),
             builder: (context) {
-              return GroupInfoScreen(
+              return ChannelInfoPage(
                 messageTheme: StreamChatTheme.of(context).ownMessageTheme,
               );
             });
@@ -114,7 +119,7 @@ class AppRoutes {
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.CHANNEL_LIST_PAGE),
             builder: (context) {
-              return ChannelListPage();
+              return ChatsHomePage();
             });
       // Default case, should not reach here.
       default:
@@ -123,9 +128,9 @@ class AppRoutes {
   }
 }
 
-Route routeToSignInScreen() {
+Route routeToSignInPage() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => SignInScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => SignInPage(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(-1.0, 0.0);
       var end = Offset.zero;

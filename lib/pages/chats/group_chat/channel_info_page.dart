@@ -5,29 +5,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/media_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/mute_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
-import 'group_media_screen.dart';
-import 'group_chats_page.dart';
-import '../chat_info_screen.dart';
-import '../pinned_messages_screen.dart';
-import '../../../routes/routes.dart';
+import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_page.dart';
+import 'package:microsoft_teams_clone/pages/chats/chat_info_page.dart';
+/*
+This page renders the information screen for the channel
+and sets the tiles for files, media screen and other group related options
+*/
 
-class GroupInfoScreen extends StatefulWidget {
+class ChannelInfoPage extends StatefulWidget {
   final MessageTheme messageTheme;
 
-  const GroupInfoScreen({
+  const ChannelInfoPage({
     Key? key,
     required this.messageTheme,
   }) : super(key: key);
 
   @override
-  _GroupInfoScreenState createState() => _GroupInfoScreenState();
+  _ChannelInfoPageState createState() => _ChannelInfoPageState();
 }
 
-class _GroupInfoScreenState extends State<GroupInfoScreen> {
+class _ChannelInfoPageState extends State<ChannelInfoPage> {
   TextEditingController? _nameController;
 
   TextEditingController? _searchController;
@@ -77,6 +80,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     var channel = StreamChannel.of(context);
 
     return StreamBuilder<List<Member>>(
+        /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
         stream: channel.channel.state!.membersStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -105,6 +113,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               title: Column(
                 children: [
                   StreamBuilder<ChannelState>(
+                      /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
                       stream: channel.channelStateStream,
                       builder: (context, state) {
                         if (!state.hasData) {
@@ -139,7 +152,8 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     height: 3.0,
                   ),
                   Text(
-                    '${channel.channel.memberCount} Members, ${snapshot.data?.where((e) => e.user!.online).length ?? 0} Online',
+                    '${channel.channel.memberCount} Members, '
+                    '${snapshot.data?.where((e) => e.user!.online).length ?? 0} Online',
                     style: TextStyle(
                       color: StreamChatTheme.of(context)
                           .colorTheme
@@ -333,6 +347,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
   }
 
   Widget _buildNameTile() {
+    /*Renders the tiles for each name*/
     var channel = StreamChannel.of(context).channel;
     var channelName = (channel.extraData['name'] as String?) ?? '';
 
@@ -440,6 +455,11 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
         //   onTap: () {},
         // ),
         StreamBuilder<bool>(
+          /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
           stream: StreamChannel.of(context).channel.isMutedStream,
           builder: (context, snapshot) {
             mutedBool.value = snapshot.data;
@@ -472,201 +492,16 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
             );
           },
         ),
-        OptionListTile(
-          title: 'Pinned Messages',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: StreamSvgIcon.pin(
-              size: 24.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-            color: appLightColor,
-          ),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: PinnedMessagesScreen(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+        PinOptionTile(
+          context: context,
+          channelWidget: widget,
         ),
-        OptionListTile(
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-          title: 'Photos & Videos',
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: StreamSvgIcon.pictures(
-              size: 32.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-            color: appLightColor,
-          ),
-          onTap: () {
-            var channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelMediaDisplayScreen(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        await Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+        MediaOptionsTile(
+          context: context,
+          channelWidget: widget,
         ),
-        OptionListTile(
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
-          title: 'Files',
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: StreamSvgIcon.files(
-              size: 32.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-            color: appLightColor,
-          ),
-          onTap: () {
-            var channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelFileDisplayScreen(
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-        if (!channel.channel.isDistinct)
-          OptionListTile(
-            tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-            separatorColor:
-                StreamChatTheme.of(context).colorTheme.greyGainsboro,
-            title: 'Leave Group',
-            titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-            leading: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: StreamSvgIcon.userRemove(
-                size: 24.0,
-                color: StreamChatTheme.of(context)
-                    .colorTheme
-                    .accentRed
-                    .withOpacity(0.5),
-              ),
-            ),
-            trailing: Container(
-              height: 24.0,
-              width: 24.0,
-            ),
-            onTap: () async {
-              final res = await showConfirmationDialog(
-                context,
-                title: 'Leave conversation',
-                okText: 'LEAVE',
-                question: 'Are you sure you want to leave this conversation?',
-                cancelText: 'CANCEL',
-                icon: StreamSvgIcon.userRemove(
-                  color: appAccentIconColor,
-                ),
-              );
-              if (res == true) {
-                final channel = StreamChannel.of(context).channel;
-                await channel.removeMembers([StreamChat.of(context).user!.id]);
-                Navigator.pop(context);
-              }
-            },
-          ),
+        FilesOptionTile(context: context),
+        if (!channel.channel.isDistinct) LeaveOptionTile(context: context),
       ],
     );
   }
@@ -675,7 +510,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
     var channel = StreamChannel.of(context).channel;
 
     showDialog(
-      /*Displays a Material dialog above the current contents of the app, with Material entrance 
+      /*Displays a Material dialog above the current contents of the app, with Material entrance
         and exit animations, modal barrier color, and modal barrier behavior
       */
       useRootNavigator: false,
@@ -716,6 +551,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           ),
                           filter: Filter.and(
                             [
+                              // Logic to filter on basis of search quety
                               if (_searchController!.text.isNotEmpty)
                                 Filter.autoComplete('name', _userNameQuery),
                               Filter.notIn('id', [
@@ -908,7 +744,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           MaterialPageRoute(
                             builder: (context) => StreamChannel(
                               channel: c,
-                              child: ChatInfoScreen(
+                              child: ChatInfoPage(
                                 messageTheme: widget.messageTheme,
                                 user: user,
                               ),
@@ -959,6 +795,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           size: 24.0,
                         ),
                         'Remove From Group', () async {
+                      // Remove members of the group
                       final res = await showConfirmationDialog(
                         context,
                         title: 'Remove member',
@@ -1103,10 +940,59 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
   }
 
   String _getLastSeen(User user) {
+    // gets the last seen status
     if (user.online) {
       return 'Online';
     } else {
       return 'Last seen ${Jiffy(user.lastActive).fromNow()}';
     }
+  }
+}
+
+class LeaveOptionTile extends StatelessWidget {
+  const LeaveOptionTile({
+    Key? key,
+    required this.context,
+  }) : super(key: key);
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    return OptionListTile(
+      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      separatorColor: StreamChatTheme.of(context).colorTheme.greyGainsboro,
+      title: 'Leave Group',
+      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: StreamSvgIcon.userRemove(
+          size: 24.0,
+          color:
+              StreamChatTheme.of(context).colorTheme.accentRed.withOpacity(0.5),
+        ),
+      ),
+      trailing: Container(
+        height: 24.0,
+        width: 24.0,
+      ),
+      onTap: () async {
+        final res = await showConfirmationDialog(
+          context,
+          title: 'Leave conversation',
+          okText: 'LEAVE',
+          question: 'Are you sure you want to leave this conversation?',
+          cancelText: 'CANCEL',
+          icon: StreamSvgIcon.userRemove(
+            color: appAccentIconColor,
+          ),
+        );
+        if (res == true) {
+          final channel = StreamChannel.of(context).channel;
+          await channel.removeMembers([StreamChat.of(context).user!.id]);
+          Navigator.pop(context);
+        }
+      },
+    );
   }
 }

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
 import 'google_sign_in_button.dart';
 
 import '../../services/authentication/authentication.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

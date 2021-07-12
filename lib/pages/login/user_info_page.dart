@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/config/custom_colors.dart';
-import 'package:microsoft_teams_clone/pages/home/home_page.dart';
+import 'package:microsoft_teams_clone/home_page.dart';
 import 'package:microsoft_teams_clone/routes/app_routes.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
 import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
-import 'package:microsoft_teams_clone/widgets/rounded_button.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../services/authentication/authentication.dart';
 
@@ -17,18 +16,18 @@ const kStreamApiKey = 'STREAM_API_KEY';
 const kStreamUserId = 'STREAM_USER_ID';
 const kStreamToken = 'STREAM_TOKEN';
 
-class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required Firebase.User user})
+class UserInfoPage extends StatefulWidget {
+  const UserInfoPage({Key? key, required Firebase.User user})
       : _user = user,
         super(key: key);
 
   final Firebase.User _user;
 
   @override
-  _UserInfoScreenState createState() => _UserInfoScreenState();
+  _UserInfoPageState createState() => _UserInfoPageState();
 }
 
-class _UserInfoScreenState extends State<UserInfoScreen> {
+class _UserInfoPageState extends State<UserInfoPage> {
   late Firebase.User _user;
   bool _isSigningOut = false;
 
@@ -212,7 +211,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             _isSigningOut = false;
                           });
                           Navigator.of(context)
-                              .pushReplacement(routeToSignInScreen());
+                              .pushReplacement(routeToSignInPage());
                         },
                         child: Text(
                           "Sign Out",

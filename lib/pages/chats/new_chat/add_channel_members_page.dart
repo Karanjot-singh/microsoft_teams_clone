@@ -7,12 +7,12 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/search_text_field.dart';
 
-class NewGroupChatScreen extends StatefulWidget {
+class AddChannelMembersPage extends StatefulWidget {
   @override
-  _NewGroupChatScreenState createState() => _NewGroupChatScreenState();
+  _AddChannelMembersPageState createState() => _AddChannelMembersPageState();
 }
 
-class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
+class _AddChannelMembersPageState extends State<AddChannelMembersPage> {
   TextEditingController? _controller;
 
   String _userNameQuery = '';
@@ -38,6 +38,7 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
   @override
   void initState() {
     super.initState();
+
     _controller = TextEditingController()..addListener(_userNameListener);
   }
 
@@ -74,7 +75,7 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
             onPressed: () async {
               final updatedList = await Navigator.pushNamed(
                 context,
-                Routes.NEW_GROUP_CHAT_DETAILS,
+                Routes.NEW_CHANNEL_DETAILS,
                 arguments: _selectedUsers.toList(growable: false),
               );
               if (updatedList != null) {
@@ -89,6 +90,9 @@ class _NewGroupChatScreenState extends State<NewGroupChatScreen> {
         ],
       ),
       body: ConnectionStatusBuilder(
+        /*
+          Sets the Connection Status on the basis of the state of the server
+          * */
         statusBuilder: (context, status) {
           String statusString = '';
           bool showStatus = true;

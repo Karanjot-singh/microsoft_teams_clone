@@ -6,9 +6,14 @@ import 'package:microsoft_teams_clone/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import '../../pages/chats/group_chat/group_chats_page.dart';
-import '../../pages/chats/chat_info_screen.dart';
-import '../../pages/chats/group_chat/group_info_screen.dart';
+import '../../pages/chats/group_chat/channel_page.dart';
+import '../../pages/chats/chat_info_page.dart';
+import '../../pages/chats/group_chat/channel_info_page.dart';
+
+/*
+This page creates the list of channels or conversation chats a user has, to
+be displayed on the chat home page
+*/
 
 class ChannelList extends StatefulWidget {
   @override
@@ -38,12 +43,14 @@ class _ChannelList extends State<ChannelList> {
 
   @override
   void initState() {
+    //The framework will call this method exactly once for each State object it creates.
     super.initState();
     _controller = TextEditingController()..addListener(_channelQueryListener);
   }
 
   @override
   void dispose() {
+    //The framework calls this method when this State object will never build again.
     _controller?.removeListener(_channelQueryListener);
     _controller?.dispose();
     super.dispose();
@@ -165,7 +172,7 @@ class _ChannelList extends State<ChannelList> {
                               MaterialPageRoute(
                                 builder: (context) => StreamChannel(
                                   channel: channel,
-                                  child: ChatInfoScreen(
+                                  child: ChatInfoPage(
                                     messageTheme: StreamChatTheme.of(context)
                                         .ownMessageTheme,
                                     user: channel.state!.members
@@ -184,7 +191,7 @@ class _ChannelList extends State<ChannelList> {
                               MaterialPageRoute(
                                 builder: (context) => StreamChannel(
                                   channel: channel,
-                                  child: GroupInfoScreen(
+                                  child: ChannelInfoPage(
                                     messageTheme: StreamChatTheme.of(context)
                                         .ownMessageTheme,
                                   ),

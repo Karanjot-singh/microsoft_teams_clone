@@ -5,6 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+/*
+This page initialises the application once the authentication is complete
+It returns a a top level inherited widget to provide
+theming information throughout your application.
+
+https://getstream.io/chat/docs/flutter-dart/flutter_theming/?language=javascript
+ */
+
 class HomePageArgs {
   final StreamChatClient chatClient;
 
@@ -29,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return StreamChat(
+      // Top level Widget to set the theme of the application unless overriden
       client: widget.chatClient,
       streamChatThemeData: StreamChatThemeData(
         brightness: Theme.of(context).brightness,

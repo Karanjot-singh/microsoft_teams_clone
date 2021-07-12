@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 class MeetingsPage extends StatelessWidget {
   @override

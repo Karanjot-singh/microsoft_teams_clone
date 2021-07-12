@@ -3,33 +3,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/chats/widgets/MuteTile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/media_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/mute_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/files_option_tile.dart';
+import 'package:microsoft_teams_clone/pages/chats/widgets/pin_option_tile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-import 'package:microsoft_teams_clone/pages/chats/group_chat/group_file_screen.dart';
-import 'group_chat/group_media_screen.dart';
-import 'group_chat/group_chats_page.dart';
-import 'pinned_messages_screen.dart';
-import '../../routes/routes.dart';
-
 /// Detail screen for a 1:1 chat correspondence
-class ChatInfoScreen extends StatefulWidget {
-  /// User in consideration
+class ChatInfoPage extends StatefulWidget {
   final User? user;
 
   final MessageTheme messageTheme;
 
-  const ChatInfoScreen({
+  const ChatInfoPage({
     Key? key,
     required this.messageTheme,
     this.user,
   }) : super(key: key);
 
   @override
-  _ChatInfoScreenState createState() => _ChatInfoScreenState();
+  _ChatInfoPageState createState() => _ChatInfoPageState();
 }
 
-class _ChatInfoScreenState extends State<ChatInfoScreen> {
+class _ChatInfoPageState extends State<ChatInfoPage> {
   ValueNotifier<bool?> mutedBool = ValueNotifier(false);
 
   @override
@@ -131,6 +127,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
     return Column(
       children: [
         StreamBuilder<bool>(
+            /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
             stream: StreamChannel.of(context).channel.isMutedStream,
             builder: (context, snapshot) {
               mutedBool.value = snapshot.data;
@@ -161,189 +162,13 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                       ),
               );
             }),
-        OptionListTile(
-          title: 'Pinned Messages',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: StreamSvgIcon.pin(
-              size: 24.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: PinnedMessagesScreen(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
+        PinOptionTile(context: context, chatWidget: widget),
+        MediaOptionsTile(
+          context: context,
+          chatWidget: widget,
         ),
-        OptionListTile(
-          title: 'Photos & Videos',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: StreamSvgIcon.pictures(
-              size: 36.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelMediaDisplayScreen(
-                      messageTheme: widget.messageTheme,
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                      onShowMessage: (m, c) async {
-                        final client = StreamChat.of(context).client;
-                        final message = m;
-                        final channel = client.channel(
-                          c.type,
-                          id: c.id,
-                        );
-                        if (channel.state == null) {
-                          await channel.watch();
-                        }
-                        Navigator.pushNamed(
-                          context,
-                          Routes.CHANNEL_PAGE,
-                          arguments: ChannelPageArgs(
-                            channel: channel,
-                            initialMessage: message,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-        OptionListTile(
-          title: 'Files',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: StreamSvgIcon.files(
-              size: 32.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-            color:
-                StreamChatTheme.of(context).colorTheme.black.withOpacity(0.5),
-          ),
-          onTap: () {
-            final channel = StreamChannel.of(context).channel;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => StreamChannel(
-                  channel: channel,
-                  child: MessageSearchBloc(
-                    child: ChannelFileDisplayScreen(
-                      sortOptions: [
-                        SortOption(
-                          'created_at',
-                          direction: SortOption.ASC,
-                        ),
-                      ],
-                      paginationParams: PaginationParams(limit: 20),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-        OptionListTile(
-          title: 'Shared groups',
-          tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
-          titleTextStyle: StreamChatTheme.of(context).textTheme.body,
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
-            child: StreamSvgIcon.iconGroup(
-              size: 24.0,
-              color: appAccentIconColor,
-            ),
-          ),
-          trailing: StreamSvgIcon.right(
-              color: StreamChatTheme.of(context)
-                  .colorTheme
-                  .black
-                  .withOpacity(0.5)),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => _SharedGroupsScreen(
-                        StreamChat.of(context).user, widget.user)));
-          },
-        ),
+        FilesOptionTile(context: context),
+        SharedOptionsTile(context: context,widget: widget),
       ],
     );
   }
@@ -445,6 +270,45 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
   }
 }
 
+class SharedOptionsTile extends StatelessWidget {
+  const SharedOptionsTile({
+    Key? key,
+    required this.context,
+    required this.widget,
+  }) : super(key: key);
+
+  final BuildContext context;
+  final ChatInfoPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return OptionListTile(
+      title: 'Shared groups',
+      tileColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
+      titleTextStyle: StreamChatTheme.of(context).textTheme.body,
+      leading: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        child: StreamSvgIcon.iconGroup(
+          size: 24.0,
+          color: appAccentIconColor,
+        ),
+      ),
+      trailing: StreamSvgIcon.right(
+          color: StreamChatTheme.of(context)
+              .colorTheme
+              .black
+              .withOpacity(0.5)),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => _SharedGroupsScreen(
+                    StreamChat.of(context).user, widget.user)));
+      },
+    );
+  }
+}
+
 class _SharedGroupsScreen extends StatefulWidget {
   final User? mainUser;
   final User? otherUser;
@@ -476,6 +340,11 @@ class __SharedGroupsScreenState extends State<_SharedGroupsScreen> {
         backgroundColor: appPurpleColor,
       ),
       body: StreamBuilder<List<Channel>>(
+        /*
+          * Creates a new StreamBuilder that builds itself based on the latest
+          * snapshot of interaction with the specified stream and whose
+          * build strategy is given by builder.
+          * */
         stream: chat.client.queryChannels(
           filter: Filter.and([
             Filter.in_('members', [widget.otherUser!.id]),

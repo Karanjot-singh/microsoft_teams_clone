@@ -7,8 +7,6 @@ import 'dart:io';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:uuid/uuid.dart';
 
 class JoinMeetingsPage extends StatefulWidget {
   const JoinMeetingsPage({Key? key}) : super(key: key);
