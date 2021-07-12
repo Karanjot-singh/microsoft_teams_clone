@@ -37,6 +37,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.03),
+            // new Image.asset('android_icon.png', width: 100.0, height: 100.0),
+            // SizedBox(height: size.height * 0.03),
             Container(
               alignment: Alignment.center,
               child: Text(
