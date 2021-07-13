@@ -33,6 +33,44 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 
 ## Features
 
+**Chat Functionality**
+
+* Google Sign In
+* **Upto 2000 Active users at same time**
+* Create Group / personal chats outside a meeting
+* Pin messages.
+* Delete / edit messages.
+* Photo, Audio, Videos, etc.
+* GIFs via GIPHY
+* Chat reactions & Emojis.
+* Reply on threads.
+* Integrated Video rooms.
+* User mentions.
+* Mute Conversations
+
+
+**Video Conferencing Functionality**
+* Toggle Video / Audio
+* Share Screen
+* Anonymous Join In
+* Raise Hand
+* Set Meeting Password
+* Share files
+* In meet private chat
+* Record the meeting
+* Share Links
+* Broadcast Live
+* Low Bandwidth mode
+* Minimised mode
+
+**UI / UX**
+* Onboarding Screens
+* Minimalist UI
+* Dark / Light Theme
+
+**Complete [Feature List](https://github.com/Karanjot-singh/microsoft_teams_clone/blob/main/docs/Features%20%26%20Screenshots.pdf)**
+
+
 
 ## Development
 ### Project Setup
