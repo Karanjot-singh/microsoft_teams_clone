@@ -42,7 +42,9 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
   * Please refer to the [Coding style wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#coding-style--conventions) for full instructions.
 
 ### Overview of the codebase
-  * Please refer to the [Codebase overview wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Codebase-Overview) for detailed explanation.
+![Untitled (1)](https://user-images.githubusercontent.com/55680995/125423592-534262ae-a1f3-4757-abb7-0e39a2ea97f7.jpg)
+
+  * For more please refer to the [Codebase overview wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Codebase-Overview) for detailed explanation.
 
 ### Contributing
   * Please refer to the [Contributor wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Contribute) for steps.
@@ -65,6 +67,7 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 - Other dependencies in ```pubspec.yaml```
 
 ### Agile Methodologies
+
 
 
 ### App Permissions
