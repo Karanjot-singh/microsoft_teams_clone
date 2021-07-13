@@ -73,7 +73,10 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 ![scrum-1](https://user-images.githubusercontent.com/55680995/125426790-39644a1f-c45e-4f37-8c0f-04e7934c2295.png)
 
   * This application follows the [Effective Dart: Style](https://dart.dev/guides/language/effective-dart/style) & the repository is 
-    maintained following [Agile Methodologies](https://www.atlassian.com/agile) and [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)\
+    maintained following [Agile Methodologies](https://www.atlassian.com/agile) and [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+    
+    ![image](https://user-images.githubusercontent.com/55680995/125493294-18bcb908-d230-4790-bbc4-7b9acffe65d9.png)
+
  
  - Hence, The development of this project was iterative: Design, Code, Redesign, Fix Errors. All new features were created using new git branches and merged into main from time to time. [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
  - Issues, Ideas and Todos were tracked using a board for each sprint - Design, Build & Adapt
@@ -86,7 +89,9 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 - Access to Storage
 
 ## Demo
+Click to play
 
+[![Demo](https://user-images.githubusercontent.com/55680995/125494808-c6d0e73e-3ade-4e2e-8a07-b9da101e6068.png)](https://youtu.be/gfOrD80Qvcc)
 ## Project References
 - [Flutter API reference](https://api.flutter.dev/index.html)
 - [Stream Chat Flutter Docs](https://getstream.io/chat/docs/flutter-dart/)
