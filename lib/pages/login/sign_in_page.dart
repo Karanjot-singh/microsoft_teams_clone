@@ -20,55 +20,79 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        padding: EdgeInsets.only(),
+        child: Stack(
           children: [
-            Text(
-              "Microsoft Teams",
-              style: TextStyle(
-                  color: appPurpleColor,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: size.height * 0.03),
-            // new Image.asset('android_icon.png', width: 100.0, height: 100.0),
-            // SizedBox(height: size.height * 0.03),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                "Login to this Experience",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset(
+                "assets/images/login_bottom.png",
+                width: size.width * 0.4,
               ),
             ),
-            SizedBox(height: size.height * 0.04),
-            SvgPicture.asset(
-              "assets/icons/mobile.svg",
-              height: size.height * 0.40,
-              alignment: Alignment.center,
-            ),
-            SizedBox(height: size.height * 0.03),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return GoogleSignInButton();
-                }
-                return CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    CustomColors.firebaseOrange,
+            // Positioned(
+            //   top: 0,
+            //   left: -20,
+            //   child: Image.asset(
+            //     "assets/images/signup_top.png",
+            //     width: size.width * 0.3,
+            //   ),
+            // ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/android_icon.png",
+                  width: size.width * 0.15,
+                ),
+                SizedBox(height: size.height * 0.02),
+
+                Text(
+                  "Microsoft Teams",
+                  style: TextStyle(
+                      color: appPurpleColor,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: size.height * 0.02),
+                // new Image.asset('android_icon.png', width: 100.0, height: 100.0),
+                // SizedBox(height: size.height * 0.03),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Login to this Experience",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
                   ),
-                );
-              },
+                ),
+                SizedBox(height: size.height * 0.03),
+                SvgPicture.asset(
+                  "assets/icons/mobile.svg",
+                  height: size.height * 0.35,
+                  alignment: Alignment.center,
+                ),
+                SizedBox(height: size.height * 0.03),
+                FutureBuilder(
+                  future: Authentication.initializeFirebase(context: context),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Error initializing Firebase');
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.done) {
+                      return GoogleSignInButton();
+                    }
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        CustomColors.firebaseOrange,
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
