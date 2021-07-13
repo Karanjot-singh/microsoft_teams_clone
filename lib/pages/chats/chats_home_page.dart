@@ -7,7 +7,7 @@ import 'package:microsoft_teams_clone/pages/mentions/user_mentions_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:microsoft_teams_clone/services/stream_chat/app_config.dart';
+import 'package:microsoft_teams_clone/services/stream_chat/stream_api.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:microsoft_teams_clone/widgets/drawer.dart';
 
@@ -84,7 +84,7 @@ class _ChatsHomePageState extends State<ChatsHomePage> {
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelListHeader(
         titleBuilder: (context, connectionStatus, streamClient) {
-          var status = StreamConfig.kDefaultStreamClient.wsConnectionStatus;
+          var status = StreamApi.kDefaultStreamClient.wsConnectionStatus;
           if (status == ConnectionStatus.connecting) {
             return Text(
               'Connecting...',

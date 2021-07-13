@@ -8,6 +8,11 @@ class StreamApi {
     logLevel: Level.SEVERE,
     connectionMode: ConnectionMode.background,
   );
+  static const kDefaultStreamApiKey = 'rz79kjrkajgx';
+  static late var kDefaultStreamClient;
+  static void setClient(client) {
+    kDefaultStreamClient = client;
+  }
 }
 
 class InitData {

@@ -4,6 +4,11 @@ import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:microsoft_teams_clone/pages/chats/group_chat/channel_file_page.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+/*
+Option Tile Widgets for info screen of channels and private chats.
+Generalised and Modular Tiles implemented
+*/
+
 class FilesOptionTile extends StatelessWidget {
   const FilesOptionTile({
     Key? key,

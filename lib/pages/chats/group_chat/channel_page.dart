@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
@@ -16,7 +18,6 @@ for the Chat thread page for Channels or Group Chats
  in a channel of the Chat functionality
 powered by Stream Chat SDK.
 */
-
 
 class ChannelPageArgs {
   final Channel? channel;
@@ -71,7 +72,7 @@ class _ChannelPageState extends State<ChannelPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var channel = StreamChannel.of(context).channel;
-    var code = channel.id.toString().substring(0, 6);
+    var code = channel.id.toString().substring(15, 21);
     return Scaffold(
       backgroundColor: StreamChatTheme.of(context).colorTheme.whiteSnow,
       appBar: ChannelHeader(
@@ -161,14 +162,27 @@ class _ChannelPageState extends State<ChannelPage> {
                 ),
                 Positioned(
                   //sets the video icon for the call functionality
-                  top: size.height * 0.75,
-                  left: 8,
-                  child: IconButton(
-                    onPressed: () {
-                      CreateMeetingsPage.joinMeet(code);
-                    },
-                    icon: FaIcon(FontAwesomeIcons.video, color: appPurpleColor),
-                    iconSize: 25,
+                  top: size.height * 0.765 + 5,
+                  left: -15,
+
+                  child: Container(
+                    height: 38,
+                    child: RawMaterialButton(
+                      elevation: 3,
+                      fillColor: appPurpleColor,
+                      shape: CircleBorder(),
+                      onPressed: () {
+                        log(channel.id.toString());
+                        log(code.toString());
+
+                        CreateMeetingsPage.joinMeet(code);
+                      },
+                      child: FaIcon(
+                        FontAwesomeIcons.video,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ),
                   ),
                 ),
                 Positioned(

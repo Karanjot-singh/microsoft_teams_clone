@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+/*
+Option Tile Widgets for info screen of channels and private chats.
+Generalised and Modular Tiles implemented
+*/
+
+
 // ignore: must_be_immutable
 class MuteOptionTile extends StatelessWidget {
   MuteOptionTile({

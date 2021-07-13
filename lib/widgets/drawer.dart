@@ -110,6 +110,27 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              Divider(
+                color: StreamChatTheme.of(context)
+                    .colorTheme
+                    .black
+                    .withOpacity(0.3),
+                thickness: 0.5,
+                height: 20,
+              ),
+              Text(
+                'Developed by Karanjot Singh',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 10.5, color: Colors.grey),
+              ),
+              Divider(
+                color: StreamChatTheme.of(context)
+                    .colorTheme
+                    .black
+                    .withOpacity(0.3),
+                thickness: 0.5,
+                height: 20,
+              ),
               Expanded(
                 child: Container(
                   alignment: Alignment.bottomCenter,
