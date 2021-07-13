@@ -146,8 +146,18 @@ class _UserInfoPageState extends State<UserInfoPage> {
                         .devToken(_user.uid)
                         .rawValue
                         .toString();
+
+                    // Checks on the string to generate user id
+                    var _eid = _user.email!.length > 7
+                        ? _user.email!.substring(0, 7)
+                        : _user.uid.substring(0, 7);
+
+                    if (_eid.contains('.') || _eid.contains('@')) {
+                      _eid = _user.uid.substring(0, 7);
+                    }
+
                     User newUser = User(
-                      id: _user.uid,
+                      id: _eid,
                       extraData: {
                         'name': name,
                         'image': _user.photoURL!,
@@ -165,7 +175,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     );
                     secureStorage.write(
                       key: kStreamUserId,
-                      value: _user.uid,
+                      value: _eid,
                     );
                     secureStorage.write(
                       key: kStreamToken,
