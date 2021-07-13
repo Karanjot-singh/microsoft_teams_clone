@@ -17,4 +17,9 @@ class Routes {
   static const String JOIN_MEET = '/join_meetings_page';
   static const String CREATE_MEET = '/create_meetings_page';
   static const String MEET = '/meetings_page';
+  static const String ONBOARD1 = '/welcome_screen';
+  static const String ONBOARD3 = '/video_screen';
+  static const String ONBOARD2 = '/share_screen';
+
+
 }

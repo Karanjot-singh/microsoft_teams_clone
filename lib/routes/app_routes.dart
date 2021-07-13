@@ -4,6 +4,9 @@ import 'package:microsoft_teams_clone/pages/login/sign_in_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/create_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/join_meetings_page.dart';
 import 'package:microsoft_teams_clone/pages/meetings/meetings_page.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/share_screen.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/video_screen.dart';
+import 'package:microsoft_teams_clone/pages/onboarding/welcome_screen.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import '../pages/chats/group_chat/channel_page.dart';
 import '../pages/chats/chat_info_page.dart';
@@ -20,7 +23,6 @@ This Constructs a MaterialPageRoute for each of the pages created in the applica
 in an organised manner for scalable projects
 */
 class AppRoutes {
-  
   /// Add entry for new route here
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -84,6 +86,24 @@ class AppRoutes {
             builder: (_) {
               return NewChatPage();
             });
+      case Routes.ONBOARD1:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.NEW_CHAT),
+            builder: (_) {
+              return WelcomeScreen();
+            });
+      case Routes.ONBOARD2:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.NEW_CHAT),
+            builder: (_) {
+              return VideoScreen();
+            });
+      case Routes.ONBOARD3:
+        return MaterialPageRoute(
+            settings: const RouteSettings(name: Routes.NEW_CHAT),
+            builder: (_) {
+              return ShareScreen();
+            });
       case Routes.NEW_CHANNEL:
         return MaterialPageRoute(
             settings: const RouteSettings(name: Routes.NEW_CHANNEL),
@@ -121,6 +141,7 @@ class AppRoutes {
             builder: (context) {
               return ChatsHomePage();
             });
+
       // Default case, should not reach here.
       default:
         return null;

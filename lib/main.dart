@@ -56,13 +56,15 @@ class _MyAppState extends State<MyApp>
     }
 
     final prefs = await StreamingSharedPreferences.instance;
-    //Shared Preferences
+    //Wraps Shared Preferences with a Stream-based layer,
+    //allowing you to listen to changes in the underlying values.
 
     return InitData(client, prefs);
   }
 
   @override
   void initState() {
+    // Sets the splash screen & animation delay
     final timeOfStartMs = DateTime.now().millisecondsSinceEpoch;
 
     _initConnection().then(
@@ -133,15 +135,16 @@ class _MyAppState extends State<MyApp>
                 return [
                   AppRoutes.generateRoute(
                     RouteSettings(
-                      name: Routes.SIGN_IN,
-                      // name: Routes.CHOOSE_USER,
+                      // name: Routes.SIGN_IN,
+                      name: Routes.ONBOARD1,
                     ),
                   )!
                 ];
               },
               initialRoute: _initData!.client.state.user == null
                   //Choose the launch screen on basis of the state of user login
-                  ? Routes.SIGN_IN
+                  // ? Routes.SIGN_IN
+                  ? Routes.ONBOARD1
                   : Routes.HOME,
             ),
           ),
