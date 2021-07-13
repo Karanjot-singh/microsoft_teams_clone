@@ -33,6 +33,7 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 - [Connect with me](#connect-with-me)
 
 ## Download
+**Android 6.0 and above only**
 ### FAT APK Bundle
 - [Download](https://drive.google.com/drive/folders/1HlLm0pWeH9ETQ5cIsXBsXDIgd5tPvsrT?usp=sharing)
 
@@ -74,6 +75,7 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 
 **UI / UX**
 * Onboarding Screens
+* Fully Responsive UI
 * Minimalist UI
 * Dark / Light Theme
 
