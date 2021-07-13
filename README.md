@@ -12,7 +12,7 @@ It implements the following features of the original app
   * [Collaborate](https://www.microsoft.com/en-in/microsoft-teams/online-meetings)    
     Easily find, share files in real time, in chat to keep the work on :)
 
-This application is written using Flutter & Dart, It leverages Gradle and AndroidX and utilises StreamChat SDK ,Google Firebase and Jisi Meet Android SDK.
+This application is written using Flutter & Dart, It leverages Gradle and AndroidX and utilises StreamChat SDK, Google Firebase and Jisi Meet Android SDK.
 
 ## Contents
 - [Features](#features)
@@ -68,6 +68,15 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 
 ### Agile Methodologies
 
+- Agile software development refers to a group of software development methodologies based on iterative development, where requirements and solutions evolve through collaboration between self-organizing cross-functional teams.
+
+![scrum-1](https://user-images.githubusercontent.com/55680995/125426790-39644a1f-c45e-4f37-8c0f-04e7934c2295.png)
+
+  * This application follows the [Effective Dart: Style](https://dart.dev/guides/language/effective-dart/style) & the repository is 
+    maintained following [Agile Methodologies](https://www.atlassian.com/agile) and [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)\
+ 
+ - Hence, The development of this project was iterative: Design, Code, Redesign, Fix Errors. All new features were created using new git branches and merged into main from time to time. [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+ - Issues, Ideas and Todos were tracked using a board for each sprint - Design, Build & Adapt
 
 
 ### App Permissions
