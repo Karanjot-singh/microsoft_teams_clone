@@ -15,6 +15,7 @@ It implements the following features of the original app
 This application is written using Flutter & Dart, It leverages Gradle and AndroidX and utilises StreamChat SDK, Google Firebase and Jisi Meet Android SDK.
 
 ## Contents
+- [Download](#download)
 - [Features](#features)
 - [Development](#development)
   * [Project Setup](#project-setup)
@@ -31,6 +32,14 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 - [License](#license)
 - [Connect with me](#connect-with-me)
 
+## Download
+### FAT APK Bundle
+- [Download](https://drive.google.com/drive/folders/1HlLm0pWeH9ETQ5cIsXBsXDIgd5tPvsrT?usp=sharing)
+
+### Architecture Specefic APKs
+- [Download](https://drive.google.com/drive/folders/1zr3_bMxjsstKzExge0ti6x29zryIYrDE?usp=sharing)
+
+**Please refer to the [Guide](https://flutter.dev/docs/deployment/android#building-the-app-for-release) here to know the difference.**
 ## Features
 
 **Chat Functionality**
@@ -69,8 +78,6 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 * Dark / Light Theme
 
 **Complete [Feature List](https://github.com/Karanjot-singh/microsoft_teams_clone/blob/main/docs/Features%20%26%20Screenshots.pdf)**
-
-
 
 ## Development
 ### Project Setup
