@@ -33,6 +33,7 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 
 ## Features
 
+
 ## Development
 ### Project Setup
   * Please refer to the [Project setup wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#project-setup) for full instructions.
@@ -49,8 +50,22 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 ## Implementation
 
 ### Technologies Used
+- [Flutter](https://flutter.dev/) null safe 2.2.2
+- Google Firebase for user authentication  
+  - [firebase_core](https://pub.dev/packages/firebase_core)
+  - [firebase_auth](https://pub.dev/packages/firebase_auth)
+  - [google_sign_in](https://pub.dev/packages/google_sign_in)
+- Stream Chat SDK for integrated chat functionality
+  - [stream_chat_flutter](https://pub.dev/packages/stream_chat_flutter)
+  - [stream_chat_persistence](https://pub.dev/packages/stream_chat_persistence)
+  - [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
+  - [streaming_shared_preferences](https://pub.dev/packages/streaming_shared_preference)
+- Jitsi Meet SDK for video meetings & conferences
+  - [jitsi_meet](https://pub.dev/packages/firebase_core)
+- Other dependencies in ```pubspec.yaml```
 
 ### Agile Methodologies
+
 
 ### App Permissions
 - Internet access
@@ -61,13 +76,19 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 ## Demo
 
 ## Project References
+- [Flutter API reference](https://api.flutter.dev/index.html)
+- [Stream Chat Flutter Docs](https://getstream.io/chat/docs/flutter-dart/)
+- [pub.dev API reference](https://pub.dev/packages/stream_chat_flutter/versions/2.0.0-nullsafety.7)
+- [Flutter Samples](https://github.com/GetStream/flutter-samples)
+- [Undraw](https://undraw.co/)
+- Special Thanks to @imtoori (Stream SDK Devloper) for helping me throughout this project.
 
 ## Wiki
 Please head to the [Wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki) here.
 
 ## License
 
-<!-- The Oppia Android code is released under the [Apache v2 license](https://github.com/Karanjot-singh/microsoft_teams_clone/blob/develop/LICENSE). -->
+Microsoft Teams Clone is released under the [MIT License](https://github.com/Karanjot-singh/microsoft_teams_clone/blob/main/LICENSE).
 
 ## Connect with me
 Drop by and say hello!
