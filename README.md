@@ -35,28 +35,35 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 
 ## Development
 ### Project Setup
-Please refer to the [Project setup wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#project-setup) for full instructions.
+  * Please refer to the [Project setup wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#project-setup) for full instructions.
 
 ### Coding Style
-Please refer to the [Coding style wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#coding-style--conventions) for full instructions.
+  * Please refer to the [Coding style wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#coding-style--conventions) for full instructions.
 
 ### Overview of the codebase
-Please refer to the [Codebase Overview wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki#coding-style--conventions) for detailed explanation.
+  * Please refer to the [Codebase overview wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Codebase-Overview) for detailed explanation.
 
 ### Contributing
-Please refer to the [Contributor wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Contribute) for steps.
+  * Please refer to the [Contributor wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki/Contribute) for steps.
 
 ## Implementation
 
 ### Technologies Used
+
 ### Agile Methodologies
+
 ### App Permissions
+- Internet access
+- Access to camera
+- Access to microphone
+- Access to Storage
 
 ## Demo
 
 ## Project References
 
 ## Wiki
+Please head to the [Wiki page](https://github.com/Karanjot-singh/microsoft_teams_clone/wiki) here.
 
 ## License
 
