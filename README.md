@@ -137,6 +137,8 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 Click to play
 
 [![Demo](https://user-images.githubusercontent.com/55680995/125494808-c6d0e73e-3ade-4e2e-8a07-b9da101e6068.png)](https://youtu.be/gfOrD80Qvcc)
+
+**- [Screenshots](https://github.com/Karanjot-singh/microsoft_teams_clone/blob/main/docs/Features%20%26%20Screenshots.pdf)**
 ## Project References
 - [Flutter API reference](https://api.flutter.dev/index.html)
 - [Stream Chat Flutter Docs](https://getstream.io/chat/docs/flutter-dart/)
