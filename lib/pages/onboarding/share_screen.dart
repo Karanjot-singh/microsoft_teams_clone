@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:microsoft_teams_clone/config/constants.dart';
-import 'package:microsoft_teams_clone/pages/login/sign_in_page.dart';
 import 'package:microsoft_teams_clone/pages/onboarding/welcome_screen.dart';
-import 'package:microsoft_teams_clone/routes/routes.dart';
 import 'package:page_transition/page_transition.dart';
-import '../../widgets/rounded_button.dart';
 import 'video_screen.dart';
 
 class ShareScreen extends StatelessWidget {

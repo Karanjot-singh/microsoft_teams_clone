@@ -31,14 +31,6 @@ class _SignInPageState extends State<SignInPage> {
                 width: size.width * 0.4,
               ),
             ),
-            // Positioned(
-            //   top: 0,
-            //   left: -20,
-            //   child: Image.asset(
-            //     "assets/images/signup_top.png",
-            //     width: size.width * 0.3,
-            //   ),
-            // ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
