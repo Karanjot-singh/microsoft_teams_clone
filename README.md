@@ -37,7 +37,7 @@ This application is written using Flutter & Dart, It leverages Gradle and Androi
 ### FAT APK Bundle
 - [Download](https://drive.google.com/drive/folders/1HlLm0pWeH9ETQ5cIsXBsXDIgd5tPvsrT?usp=sharing)
 
-### Architecture Specefic APKs
+### Architecture Specific APKs
 - [Download](https://drive.google.com/drive/folders/1zr3_bMxjsstKzExge0ti6x29zryIYrDE?usp=sharing)
 
 **Please refer to the [Guide](https://flutter.dev/docs/deployment/android#building-the-app-for-release) here to know the difference.**
